@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Aluno</title>
+</head>
+<body>
+    <form class="Cadastro_aluno" method="post" action="">
+        <h1>Cadastro Do Aluno</h1>
+        <label >Nome do Aluno</label><br>        
+        <input type="text" name="nome"><br>
+
+        <select id='Nivel_escolar'>
+            <option value='' selected disabled>Selecione a escolaridade</option>
+            <option>Médio</option>
+            <option>Subsequente</option>
+        </select>
+        
+        
+        <select id='Turma_medio' style='display:none'>
+            <option>1A</option>
+            <option>1B</option>
+            <option>2A</option>
+        </select>
+        
+        <select id='Turma_sub' style='display:none'>
+            <option>TII 1A</option>
+            <option>TII 2A</option>
+            <option>TII 3A</option>
+        </select>
+        
+        <br>
+
+        <label>Telefone</label><br>
+        <input type="number" name="telefone"><br>
+        <label>E-mail</label><br>
+        <input type="email" name="email"><br>
+
+        <button type="submit">Cadastrar</button>
+
+
+<script src="main.js"></script>
+    </form>
+</body>
+</html>
