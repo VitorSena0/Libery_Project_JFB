@@ -4,37 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/style.css">
     <title>Biblioteca JFB</title>
+    <!--Está com problema quando amplia e reduz o zoom da página-->
 </head>
 <body>
-    <header>
-        <h1>Título</h1>
-    </header>
-
-    <nav>
-
+    <nav class="menu" id="menu2">
         <ul>
-            <li>Inicio</li>
-            <a href="CadastroAluno.html"><li>Cadastro Aluno</li></a>
-            <a href="CadastroLivro.html"><li>Cadastrar Livro</li></a>
-            <a href="EfetuaEmprestimo.html"><li>Realizar Emprestimo</li></a>
-            <li>Detalhes de Empréstimo</li>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="CadastroAluno.html">Cadastro Aluno</a></li>
+            <li><a href="CadastroLivro.html">Cadastrar Livro</a></li>
+            <li><a href="EfetuaEmprestimo.html">Efetuar Empréstimo</a></li>
         </ul>
-
     </nav>
-
     <section>
+        <header class="header1">
+            <h1>Title</h1>
+        </header>    
         <div class="Home">
             <ul>
-               <a href="CadastroAluno.html"><button><li>Alunos Cadastrados <br> quantidade</li></button></a>
-                <a href="CadastroLivro.html"><button><li>Livros Cadastrados <br>quantidade</li></button><br></a>
-                <button><li>Total de emprestimos <br>quantidade</li></button>
-                <button><li>Devoluções com atrasos <br>quantidade</li></button><br>
+                <li>Alunos Cadastrados
+                    <p>0</p>
+                </li>
+                <li>Livros Cadastrados 
+                    <p>0</p>
+                </li>
+                <li>Total de emprestimos 
+                    <p>0</p>
+                </li>
+                <li>Devoluções com atrasos 
+                    <p>0</p>
+                </li>
             </ul>
         </div>
     </section>
-
-    <footer></footer>
     
+    <footer></footer>
+    <script>
+        var size = window.innerHeight
+        var menu = window.document.getElementById("menu2")
+        menu.style.height = size + "px"
+    </script>
 </body>
 </html>
