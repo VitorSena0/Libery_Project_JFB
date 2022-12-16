@@ -5,12 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Aluno</title>
+    <link rel="stylesheet" href="public/css/stylec.css">
 </head>
 <body>
+    <div class="center">
     <form class="Cadastro_aluno" method="post" action="">
+
         <h1>Cadastro Do Aluno</h1>
-        <label >Nome do Aluno</label><br>        
-        <input type="text" name="nome"><br>
+        <div class="txt_field">
+            <input type="text" name="nome" required>
+            <span></span>
+            <label>Nome do Aluno</label>
+        </div>
+
+
 
         <select id='Nivel_escolar'>
             <option value='' selected disabled>Selecione a escolaridade</option>
@@ -33,15 +41,54 @@
         
         <br>
 
-        <label>Telefone</label><br>
-        <input type="number" name="telefone"><br>
-        <label>E-mail</label><br>
-        <input type="email" name="email"><br>
+        <div class="txt_field">
+            <input type="number" name="telefone" required>
+            <span></span>
+            <label>Telefone</label>
+        </div>
+        
+        <div class="txt_field">
+            <input type="email" name="email" required>
+            <span></span>
+            <label>E-mail</label>
+        </div>
 
-        <button type="submit">Cadastrar</button>
+        <button class="Cadastrar" type="submit">Cadastrar</button>
+        <a href="index.html">Inicio</a>
+        </div>
 
 
-<script src="main.js"></script>
+<script>
+    /// ; Pega o select#Nivel_escolar
+let Nivel_escolar = document.getElementById("Nivel_escolar");
+
+const value_elem_id = { 
+  'Médio':'Turma_medio',
+/// ^ value   :  ^ id do select turma **
+  'Subsequente':'Turma_sub'
+};
+
+/// ; Define o evento onchange no select#Nivel_escolar
+Nivel_escolar.onchange = function(){
+    /// ; this aqui dentro é o select#Nivel_escolar
+    let valor = this.value;                     /// ; <- valor selecionado
+    let selects = Array.from(                   /// ; <- transforma o resultado em array
+      document.getElementsByTagName('select')   /// ; <- pega todos os selects 
+    );
+    
+    selects.forEach(function(el){
+    
+        if(el.id != 'Nivel_escolar')  /// ; <- se o select não for o de Nivel_escolar display=none
+            el.style.display='none';
+        if(el.id == value_elem_id[valor] )  /// ; <- se o select é o da turma display=block;
+            el.style.display='block';
+            
+    });
+    /// document.getElementById( value_elem_id[valor] ).style.display='block';
+    /// ; outra forma de dar display block      
+}
+
+</script>
     </form>
 </body>
 </html>

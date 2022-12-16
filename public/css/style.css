@@ -3,6 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-image: url("../images/images.jpg");
+}
+img{
+    width: 300px;
+}
+
 .menu{
     background-color: rgb(2, 69, 147);
     height: 100%;
