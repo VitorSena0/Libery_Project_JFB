@@ -3,6 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-image: url("../images/images.jpg");
+}
+img{
+    width: 300px;
+}
+
 .menu{
     background-color: rgb(2, 69, 147);
     height: 100%;
@@ -17,16 +24,29 @@
     align-items: baseline;
     width: 100%;
 }
-.menu ul li{
+.menu ul li {
     text-align: center;
-    background-color: aliceblue;
     list-style: none;
     margin: auto;
+    width: 100%;
+    padding: 10px;
+    font-size: 25px;
+    font-family: "Roboto",Arial,sans-serif;
+    margin-bottom: 5px;
+}
+.menu ul li a{
+    display: block;
+    text-align: center;
+    background-color: aliceblue;
+    text-decoration: none;
+    margin: auto;
+    color: black;
     width: 100%;
     padding: 40px;
     font-size: 25px;
     font-family: "Roboto",Arial,sans-serif;
     margin-bottom: 5px;
+    border-radius: 5px;
 }
 .Home ul{
     display: grid;
@@ -36,7 +56,7 @@
     margin: auto;
     color: white;
 }
-.Home ul li{
+.Home ul li {
     text-align: center;
     padding: 10px;
     margin: 5px;
@@ -44,7 +64,7 @@
     border-radius: 5px;
     list-style: none;
     background-color:  rgb(2, 69, 147);
-}
+}   
 .Home ul li p{
     margin-top: 5px;
     text-align: center;
@@ -53,8 +73,8 @@
     position: absolute;
     display: flex;
     width: 60%;
-    top: 150px;
-    left: 300px;
+    top: 250px;
+    left: 500px;
     align-items: center;
     justify-content: center;
     margin: auto;
@@ -69,12 +89,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 25px;
-    left: 170px;
+    top: 180px;
+    left: 300px;
 }
 .header1 h1{
     text-align: center;
 }
-nav ul li:hover{
+nav ul li a:hover{
     background-color: orange;
 }
