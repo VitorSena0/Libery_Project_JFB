@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.logo {
+  width: 100px;
+  margin: 10px;
+  border-radius: 15px;
+  margin-right: auto; /* adicionado */
+}
+
+.menu-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* adicionado */
+  margin-left: auto; /* adicionado */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: rgb(2, 69, 147);
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+}
+
+.menu ul li {
+  margin-right: 30px;
+}
+
+.menu ul li a {
+  display: block;
+  text-align: center;
+  background-color: rgb(2, 69, 147);
+  text-decoration: none;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.menu ul li a:hover {
+  background-color: rgba(31, 127, 191, 0.541);
+}
+
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  margin: 20% auto;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+.card p {
+  text-align: center;
+  padding-top: 28px;
+  font-size: 24px;
+}
