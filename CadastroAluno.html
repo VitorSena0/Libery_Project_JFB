@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Aluno</title>
-    <link rel="stylesheet" href="public/css/stylec.css">
+    <link rel="stylesheet" href="public/css/style_cadastroAluno.css">
 </head>
 <body>
-    <div class="center">
+    <div class="form-cadastro">
     <form class="Cadastro_aluno" method="post" action="">
 
         <h1>Cadastro Do Aluno</h1>
@@ -17,9 +17,18 @@
             <span></span>
             <label>Nome do Aluno</label>
         </div>
-
-
-
+        
+        <div class="txt_field">
+            <input type="tel" name="telefone" required>
+            <span></span>
+            <label>Telefone</label>
+        </div>
+        
+        <div class="txt_field">
+            <input type="email" name="email" required>
+            <span></span>
+            <label>E-mail</label>
+        </div>
         <select id='Nivel_escolar'>
             <option value='' selected disabled>Selecione a escolaridade</option>
             <option>Médio</option>
@@ -38,23 +47,8 @@
             <option>TII 2A</option>
             <option>TII 3A</option>
         </select>
-        
-        <br>
-
-        <div class="txt_field">
-            <input type="number" name="telefone" required>
-            <span></span>
-            <label>Telefone</label>
-        </div>
-        
-        <div class="txt_field">
-            <input type="email" name="email" required>
-            <span></span>
-            <label>E-mail</label>
-        </div>
 
         <button class="Cadastrar" type="submit">Cadastrar</button>
-        <a href="index.html">Inicio</a>
         </div>
 
 
