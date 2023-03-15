@@ -13,10 +13,10 @@
         <div class="menu-horizontal">
           <nav class="menu">
             <ul>
-              <li><a href="CadastroAluno.html">Cadastrar Aluno</a></li>
-              <li><a href="CadastroLivro.html">Cadastrar Livro</a></li>
-              <li><a href="EfetuaEmprestimo.html">Efetuar Empréstimo</a></li>
-              <li><a href="AlunosCadastrados.html">Alunos Cadastrados</a></li>
+              <li><a href="#" class="cadastrar-aluno">Cadastrar Aluno</a></li>
+              <li><a href="#" class="cadastrar-livro">Cadastrar Livro</a></li>
+              <li><a href="#" class="emprestimo">Efetuar Empréstimo</a></li>
+              <li><a href="#" class="consultarEmprestimos">Alunos Cadastrados</a></li>
             </ul>
           </nav>
         </div>
@@ -41,7 +41,50 @@
           <p>0</p>
         </div>
       </section>
+
+      <div id="contain-cadastro">
+        <div class="form-cadastro">
+          <form class="Cadastro_aluno" method="post" action="">
+      
+              <h1>Cadastro Do Aluno</h1>
+              <div class="txt_field">
+                  <input type="text" name="nome" required placeholder="Nome do Aluno">
+                  <span></span>
+              </div>
+              
+              <div class="txt_field">
+                  <input type="tel" name="telefone" required placeholder="Telefone">
+                  <span></span>
+              </div>
+              
+              <div class="txt_field">
+                  <input type="email" name="email" required placeholder="E-mail">
+                  <span></span>
+              </div>
+              <select id='Nivel_escolar'>
+                  <option value='' selected disabled>Selecione a escolaridade</option>
+                  <option>Médio</option>
+                  <option>Subsequente</option>
+              </select>
+              
+              
+              <select id='Turma_medio' style='display:none'>
+                  <option>1A</option>
+                  <option>1B</option>
+                  <option>2A</option>
+              </select>
+              
+              <select id='Turma_sub' style='display:none'>
+                  <option>TII 1A</option>
+                  <option>TII 2A</option>
+                  <option>TII 3A</option>
+              </select>
+      
+              <button class="Cadastrar" type="submit">Cadastrar</button>
+              </div>
+      </div>
     </main>
     <footer></footer>
+    <script src="public/javascript/index_js.js"></script>
   </body>
 </html>
