@@ -44,7 +44,7 @@
 
       <div id="contain-cadastro">
         <div class="form-cadastro">
-          <form class="Cadastro_aluno" method="post" action="">
+          <form class="cadastro-aluno" method="post" action="">
       
               <h1>Cadastro Do Aluno</h1>
               <div class="txt_field">
@@ -58,27 +58,31 @@
               </div>
               
               <div class="txt_field">
-                  <input type="email" name="email" required placeholder="E-mail">
+                  <input type="email" name="email" placeholder="E-mail">
                   <span></span>
               </div>
-              <select id='Nivel_escolar'>
-                  <option value='' selected disabled>Selecione a escolaridade</option>
-                  <option>Médio</option>
-                  <option>Subsequente</option>
-              </select>
-              
-              
-              <select id='Turma_medio' style='display:none'>
-                  <option>1A</option>
-                  <option>1B</option>
-                  <option>2A</option>
-              </select>
-              
-              <select id='Turma_sub' style='display:none'>
-                  <option>TII 1A</option>
-                  <option>TII 2A</option>
-                  <option>TII 3A</option>
-              </select>
+
+              <div class="select-dinamico">
+
+                <select id='Nivel_escolar' required>
+                    <option value='' selected disabled>Selecione a escolaridade</option>
+                    <option>Médio</option>
+                    <option>Subsequente</option>
+                </select>
+                
+                
+                <select id='Turma_medio' style='display:none' required>
+                    <option>1A</option>
+                    <option>1B</option>
+                    <option>2A</option>
+                </select>
+                
+                <select id='Turma_sub' style='display:none' required>
+                    <option>TII 1A</option>
+                    <option>TII 2A</option>
+                    <option>TII 3A</option>
+                </select>
+              </div>
       
               <button class="Cadastrar" type="submit">Cadastrar</button>
               </div>
