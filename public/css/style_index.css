@@ -96,6 +96,7 @@ body {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
+  transition: 1s;
 }
 
 .form-cadastro{
@@ -107,9 +108,7 @@ body {
   background: white;
   border-radius: 10px;
   display: none;
-  
 }
-
 
 .form-cadastro h1{
   text-align: center;
@@ -120,6 +119,16 @@ body {
   padding: 0 40px;
   box-sizing: border-box;
 }
+
+.select-dinamico{
+  display: flex;
+  justify-content: space-between;
+}
+
+#Nivel_escolar, #Turma_medio, #Turma_sub{
+  margin-right: 55px;
+}
+
 form .txt_field{
   position: relative;
   border-bottom: 2px solid #adadad;
