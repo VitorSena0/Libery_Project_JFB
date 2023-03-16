@@ -12,14 +12,15 @@ body {
   width: 100px;
   margin: 10px;
   border-radius: 15px;
-  margin-right: auto; /* adicionado */
+  margin-right: auto;
+  /* adicionado */
 }
 
 .menu-horizontal {
   display: flex;
   align-items: center;
-  justify-content: center; /* adicionado */
-  margin-left: auto; /* adicionado */
+  justify-content: center;
+  margin-left: auto;
 }
 
 .header {
@@ -73,101 +74,42 @@ body {
   margin: 20% auto;
 }
 
-.card {
-  background-color: white;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+.cardsTotais {
+  display: flex;
 }
 
-.card p {
+.card1,
+.card2,
+.card3,
+.card4 {
+  background: linear-gradient(to right, #4d86e9b0, #b7cbff, #31a1d5);
+  background-size: 400% 100%;
+  transition: all .5s ease-in-out;
+  padding: 20px;
+  margin: 30px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  max-height: 100%;
+  max-width: 100%;
+
+}
+
+.card1 p,
+.card2 p,
+.card3 p,
+.card4 p {
   text-align: center;
   padding-top: 28px;
   font-size: 24px;
 }
 
-
-/*///////////////////////*/
-.contain-cadastro{
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  transition: 1s;
-}
-
-.form-cadastro{
-  position: absolute;
-  top: 50%;
-  left:50% ;
-  transform: translate(-50%,-50%);
-  width: 400px;
-  background: white;
-  border-radius: 10px;
-  display: none;
-}
-
-.form-cadastro h1{
-  text-align: center;
-  padding: 20px 0;
-  border-bottom: 1px solid silver;
-}
-.form-cadastro form{
-  padding: 0 40px;
-  box-sizing: border-box;
-}
-
-.select-dinamico{
-  display: flex;
-  justify-content: space-between;
-}
-
-#Nivel_escolar, #Turma_medio, #Turma_sub{
-  margin-right: 55px;
-}
-
-form .txt_field{
-  position: relative;
-  border-bottom: 2px solid #adadad;
-  margin: 30px 0;
-}
-.txt_field input{
-  width: 100%;
-  padding: 0 5px;
-  height: 40px;
-  font-size: 16px;
-  border: none ;
-  background: none;
-  outline: none;
-}
-
-
-button[type="submit"]{
-  width: 100%;
-  height: 50px;
-  border: 1px solid;
-  background: #2691d9;
-  border-radius: 25px;
-  font-size: 18px;
-  color: #e9f4fb;
-  font-weight: 700;
+.card1:hover,
+.card2:hover,
+.card3:hover,
+.card4:hover {
   cursor: pointer;
-  outline: none;
-  margin: 30px 0 ;
-}
-button[type="submit"]:hover{
-  border-color: #3ba0e3;
-}
-select{
-  margin: 0px 0px 40px;
-  border: 1px solid #676767;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  outline: none;
-  color: #1c96dc;
-
+  background-position: 100% 0;
+  transform: scale(1.1);
+  box-shadow: -6px -6px 10px rgba(0, 0, 0, 0.6);
 }

@@ -1,32 +1,10 @@
-      
-      let Nivel_escolar = document.getElementById("Nivel_escolar");
-      Nivel_escolar.onchange = function(){
-    
-        const value_elem_id = { 
-          'Médio':'Turma_medio',
-          'Subsequente':'Turma_sub'
-        };
-
-          let valor = this.value;                     
-          let selects = Array.from(                   
-            document.getElementsByTagName('select')   
-          );
-          
-          selects.forEach(function(el){
-              if(el.id != 'Nivel_escolar')  
-                  el.style.display='none';
-              if(el.id == value_elem_id[valor] )
-                  el.style.display='block';    
-          });
-      }
-    
-
-const cadastro = document.querySelector(".cadastro-aluno")
-const formCadastroAluno = document.querySelector(".form-cadastro");
+const formCadastroAluno = document.querySelector(".form-cadastro-aluno")
+const cadastroLivro = document.querySelector(".form-cadastro-livro")
+const CadastroAluno = document.querySelector(".cadastro-aluno");
 const cadastroAlunoBackground = document.querySelector("#contain-cadastro");
 
 const resetarFormulario = ()=>{
-  cadastro.reset(); // Reseta o formulário;
+  formCadastroAluno.reset(); // Reseta o formulário;
   // Volta para o estado normal do select quando o formulario for submetido;
       let selects = Array.from(document.getElementsByTagName('select'));
       selects.forEach(function(el){
@@ -36,16 +14,23 @@ const resetarFormulario = ()=>{
 }
 
 document.addEventListener('click', function(event){
-    event.preventDefault();
+    const cardCadastrarAluno = event.target.closest('.card1');
+    const cardCadastrarLivros = event.target.closest('.card2');
+    const cardEmprestimo = event.target.closest('.card3');
+    const Devolucoes = event.target.closest('.card4');
     const evento = event.target.className
-    console.log(evento)
-    if(evento === "cadastrar-aluno"){
-      formCadastroAluno.style.display = 'block';
+    event.preventDefault();
+    
+    if(cardCadastrarAluno !== null){
+      CadastroAluno.style.display = 'block';
         cadastroAlunoBackground.classList.add("contain-cadastro");   
     }
 
-    if(evento === "Cadastrar"){
-      const camposObrigatorios = formCadastroAluno.querySelectorAll('[required]');
+    // Submits dos formulários //
+
+    // Evento do formulário do cadastro do aluno
+    if(evento === "CadastrarAluno"){
+      const camposObrigatorios = CadastroAluno.querySelectorAll('[required]');
     let preenchidos = true;
 
     camposObrigatorios.forEach(function(campo){
@@ -58,14 +43,16 @@ document.addEventListener('click', function(event){
       event.preventDefault();
       alert("Preencha todos os campos!")
     }else{
-      formCadastroAluno.style.display = 'none';
+      CadastroAluno.style.display = 'none';
       cadastroAlunoBackground.classList.remove("contain-cadastro");
       resetarFormulario();
     } 
   }
+  // Evento do formulrio do cadastro do livro
+  
 
   if(evento === 'contain-cadastro'){
-    formCadastroAluno.style.display = 'none';
+    CadastroAluno.style.display = 'none';
     cadastroAlunoBackground.classList.remove("contain-cadastro");
     resetarFormulario();
   }
