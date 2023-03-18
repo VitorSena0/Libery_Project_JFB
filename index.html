@@ -5,28 +5,37 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="public/images/logo(1).jpg" type="image/png">
   <link rel="stylesheet" href="public/css/style_index.css" />
   <link rel="stylesheet" href="public/css/style_cadastros.css">
   <title>Biblioteca JFB</title>
 </head>
 
 <body>
-  
+
+  <h1 class="titulo-pagina">Biblioteca JFB</h1>
+
   <header class="header">
-    <div class="logo">
-      <img src="public/images/logo.jpg" alt="Logo" class="logoJFB" />
-    </div>
-    <div class="menu-vertical">
-      <nav class="menu">
-        <ul>
-          <li><a href="#" class="aluno-cadastrado">Início <br><br> <img src="public/images/pagina-inicial.png" class="img-menu"></a></li>
-          <li><a href="#" class="aluno-cadastrado">Alunos <br><br> <img src="public/images/aluno.png" class="img-menu"></a></li>
-          <li><a href="#" class="livro-cadastrado">Acervo <br><br> <img src="public/images/livro-aberto.png" class="img-menu" alt=""></a></li>
-          <li><a href="#" class="emprestimo-efetuado">Empréstimos <br><br><img src="public/images/emprestimo.png" class="img-menu" alt=""></a></li>
-        </ul>
-      </nav>
-    </div>
+    <div class="menu-vertical-navegacao">
+      <div class="logo">
+        <img src="public/images/logo.jpg" alt="Logo" class="logoJFB"/>
+      </div>
+      <div class="menu-vertical">
+        <nav class="menu">
+          <ul>
+            <li><a href="#" class="aluno-cadastrado">  <img src="public/images/pagina-inicial.png"
+                  class="img-menu"><br> Início</a></li>
+            <li><a href="#" class="aluno-cadastrado"> <img src="public/images/aluno.png"
+                  class="img-menu"><br> Alunos</a></li>
+            <li><a href="#" class="livro-cadastrado"><img src="public/images/livro-aberto.png"
+                  class="img-menu" alt=""><br> Acervo</a></li>
+            <li><a href="#" class="emprestimo-efetuado"><img src="public/images/emprestimo.png"
+                  class="img-menu" alt=""><br> Empréstimos</a></li>
+          </ul>
+        </nav>
+      </div>
   </header>
+  </div>
   <main>
     <section class="home">
       <div class="cardsTotais">
@@ -116,7 +125,7 @@
       </div>
 
       <!------Cadastro de livros----->
-      <div class="cadastrar-livro" style="width: 550px;">
+      <div class="cadastrar-livro" style="width: 40vw;">
         <form class="form-cadastro-livro">
           <h1>Cadastrar livro</h1>
           <div class="txt_field">
@@ -132,7 +141,7 @@
           </div>
 
           <div class="txt_field">
-            <input type="text" id="isbn" name="isbn" placeholder="ISBN" >
+            <input type="text" id="isbn" name="isbn" placeholder="ISBN">
           </div>
 
           <div class="foto-livro">
