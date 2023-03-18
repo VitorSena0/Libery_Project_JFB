@@ -1,94 +1,156 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="public/css/style_index.css" />
-    <title>Biblioteca JFB</title>
-  </head>
-  <body>
-    <header class="header">
-        <img src="public/images/logo.jpg" alt="Logo" class="logo" />
-        <div class="menu-horizontal">
-          <nav class="menu">
-            <ul>
-              <li><a href="#" class="cadastrar-aluno">Cadastrar Aluno</a></li>
-              <li><a href="#" class="cadastrar-livro">Cadastrar Livro</a></li>
-              <li><a href="#" class="emprestimo">Efetuar Empréstimo</a></li>
-              <li><a href="#" class="consultarEmprestimos">Alunos Cadastrados</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      
-    <main>
-      <section class="home">
-        <div class="card">
-          <h2>Alunos cadastrados</h2>
-          <p>0</p>
-        </div>
-        <div class="card">
-          <h2>Livros cadastrados</h2>
-          <p>0</p>
-        </div>
-        <div class="card">
-          <h2>Total de empréstimos</h2>
-          <p>0</p>
-        </div>
-        <div class="card">
-          <h2>Devoluções pendentes</h2>
-          <p>0</p>
-        </div>
-      </section>
 
-      <div id="contain-cadastro">
-        <div class="form-cadastro">
-          <form class="cadastro-aluno" method="post" action="">
-      
-              <h1>Cadastro Do Aluno</h1>
-              <div class="txt_field">
-                  <input type="text" name="nome" required placeholder="Nome do Aluno">
-                  <span></span>
-              </div>
-              
-              <div class="txt_field">
-                  <input type="tel" name="telefone" required placeholder="Telefone">
-                  <span></span>
-              </div>
-              
-              <div class="txt_field">
-                  <input type="email" name="email" placeholder="E-mail">
-                  <span></span>
-              </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="public/css/style_index.css" />
+  <link rel="stylesheet" href="public/css/style_cadastros.css">
+  <title>Biblioteca JFB</title>
+</head>
 
-              <div class="select-dinamico">
+<body>
+  <header class="header">
+    <img src="public/images/logo.jpg" alt="Logo" class="logo" />
+    <div class="menu-horizontal">
+      <nav class="menu">
+        <ul>
+          <li><a href="#" class="aluno-cadastrado">Alunos Cadastrados</a></li>
+          <li><a href="#" class="livro-cadastrado">Acervo Cadastrado</a></li>
+          <li><a href="#" class="emprestimo-efetuado">empréstimos Efetuados</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-                <select id='Nivel_escolar' required>
-                    <option value='' selected disabled>Selecione a escolaridade</option>
-                    <option>Médio</option>
-                    <option>Subsequente</option>
-                </select>
-                
-                
-                <select id='Turma_medio' style='display:none' required>
-                    <option>1A</option>
-                    <option>1B</option>
-                    <option>2A</option>
-                </select>
-                
-                <select id='Turma_sub' style='display:none' required>
-                    <option>TII 1A</option>
-                    <option>TII 2A</option>
-                    <option>TII 3A</option>
-                </select>
-              </div>
-      
-              <button class="Cadastrar" type="submit">Cadastrar</button>
-              </div>
+  <main>
+    <section class="home">
+      <div class="cardsTotais">
+        <div class="card1">
+          <h2>Cadastrar <br> aluno</h2>
+          <img src="public/images/lottie/adicionar-aluno.png" class="img-cards" alt="">
+        </div>
+        <div class="card2">
+          <h2>Cadastrar <br> livro</h2>
+          <img src="public/images/lottie/adicionar-livro(2).png" class="img-cards" alt="">
+        </div>
+        <div class="card3">
+          <h2>Realizar <br> empréstimo</h2>
+          <img src="public/images/lottie/emprestimo.png" class="img-cards" alt="">
+        </div>
+        <div class="card4">
+          <h2>Devoluções <br> pendentes</h2>
+          <img src="public/images/lottie/devolucoes-pendentes.png" class="img-cards" alt="">
+        </div>
       </div>
-    </main>
-    <footer></footer>
-    <script src="public/javascript/index_js.js"></script>
-  </body>
+    </section>
+
+    <!---------------------Formulários------------------->
+
+    <div id="contain-cadastro">
+
+      <!--------Formulário do cadastro de aluno-------->
+      <div class="cadastro-aluno">
+        <form class="form-cadastro-aluno" method="post" action="">
+
+          <h1>Cadastro Do Aluno</h1>
+          <div class="txt_field">
+            <input type="text" name="nome" required placeholder="Nome do Aluno">
+            <span></span>
+          </div>
+
+          <div class="txt_field">
+            <input type="number" name="telefone" required placeholder="Telefone">
+            <span></span>
+          </div>
+
+          <div class="txt_field">
+            <input type="email" name="email" placeholder="E-mail">
+            <span></span>
+          </div>
+
+
+          <div class="select-dinamico">
+
+            <select id='Nivel_escolar' required>
+              <option value='' selected disabled>Selecione a escolaridade</option>
+              <option>Médio</option>
+              <option>Subsequente</option>
+            </select>
+
+
+            <select id='Turma_medio' style='display:none' required>
+              <option>1A</option>
+              <option>1B</option>
+              <option>2A</option>
+            </select>
+
+            <select id='Turma_sub' style='display:none' required>
+              <option>TII 1A</option>
+              <option>TII 2A</option>
+              <option>TII 3A</option>
+            </select>
+
+            <script>
+              let Nivel_escolar = document.getElementById("Nivel_escolar");
+              Nivel_escolar.onchange = function () {
+                const value_elem_id = { 'Médio': 'Turma_medio', 'Subsequente': 'Turma_sub' };
+                let valor = this.value;
+                let selects = Array.from(document.getElementsByTagName('select'));
+                selects.forEach(function (el) {
+                  if (el.id != 'Nivel_escolar')
+                    el.style.display = 'none';
+                  if (el.id == value_elem_id[valor])
+                    el.style.display = 'block';
+                });
+              }
+            </script>
+
+          </div>
+          <button class="CadastrarAluno" type="submit">Cadastrar</button>
+        </form>
+      </div>
+
+      <!------Cadastro de livros----->
+      <div class="cadastrar-livro" style="width: 550px;">
+        <form class="form-cadastro-livro">
+          <h1>Cadastrar livro</h1>
+          <div class="txt_field">
+            <input type="text" id="titulo" name="titulo" placeholder="Título do livro" required>
+          </div>
+
+          <div class="txt_field">
+            <input type="text" id="autor" name="autor" placeholder="Autor" required>
+          </div>
+
+          <div class="txt_field">
+            <input type="text" id="editora" name="editora" placeholder="editora" required>
+          </div>
+
+          <div class="txt_field">
+            <input type="text" id="isbn" name="isbn" placeholder="ISBN" >
+          </div>
+
+          <div class="foto-livro">
+            <label for="foto">Foto: </label>
+            <input type="file" name="foto" id="foto">
+            <div>
+              <img id="foto-preview" src="#" alt="">
+            </div>
+          </div>
+          <button type="submit" class="CadastrarLivro">Cadastrar</button>
+        </form>
+      </div>
+
+      <!--Realização do empréstimo-->
+
+
+
+    </div>
+  </main>
+  <footer></footer>
+  <script src="public/javascript/index_js.js"></script>
+</body>
+
 </html>
