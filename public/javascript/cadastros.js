@@ -1,3 +1,4 @@
+// Formulários
 const formCadastroAluno = document.querySelector(".form-cadastro-aluno")
 const formCadastroLivro = document.querySelector(".form-cadastro-livro")
 const CadastroAluno = document.querySelector(".cadastro-aluno");
@@ -90,8 +91,10 @@ document.addEventListener('click', function (event) {
 // Pega a foto selecionada e põe uma pequena demostração no forumulário
 inputFoto.addEventListener('change', function () {
   const arquivo = this.files[0];
+  console.log(arquivo)
   if (arquivo) {
     const url = URL.createObjectURL(arquivo);
+    console.log(url)
     previewFoto.setAttribute('src', url);
   }
 });
