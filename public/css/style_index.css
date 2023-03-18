@@ -77,12 +77,23 @@ body {
 .cardsTotais {
   display: flex;
 }
-
+/*Cores de cada card*/
+.card1{
+  background: linear-gradient(to right, #4d86e9b0, #b7cbff,rgb(250,193,60));
+}
+.card2{
+  background: linear-gradient(to right, #4d86e9b0, #b7cbff,rgb(112,255,123));
+}
+.card3{
+  background: linear-gradient(to right, #4d86e9b0, #b7cbff,rgb(210,105,204));
+}
+.card4{
+  background: linear-gradient(to right, #4d86e9b0, #b7cbff,rgb(119, 237, 253));
+}
 .card1,
 .card2,
 .card3,
 .card4 {
-  background: linear-gradient(to right, #4d86e9b0, #b7cbff, #31a1d5);
   background-size: 400% 100%;
   transition: all .5s ease-in-out;
   padding: 20px;
@@ -92,13 +103,13 @@ body {
   text-align: center;
   max-height: 100%;
   max-width: 100%;
-
+  display: flex;
 }
 
-.card1 p,
-.card2 p,
-.card3 p,
-.card4 p {
+.card1 h2,
+.card2 h2,
+.card3 h2,
+.card4 h2{
   text-align: center;
   padding-top: 28px;
   font-size: 24px;
@@ -112,4 +123,9 @@ body {
   background-position: 100% 0;
   transform: scale(1.1);
   box-shadow: -6px -6px 10px rgba(0, 0, 0, 0.6);
+}
+
+.img-cards{
+  width: 120px;
+  height: 120px;
 }

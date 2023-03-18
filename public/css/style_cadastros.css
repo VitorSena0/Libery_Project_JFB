@@ -92,3 +92,21 @@ select {
 }
 
 /*-------Cadastro Livro--------*/
+
+.foto-livro{
+  text-align: center;
+  border-radius: 7px;
+  padding-top: 15px;
+  border-bottom: #adadad solid 2px;
+  border-top: #adadad solid 2px;
+}
+
+.foto-livro div {
+  text-align: center;
+}
+
+#foto-preview{
+  max-width: 40%;
+  margin-top: 10px;
+
+}

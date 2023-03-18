@@ -28,20 +28,20 @@
     <section class="home">
       <div class="cardsTotais">
         <div class="card1">
-          <h2>Cadastrar alunos</h2>
-          <p>0</p>
+          <h2>Cadastrar <br> aluno</h2>
+          <img src="public/images/lottie/adicionar-aluno.png" class="img-cards" alt="">
         </div>
         <div class="card2">
-          <h2>Cadastrar livros</h2>
-          <p>0</p>
+          <h2>Cadastrar <br> livro</h2>
+          <img src="public/images/lottie/adicionar-livro(2).png" class="img-cards" alt="">
         </div>
         <div class="card3">
-          <h2>Realizar empréstimo</h2>
-          <p>0</p>
+          <h2>Realizar <br> empréstimo</h2>
+          <img src="public/images/lottie/emprestimo.png" class="img-cards" alt="">
         </div>
         <div class="card4">
-          <h2>Devoluções pendentes</h2>
-          <p>0</p>
+          <h2>Devoluções <br> pendentes</h2>
+          <img src="public/images/lottie/devolucoes-pendentes.png" class="img-cards" alt="">
         </div>
       </div>
     </section>
@@ -49,7 +49,7 @@
     <!---------------------Formulários------------------->
 
     <div id="contain-cadastro">
-      
+
       <!--------Formulário do cadastro de aluno-------->
       <div class="cadastro-aluno">
         <form class="form-cadastro-aluno" method="post" action="">
@@ -61,7 +61,7 @@
           </div>
 
           <div class="txt_field">
-            <input type="tel" name="telefone" required placeholder="Telefone">
+            <input type="number" name="telefone" required placeholder="Telefone">
             <span></span>
           </div>
 
@@ -111,29 +111,42 @@
           <button class="CadastrarAluno" type="submit">Cadastrar</button>
         </form>
       </div>
-      
+
       <!------Cadastro de livros----->
-      <div class="cadastrar-livro">
+      <div class="cadastrar-livro" style="width: 550px;">
         <form class="form-cadastro-livro">
           <h1>Cadastrar livro</h1>
-          <label for="titulo">Título:</label>
-          <input type="text" id="titulo" name="titulo" required>
-        
-          <label for="autor">Autor:</label>
-          <input type="text" id="autor" name="autor" required>
-        
-          <label for="editora">Editora:</label>
-          <input type="text" id="editora" name="editora" required>
-        
-          <label for="isbn">ISBN:</label>
-          <input type="text" id="isbn" name="isbn" required>
-        
-          <label for="foto">Foto:</label>
-          <input type="file" id="foto" name="foto">
-        
-          <button type="submit">Cadastrar</button>
+          <div class="txt_field">
+            <input type="text" id="titulo" name="titulo" placeholder="Título do livro" required>
+          </div>
+
+          <div class="txt_field">
+            <input type="text" id="autor" name="autor" placeholder="Autor" required>
+          </div>
+
+          <div class="txt_field">
+            <input type="text" id="editora" name="editora" placeholder="editora" required>
+          </div>
+
+          <div class="txt_field">
+            <input type="text" id="isbn" name="isbn" placeholder="ISBN" >
+          </div>
+
+          <div class="foto-livro">
+            <label for="foto">Foto: </label>
+            <input type="file" name="foto" id="foto">
+            <div>
+              <img id="foto-preview" src="#" alt="">
+            </div>
+          </div>
+          <button type="submit" class="CadastrarLivro">Cadastrar</button>
         </form>
       </div>
+
+      <!--Realização do empréstimo-->
+
+
+
     </div>
   </main>
   <footer></footer>
