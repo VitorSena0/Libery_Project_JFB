@@ -7,16 +7,22 @@
 body {
   font-family: "Roboto", Arial, sans-serif;
 }
+.logo{
+  text-align: center;
+  margin-right: 17%;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  border-right: solid 6px rgb(2, 69, 147);
+}
 
-.logo {
+.logoJFB {
   width: 100px;
   margin: 10px;
   border-radius: 15px;
   margin-right: auto;
-  /* adicionado */
 }
 
-.menu-horizontal {
+.menu-vertical {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,15 +30,15 @@ body {
 }
 
 .header {
-  display: flex;
   align-items: center;
   background-color: rgb(2, 69, 147);
   padding: 10px;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  height: 100%;
   justify-content: center;
+  padding: 0;
 }
 
 .menu {
@@ -41,13 +47,12 @@ body {
 }
 
 .menu ul {
-  display: flex;
   list-style: none;
   justify-content: center;
 }
 
 .menu ul li {
-  margin-right: 30px;
+  margin-top: 40px;
 }
 
 .menu ul li a {
@@ -55,14 +60,24 @@ body {
   text-align: center;
   background-color: rgb(2, 69, 147);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 28px;
   color: rgb(255, 255, 255);
   padding: 30px;
   border-radius: 5px;
 }
 
 .menu ul li a:hover {
-  background-color: rgba(31, 127, 191, 0.541);
+  background-color: rgba(167, 14, 14, 0.878);
+}
+
+.img-menu{
+  width: 40%;
+  height: 40%;
+}
+
+.emprestimo-efetuado .img-menu{
+  width: 60px;
+  height: 60px;
 }
 
 .home {
@@ -71,11 +86,12 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 100px;
-  margin: 20% auto;
+  margin: 8% auto;
 }
 
 .cardsTotais {
   display: flex;
+  width: 60%;
 }
 /*Cores de cada card*/
 .card1{
