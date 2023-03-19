@@ -1,88 +1,114 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Aluno</title>
-    <link rel="stylesheet" href="public/css/style_cadastroAluno.css">
+    <title>Alunos cadastrados</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"><!--Biblioteca importada https://datatables.net/examples/index-->
+    <link rel="icon" href="public/images/logo(1).jpg" type="image/png">
+    <link rel="stylesheet" href="public/css/style_alunosCadastrados.css">
 </head>
+
 <body>
-    <div class="form-cadastro">
-    <form class="Cadastro_aluno" method="post" action="">
+    <h1 id="titulo-pagina">Alunos cadastrados</h1>
 
-        <h1>Cadastro Do Aluno</h1>
-        <div class="txt_field">
-            <input type="text" name="nome" required>
-            <span></span>
-            <label>Nome do Aluno</label>
+    <div class="container">
+        <section>
+            <div class="adicionar-aluno">
+                <button id="novo-aluno">Incluir aluno</button>
+            </div>
+        </section>
+
+
+        <!--Tabela de cadastro dos alunos-->
+        <section>
+            <div class="tabela-alunos">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Escolaridade</th>
+                            <th>Turma</th>
+                            <th class="acao">Adicionar</th>
+                            <th class="acao">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!--------Formulário do cadastro de aluno-------->
+        <div class="cadastro-aluno">
+            <form class="form-cadastro-aluno" method="post" action="">
+
+                <h1>Cadastro Do Aluno</h1>
+                <div class="txt_field">
+                    <input type="text" name="nome" required placeholder="Nome do Aluno">
+                    <span></span>
+                </div>
+
+                <div class="txt_field">
+                    <input type="number" name="telefone" required placeholder="Telefone">
+                    <span></span>
+                </div>
+
+                <div class="txt_field">
+                    <input type="email" name="email" placeholder="E-mail">
+                    <span></span>
+                </div>
+
+
+                <div class="select-dinamico">
+
+                    <select id='Nivel_escolar' required>
+                        <option value='' selected disabled>Selecione a escolaridade</option>
+                        <option>Médio</option>
+                        <option>Subsequente</option>
+                    </select>
+
+
+                    <select id='Turma_medio' style='display:none' required>
+                        <option>1A</option>
+                        <option>1B</option>
+                        <option>2A</option>
+                    </select>
+
+                    <select id='Turma_sub' style='display:none' required>
+                        <option>TII 1A</option>
+                        <option>TII 2A</option>
+                        <option>TII 3A</option>
+                    </select>
+
+                    <script>
+                        let Nivel_escolar = document.getElementById("Nivel_escolar");
+                        Nivel_escolar.onchange = function () {
+                            const value_elem_id = { 'Médio': 'Turma_medio', 'Subsequente': 'Turma_sub' };
+                            let valor = this.value;
+                            let selects = Array.from(document.getElementsByTagName('select'));
+                            selects.forEach(function (el) {
+                                if (el.id != 'Nivel_escolar')
+                                    el.style.display = 'none';
+                                if (el.id == value_elem_id[valor])
+                                    el.style.display = 'block';
+                            });
+                        }
+                    </script>
+
+                </div>
+                <button class="CadastrarAluno" type="submit">Cadastrar</button>
+            </form>
         </div>
-        
-        <div class="txt_field">
-            <input type="tel" name="telefone" required>
-            <span></span>
-            <label>Telefone</label>
-        </div>
-        
-        <div class="txt_field">
-            <input type="email" name="email" required>
-            <span></span>
-            <label>E-mail</label>
-        </div>
-        <select id='Nivel_escolar'>
-            <option value='' selected disabled>Selecione a escolaridade</option>
-            <option>Médio</option>
-            <option>Subsequente</option>
-        </select>
-        
-        
-        <select id='Turma_medio' style='display:none'>
-            <option>1A</option>
-            <option>1B</option>
-            <option>2A</option>
-        </select>
-        
-        <select id='Turma_sub' style='display:none'>
-            <option>TII 1A</option>
-            <option>TII 2A</option>
-            <option>TII 3A</option>
-        </select>
-
-        <button class="Cadastrar" type="submit">Cadastrar</button>
-        </div>
-
-
-<script>
-    /// ; Pega o select#Nivel_escolar
-let Nivel_escolar = document.getElementById("Nivel_escolar");
-
-const value_elem_id = { 
-  'Médio':'Turma_medio',
-/// ^ value   :  ^ id do select turma **
-  'Subsequente':'Turma_sub'
-};
-
-/// ; Define o evento onchange no select#Nivel_escolar
-Nivel_escolar.onchange = function(){
-    /// ; this aqui dentro é o select#Nivel_escolar
-    let valor = this.value;                     /// ; <- valor selecionado
-    let selects = Array.from(                   /// ; <- transforma o resultado em array
-      document.getElementsByTagName('select')   /// ; <- pega todos os selects 
-    );
+    </div>
     
-    selects.forEach(function(el){
-    
-        if(el.id != 'Nivel_escolar')  /// ; <- se o select não for o de Nivel_escolar display=none
-            el.style.display='none';
-        if(el.id == value_elem_id[valor] )  /// ; <- se o select é o da turma display=block;
-            el.style.display='block';
-            
-    });
-    /// document.getElementById( value_elem_id[valor] ).style.display='block';
-    /// ; outra forma de dar display block      
-}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
-</script>
-    </form>
+    <script src="public/javascript/alunosCadastrados.js"></script>
 </body>
+
 </html>
