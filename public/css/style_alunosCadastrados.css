@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#titulo-pagina {
+    justify-content: center;
+    display: flex;
+    margin: 4vh;
+    font-size: 2vw;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: 90vw;
+    height: 80vh;
+    border-radius: 1vw;
+    background: white;
+    transform: translate(7%, 2%);
+    padding: 1vw;
+}
+
+.adicionar-aluno{
+    min-height: 5vh;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#novo-aluno{
+    font-size: 1vw;
+    padding: 1vw;
+    border-radius: 0.5vw;
+    border: none;
+    color: white;
+    background-color: rgb(57, 57, 226);
+    margin: 2vw;
+}
+
+
+.tabela-alunos {
+    padding: 0.7vw;
+    width: auto; 
+    height:inherit; 
+    overflow:auto;
+    font-size: 1.2vw;
+  }
+  
+  .tabela-alunos::-webkit-scrollbar {
+    width: 12px;
+    background-color: whitesmoke; 
+  }
+  
+  .tabela-alunos::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: darkgray; 
+  }
+  
+  table {
+    width: 100%;
+    border-spacing: 10px;
+    word-break: break-all;
+    border-collapse: collapse;
+  }
+  
+  thead {
+    background-color: whitesmoke;
+  }
+  
+  tr {
+    border-bottom: 1px solid rgb(238, 235, 235)!important;
+  }
+  
+  tbody tr td {
+    vertical-align: text-top;
+    padding: 6px;
+    max-width: 50px;
+  }
+  
+  thead tr th {
+    padding: 5px;
+    text-align: start;
+    margin-bottom: 50px;
+  }
+  
+  tbody tr {
+    margin-bottom: 50px;
+  }
+  
+  thead tr th.acao {
+    width: 100px!important;
+    text-align: center;
+  }
+  
+  tbody tr td.acao {
+    text-align: center;
+  }
+  
+  @media (max-width: 700px) {
+    body {
+      font-size: 10px;
+    }
+    
+    thead tr th.acao {
+      width: auto!important;
+    }
+    
+    td button i {
+      font-size: 20px!important;
+    }
+  
+    td button i:first-child {
+      margin-right: 0;
+    }
+}  
+
+
+
+
+
+/*Formulário de cadastro de alunos*/
+.contain-cadastro {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: 1s;
+}
+
+.cadastro-aluno {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 34vw;
+    background: white;
+    border-radius: 2vw;
+    display: none;
+    border: solid rgb(112, 112, 112) 2px;
+}
+
+.cadastro-aluno h1 {
+    font-size: 2vw;
+    text-align: center;
+    padding: 2vh 0;
+    border-bottom: 0.2vw solid silver;
+}
+
+.cadastro-aluno form {
+    padding: 0vh 2vw;
+    box-sizing: border-box;
+}
+
+.select-dinamico {
+    display: flex;
+    justify-content: space-between;
+}
+
+#Nivel_escolar,
+#Turma_medio,
+#Turma_sub {
+    margin-right: 5vw;
+}
+
+form .txt_field {
+    position: relative;
+    border-bottom: 0.2vw solid #adadad;
+    margin: 5vh 0;
+}
+
+.txt_field input,
+#foto {
+    width: 30vw;
+    padding: 0 0.1vw;
+    height: 3vh;
+    font-size: 1.1vw;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+
+button[type="submit"] {
+    width: 100%;
+    height: 5vh;
+    border: solid 0.2vw rgb(50, 102, 205);
+    border-radius: 2vw;
+    font-size: 1vw;
+    color: #000000;
+    cursor: pointer;
+    outline: none;
+    margin: 3vh 0;
+}
+
+button[type="submit"]:hover {
+    transition: 0.4s ease-in-out;
+    background: rgb(50, 102, 205);
+    color: rgb(14, 14, 17);
+    transform: scale(1.09);
+}
+
+select {
+    font-size: 1.2vw;
+    margin: 0px 0px 3vh;
+    border: 0.1vw solid #676767;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    color: #1c96dc;
+
+}
