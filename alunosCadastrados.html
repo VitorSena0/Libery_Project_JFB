@@ -40,7 +40,7 @@
         <section>
             <div class="adicionar-aluno">
                 <div class="contain-adicionar-aluno">
-                    <button id="novo-aluno">Incluir aluno</button>
+                    <button onclick="openModal()" id="novo-aluno">Incluir aluno</button>
                 </div>
             </div>
         </section>
@@ -60,56 +60,11 @@
                             <th>Email</th>
                             <th>Escolaridade</th>
                             <th>Turma</th>
-                            <th>Editar</th>
-                            <th>Excluir</th>
+                            <th class="acao">Editar</th>
+                            <th class="acao">Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>vitor leonardo</td>
-                            <td>79996288014</td>
-                            <td>montehey@gmail.com</td>
-                            <td>Subsequente</td>
-                            <td>TII 3A</td>
-                            <td class="acao">Editar</td>
-                            <td class="acao">Excluir</td>
-                        </tr>
-                        <tr>
-                            <td>vitor leonardo sena de lima</td>
-                            <td>79996288014</td>
-                            <td>montehey@gmail.com</td>
-                            <td>Subsequente</td>
-                            <td>TII 3A</td>
-                            <td class="acao">Editar</td>
-                            <td class="acao">Excluir</td>
-                        </tr>
-                        <tr>
-                            <td>vitor leonardo</td>
-                            <td>79996288014</td>
-                            <td>asdflkasdf@gmail.com</td>
-                            <td>Subsequente</td>
-                            <td>TII 3A</td>
-                            <td class="acao">Editar</td>
-                            <td class="acao">Excluir</td>
-                        </tr>
-                        <tr>
-                            <td>Santana</td>
-                            <td>79996288014</td>
-                            <td>Gasdf@gmail.com</td>
-                            <td>Subsequente</td>
-                            <td>TII 3A</td>
-                            <td class="acao">Editar</td>
-                            <td class="acao">Excluir</td>
-                        </tr>
-                        <tr>
-                            <td>vitor leonardo</td>
-                            <td>79996288014</td>
-                            <td>montehey@gmail.com</td>
-                            <td>Subsequente</td>
-                            <td>TII 3A</td>
-                            <td class="acao">Editar</td>
-                            <td class="acao">Excluir</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -124,20 +79,19 @@
 
                     <h1>Cadastro Do Aluno</h1>
                     <div class="txt_field">
-                        <input type="text" name="nome" required placeholder="Nome do Aluno">
+                        <input id="m-nome" type="text" name="nome" required placeholder="Nome do Aluno">
                         <span></span>
                     </div>
 
                     <div class="txt_field">
-                        <input type="number" name="telefone" required placeholder="Telefone">
+                        <input id="m-telefone" type="number" name="telefone" required placeholder="Telefone">
                         <span></span>
                     </div>
 
                     <div class="txt_field">
-                        <input type="email" name="email" placeholder="E-mail">
+                        <input id="m-email" type="email" name="email" placeholder="E-mail">
                         <span></span>
                     </div>
-
 
                     <div class="select-dinamico">
 
@@ -160,26 +114,12 @@
                             <option>TII 3A</option>
                         </select>
 
-                        <script>
-                            let Nivel_escolar = document.getElementById("Nivel_escolar");
-                            Nivel_escolar.onchange = function () {
-                                const value_elem_id = { 'Médio': 'Turma_medio', 'Subsequente': 'Turma_sub' };
-                                let valor = this.value;
-                                let selects = Array.from(document.getElementsByTagName('select'));
-                                selects.forEach(function (el) {
-                                    if (el.id != 'Nivel_escolar')
-                                        el.style.display = 'none';
-                                    if (el.id == value_elem_id[valor])
-                                        el.style.display = 'block';
-                                });
-                            }
-                        </script>
-
                     </div>
                     <button class="CadastrarAluno" type="submit">Cadastrar</button>
                 </form>
             </div>
         </div>
+        <button class="atualizar-tabela">Atualizar tabela</button>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
