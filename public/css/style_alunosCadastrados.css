@@ -11,10 +11,88 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+/*Estilo do menu vertical*/
+.header {
+  align-items: center;
+  background-color: rgb(2, 69, 147);
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  justify-content: center;
+  padding: 0;
+  width: 12.5vw;
+  height: 100vh;
+}
+.logo{
+  text-align: center;
+  margin-right: 17%;
+  background-color: rgba(255, 255, 255, 0);
+  width: 12.5vw;
+  border-right: solid 0.5vw rgb(2, 69, 147);
+  height: 11vh;
+}
+
+.logoJFB {
+  width: 5vw;
+  margin: 1vw;
+  margin-right: auto;
+}
+
+.menu-vertical {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu ul {
+  list-style: none;
+  justify-content: center;
+}
+
+.menu ul li {
+  transition: all .5s ease-in-out;
+  margin-top: 3vh
+}
+
+.menu ul li a {
+  display: block;
+  text-align: center;
+  background-color: rgb(2, 69, 147);
+  text-decoration: none;
+  font-size: 1.5vw;
+  color: rgb(255, 255, 255);
+  padding: 1vw;
+  border-radius: 1vh;
+  width: 12.5vw;
+  height: 15vh;
+}
+
+.menu ul li a:hover {
+  background-color: rgba(167, 14, 14, 0.878);
+}
+
+.img-menu{
+  transition: all .5s ease-in-out;
+  margin-top: 2vh;
+  width: 3vw;
+  height: 5vh;
+}
+
+/*Tabela da página*/
 #titulo-pagina {
     justify-content: center;
     display: flex;
     margin: 4vh;
+    margin-left: 18vw;
     font-size: 2vw;
 }
 
@@ -23,29 +101,34 @@ button {
 }
 
 .container {
-    width: 90vw;
-    height: 80vh;
-    border-radius: 1vw;
+    width: 85%;
+    height: 100%;
+    border-radius: 15px;
     background: white;
-    transform: translate(7%, 2%);
+    transform: translate(16.5%, 2%);
     padding: 1vw;
 }
 
 .adicionar-aluno{
-    min-height: 5vh;
+    min-height: 50px;
     display: flex;
     justify-content: flex-end;
     width: 100%;
 }
 
+.contain-adicionar-aluno{
+  padding: 0;
+  margin: 0;
+}
+
 #novo-aluno{
-    font-size: 1vw;
-    padding: 1vw;
-    border-radius: 0.5vw;
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 13px;
     border: none;
     color: white;
     background-color: rgb(57, 57, 226);
-    margin: 2vw;
+    margin: 10px;
 }
 
 
@@ -54,7 +137,7 @@ button {
     width: auto; 
     height:inherit; 
     overflow:auto;
-    font-size: 1.2vw;
+    font-size: 12px;
   }
   
   .tabela-alunos::-webkit-scrollbar {
@@ -67,63 +150,55 @@ button {
     background-color: darkgray; 
   }
   
-  table {
-    width: 100%;
-    border-spacing: 10px;
-    word-break: break-all;
+  #myTable {
     border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
   }
   
-  thead {
-    background-color: whitesmoke;
+  #myTable th, #myTable td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
   }
   
-  tr {
-    border-bottom: 1px solid rgb(238, 235, 235)!important;
+  #myTable th {
+    background-color: #eee;
+  }
+
+  #search{
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    border: #000000 solid 0.5px;
   }
   
-  tbody tr td {
-    vertical-align: text-top;
-    padding: 6px;
-    max-width: 50px;
+  #search:focus {
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-shadow: 4px 3px rgba(0, 0, 0, 0.701);
+    transform: scale(1.1);
+    transition: 0.5s ease-in-out;
   }
   
-  thead tr th {
-    padding: 5px;
-    text-align: start;
-    margin-bottom: 50px;
+
+  #myTable_filter{
+    display: none;
+  }
+
+  .dataTables_length label select {
+    font-size: 12px
   }
   
-  tbody tr {
-    margin-bottom: 50px;
+  .dataTables_wrapper {
+    margin-top: 20px;
   }
   
-  thead tr th.acao {
-    width: 100px!important;
-    text-align: center;
+  .dataTables_paginate {
+    margin-top: 20px;
   }
-  
-  tbody tr td.acao {
-    text-align: center;
-  }
-  
-  @media (max-width: 700px) {
-    body {
-      font-size: 10px;
-    }
-    
-    thead tr th.acao {
-      width: auto!important;
-    }
-    
-    td button i {
-      font-size: 20px!important;
-    }
-  
-    td button i:first-child {
-      margin-right: 0;
-    }
-}  
+
 
 
 
@@ -131,13 +206,15 @@ button {
 
 /*Formulário de cadastro de alunos*/
 .contain-cadastro {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    transition: 1s;
+  width: 101.17vw;
+  height: 103.2vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: 1s;
+  display: none;
+  translate: -15% -17%;
 }
 
 .cadastro-aluno {
@@ -145,22 +222,22 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 34vw;
+    width: 440px;
     background: white;
-    border-radius: 2vw;
-    display: none;
+    border-radius: 15px;
+    display: block;
     border: solid rgb(112, 112, 112) 2px;
 }
 
 .cadastro-aluno h1 {
-    font-size: 2vw;
+    font-size: 30px;
     text-align: center;
-    padding: 2vh 0;
-    border-bottom: 0.2vw solid silver;
+    padding: 18px 0;
+    border-bottom: 0.2px solid silver;
 }
 
 .cadastro-aluno form {
-    padding: 0vh 2vw;
+    padding: 0px 20px;
     box-sizing: border-box;
 }
 
@@ -172,21 +249,21 @@ button {
 #Nivel_escolar,
 #Turma_medio,
 #Turma_sub {
-    margin-right: 5vw;
+    margin-right: 50px;
 }
 
 form .txt_field {
     position: relative;
-    border-bottom: 0.2vw solid #adadad;
-    margin: 5vh 0;
+    border-bottom: 1px solid #adadad;
+    margin: 70px 0;
 }
 
 .txt_field input,
 #foto {
-    width: 30vw;
-    padding: 0 0.1vw;
-    height: 3vh;
-    font-size: 1.1vw;
+    width: 390px;
+    padding: 0 10px;
+    height: 30px;
+    font-size: 15px;
     border: none;
     background: none;
     outline: none;
@@ -195,27 +272,28 @@ form .txt_field {
 
 button[type="submit"] {
     width: 100%;
-    height: 5vh;
-    border: solid 0.2vw rgb(50, 102, 205);
-    border-radius: 2vw;
-    font-size: 1vw;
+    height: 40px;
+    border: solid 2px rgb(50, 102, 205);
+    border-radius: 15px;
+    font-size: 15px;
     color: #000000;
     cursor: pointer;
     outline: none;
-    margin: 3vh 0;
+    margin: 25px 0;
 }
 
 button[type="submit"]:hover {
     transition: 0.4s ease-in-out;
     background: rgb(50, 102, 205);
     color: rgb(14, 14, 17);
-    transform: scale(1.09);
+    border: #000000 solid 2px;
+    transform: scale(1.05);
 }
 
 select {
-    font-size: 1.2vw;
-    margin: 0px 0px 3vh;
-    border: 0.1vw solid #676767;
+    font-size: 13px;
+    margin: 0px 0px 20px;
+    border: 1px solid #676767;
     border-top: none;
     border-left: none;
     border-right: none;
