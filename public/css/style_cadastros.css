@@ -1,4 +1,6 @@
 
+
+
 /*--------Cadastro do aluno-------*/
 .contain-cadastro {
   width: 100vw;
@@ -12,24 +14,25 @@
 
 .cadastro-aluno, .cadastrar-livro {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 34vw;
-  background: white;
-  border-radius: 2vw;
-  display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    background: white;
+    border-radius: 15px;
+    display: none;
+    border: solid rgb(112, 112, 112) 2px;
 }
 
 .cadastro-aluno h1, .cadastrar-livro h1 {
-  font-size: 2vw;
+  font-size: 30px;
   text-align: center;
-  padding: 2vh 0;
-  border-bottom: 0.2vw solid silver;
+  padding: 18px 0;
+  border-bottom: 0.2px solid silver;
 }
 
 .cadastro-aluno form, .cadastrar-livro form {
-  padding: 0vh 2vw;
+  padding: 0px 20px;
   box-sizing: border-box;
 }
 
@@ -41,20 +44,20 @@
 #Nivel_escolar,
 #Turma_medio,
 #Turma_sub {
-  margin-right: 5vw;
+  margin-right: 50px;
 }
 
 form .txt_field {
   position: relative;
-  border-bottom: 0.2vw solid #adadad;
-  margin: 5vh 0;
+  border-bottom: 1px solid #adadad;
+  margin: 70px 0;
 }
 
 .txt_field input, #foto {
-  width: 30vw;
-  padding: 0 0.1vw;
-  height: 3vh;
-  font-size: 1.1vw;
+  width: 390px;
+  padding: 0 10px;
+  height: 30px;
+  font-size: 15px;
   border: none;
   background: none;
   outline: none;
@@ -63,27 +66,28 @@ form .txt_field {
 
 button[type="submit"] {
   width: 100%;
-  height: 5vh;
-  border: solid 0.2vw rgb(50, 102, 205);
-  border-radius: 2vw;
-  font-size: 1vw;
+  height: 40px;
+  border: solid 2px rgb(50, 102, 205);
+  border-radius: 15px;
+  font-size: 15px;
   color: #000000;
   cursor: pointer;
   outline: none;
-  margin: 3vh 0;
+  margin: 25px 0;
 }
 
 button[type="submit"]:hover {
   transition: 0.4s ease-in-out;
-  background:  rgb(50, 102, 205);
+  background: rgb(50, 102, 205);
   color: rgb(14, 14, 17);
-  transform: scale(1.09);
+  border: #000000 solid 2px;
+  transform: scale(1.05);
 }
 
 select {
-  font-size: 1.2vw;
-  margin: 0px 0px 3vh;
-  border: 0.1vw solid #676767;
+  font-size: 13px;
+  margin: 0px 0px 20px;
+  border: 1px solid #676767;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -96,15 +100,15 @@ select {
 
 .foto-livro{
   text-align: center;
-  border-radius: 0.7vw;
-  padding-top: 2vh;
-  border-bottom: #adadad solid 0.2vw;
-  border-top: #adadad solid 0.2vw;
+  border-radius: 6px;
+  padding-top: 20px;
+  border-bottom: #adadad solid 5px;
+  border-top: #adadad solid 5px;
 }
 
 .foto-livro label{
-  font-size: 1.4vw;
-  margin-bottom: 1vh;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 .foto-livro div {
@@ -112,8 +116,8 @@ select {
 }
 
 #foto-preview{
-  max-width: 18vw;
-  max-height: 18vh;
-  margin-top: 1.2vh;
+  max-width: 180px;
+  max-height: 180px;
+  margin-top: 12px;
 
 }
