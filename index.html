@@ -64,41 +64,40 @@
 
           <h1>Cadastro Do Aluno</h1>
           <div class="txt_field">
-            <input type="text" name="nome" required placeholder="Nome do Aluno">
-            <span></span>
+              <input id="m-nome" type="text" name="nome" required placeholder="Nome do Aluno">
+              <span></span>
           </div>
 
           <div class="txt_field">
-            <input type="number" name="telefone" required placeholder="Telefone">
-            <span></span>
+              <input id="m-telefone" type="number" name="telefone" required placeholder="Telefone">
+              <span></span>
           </div>
 
           <div class="txt_field">
-            <input type="email" name="email" placeholder="E-mail">
-            <span></span>
+              <input id="m-email" type="email" name="email" placeholder="E-mail">
+              <span></span>
           </div>
-
 
           <div class="select-dinamico">
 
-            <select id='Nivel_escolar' required>
-              <option value='' selected disabled>Selecione a escolaridade</option>
-              <option>Médio</option>
-              <option>Subsequente</option>
-            </select>
+              <select id='Nivel_escolar' required>
+                  <option value='' selected disabled>Selecione a escolaridade</option>
+                  <option>Médio</option>
+                  <option>Subsequente</option>
+              </select>
 
 
-            <select id='Turma_medio' style='display:none' required>
-              <option>1A</option>
-              <option>1B</option>
-              <option>2A</option>
-            </select>
+              <select id='Turma_medio' style='display:none' required>
+                  <option>1A</option>
+                  <option>1B</option>
+                  <option>2A</option>
+              </select>
 
-            <select id='Turma_sub' style='display:none' required>
-              <option>TII 1A</option>
-              <option>TII 2A</option>
-              <option>TII 3A</option>
-            </select>
+              <select id='Turma_sub' style='display:none' required>
+                  <option>TII 1A</option>
+                  <option>TII 2A</option>
+                  <option>TII 3A</option>
+              </select>
 
             <script>
               let Nivel_escolar = document.getElementById("Nivel_escolar");
@@ -158,6 +157,7 @@
     </div>
   </main>
   <footer></footer>
+  <script src="public/javascript/alunosCadastrados.js"></script>
   <script src="public/javascript/cadastros.js"></script>
 </body>
 

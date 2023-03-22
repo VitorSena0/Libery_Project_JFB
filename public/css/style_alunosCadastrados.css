@@ -140,15 +140,6 @@ button {
     font-size: 12px;
   }
   
-  .tabela-alunos::-webkit-scrollbar {
-    width: 12px;
-    background-color: whitesmoke; 
-  }
-  
-  .tabela-alunos::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: darkgray; 
-  }
   
   #myTable {
     border-collapse: collapse;
@@ -199,6 +190,29 @@ button {
     margin-top: 20px;
   }
 
+  .imagem-acao-tabela{
+    width: 30px;
+  }
+
+  .atualizar-tabela {
+  border-radius: 10px;
+    border: solid 2px rgb(22, 53, 230);
+    background-color: #efefef;
+    color: rgb(0, 0, 0);
+    padding: 6px;
+}
+
+.atualizar-tabela:hover {
+  transition: ease-in 1s;
+  box-shadow: inset 300px 0 0 0 rgb(22, 53, 230);
+  color: rgb(255, 255, 255);
+}
+
+.acao button{
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
 
 
 
@@ -215,6 +229,10 @@ button {
   transition: 1s;
   display: none;
   translate: -15% -17%;
+}
+
+.active{
+  display: block;
 }
 
 .cadastro-aluno {
