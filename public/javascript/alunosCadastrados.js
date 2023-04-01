@@ -4,23 +4,23 @@
 // https://api.jquery.com/on/
 // https://datatables.net/reference/api/search()
 $(document).ready(function () {
-    $('#myTable').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [5, 2, 10, 25, 50],
-        "order": [[0, "asc"]],
-        "language": {
-            "search": "Pesquisar:",
-            "lengthMenu": "Mostrar _MENU_ elementos",
-            "zeroRecords": "Nenhum resultado encontrado",
-            "info": "Mostrando _START_ até _END_ de _TOTAL_ elementos",
-            "infoEmpty": "Mostrando 0 até 0 de 0 elementos",
-            "infoFiltered": "(filtrado de _MAX_ elementos no total)"
-        }
-    });
+  $('#myTable').DataTable({
+    "pagingType": "full_numbers",
+    "lengthMenu": [5, 2, 10, 25, 50],
+    "order": [[0, "asc"]],
+    "language": {
+      "search": "Pesquisar:",
+      "lengthMenu": "Mostrar _MENU_ elementos",
+      "zeroRecords": "Nenhum resultado encontrado",
+      "info": "Mostrando _START_ até _END_ de _TOTAL_ elementos",
+      "infoEmpty": "Mostrando 0 até 0 de 0 elementos",
+      "infoFiltered": "(filtrado de _MAX_ elementos no total)"
+    }
+  });
 
-    $('#search').on('keyup', function () {
-        $('#myTable').DataTable().search($(this).val()).draw();
-    });
+  $('#search').on('keyup', function () {
+    $('#myTable').DataTable().search($(this).val()).draw();
+  });
 });
 
 
@@ -37,7 +37,7 @@ $(document).ready(function () {
 //  document.addEventListener('click', function(event){
 //      const incluirAluno = event.target.closest('.contain-adicionar-aluno');
 //      const evento = event.target.className
-     
+
 //      if(incluirAluno !== null){
 //         cadastroAlunoBackground.style.display = 'block' 
 //      }
@@ -53,30 +53,30 @@ $(document).ready(function () {
 
 
 
-let Nivel_escolar = document.getElementById("Nivel_escolar");
 
-const turma = (id) => {
-  const turma = document.getElementById(id)
-  return turma
+const sescolaridade = document.querySelector('#Nivel_escolar')
+let turmaSelect = document.getElementById("Turma");
+let turmas = [["1º ano", "2º ano", "3º ano"],["1º período", "2º período", "3º período"]]
+
+const carregaTurmas = () => {
+
+
+  turmaSelect.innerHTML = "";
+
+  if (sescolaridade.value === "Médio") {
+    turmas = ["1º ano", "2º ano", "3º ano"];
+  } else if (sescolaridade.value === "Subsequente") {
+    turmas = ["1º período", "2º período", "3º período"];
+  }
+
+
+  for (let i = 0; i < turmas.length; i++) {
+    let option = document.createElement("option");
+    option.text = turmas[i];
+    option.value = turmas[i];
+    turmaSelect.appendChild(option);
+  }
 }
-
-Nivel_escolar.onchange = function () {
-  const value_elem_id = { 'Médio': 'Turma_medio', 'Subsequente': 'Turma_sub' };
-  let valor = this.value; // Se refere ao elemento 'select' que disparou o evento
-  let selects = Array.from(document.getElementsByTagName('select'));
-  selects.forEach(function (el) {
-    if (el.id != 'Nivel_escolar')
-    el.style.display = 'none';
-    if (el.id == value_elem_id[valor]) {
-      sturma = turma(el.id);
-      el.style.display = 'block';
-      
-    }
-
-  });
-}
-
-
 //////////////////////////////////////////////////////////////////
 
 
@@ -86,8 +86,6 @@ const tbody = document.querySelector('tbody')
 const sNome = document.querySelector('#m-nome')
 const semail = document.querySelector('#m-email')
 const stelefone = document.querySelector('#m-telefone')
-const sescolaridade = document.querySelector('#Nivel_escolar')
-let sturma;
 const btnSalvar = document.querySelector('.CadastrarAluno')
 
 let itens
@@ -106,13 +104,15 @@ function openModal(edit = false, index = 0) {
     semail.value = itens[index].email
     stelefone.value = itens[index].telefone
     sescolaridade.value = itens[index].escolaridade
-    sturma.value = itens[index].turma
+    carregaTurmas() // Vai carregar os valores da turma select antes de setar o valor selecionado na tabela na variável
+    turmaSelect.value = itens[index].turma
     id = index
   } else {
     sNome.value = ''
     semail.value = ''
     stelefone.value = ''
     sescolaridade.value = ''
+    //turmaSelect.value = ''
   }
 
 }
@@ -149,7 +149,7 @@ function insertItem(item, index) {
 
 btnSalvar.onclick = e => {
 
-  if (sNome.value == '' || semail.value == '' || stelefone.value == '' || sescolaridade.value == '' || sturma.value == '') {
+  if (sNome.value == '' || semail.value == '' || stelefone.value == '' || sescolaridade.value == '' || turmaSelect.value == '') {
     return
   }
 
@@ -160,9 +160,9 @@ btnSalvar.onclick = e => {
     itens[id].email = semail.value
     itens[id].telefone = stelefone.value
     itens[id].escolaridade = sescolaridade.value;
-    itens[id].turma = sturma.value;
+    itens[id].turma = turmaSelect.value;
   } else {
-    itens.push({ 'nome': sNome.value, 'email': semail.value, 'telefone': stelefone.value, 'escolaridade': sescolaridade.value, 'turma' : sturma.value });
+    itens.push({ 'nome': sNome.value, 'email': semail.value, 'telefone': stelefone.value, 'escolaridade': sescolaridade.value, 'turma': turmaSelect.value });
   }
 
   setItensBD()
@@ -177,6 +177,10 @@ function loadItens() {
   tbody.innerHTML = ''
   itens.forEach((item, index) => {
     insertItem(item, index)
+    //////// Anotação ////////
+    // O index vem da quantidade de itens que tem na tabela, ou seja, quando é chamada a função forEach(), dentro dela tem o intens.
+    //forEach() que pegará todos os elementos e indices(Posição do array em relação a tabela) salvos no banco de dados do browser.
+    // Por isso que a cada elemento o index do 'delet' e do 'edit' estão diferentes a medida que se vai adicionando elementos. 
   })
 
 }
@@ -188,7 +192,6 @@ loadItens()
 
 const atualizarTabela = document.querySelector('.atualizar-tabela');
 
-atualizarTabela.onclick = function(){
-    window.location.reload();
+atualizarTabela.onclick = function () {
+  window.location.reload();
 }
- 

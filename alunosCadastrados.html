@@ -95,23 +95,15 @@
 
                     <div class="select-dinamico">
 
-                        <select id='Nivel_escolar' required>
+                        <select id='Nivel_escolar' onchange="carregaTurmas()" required>
                             <option value='' selected disabled>Selecione a escolaridade</option>
                             <option>Médio</option>
                             <option>Subsequente</option>
                         </select>
 
 
-                        <select id='Turma_medio' style='display:none' required>
-                            <option>1A</option>
-                            <option>1B</option>
-                            <option>2A</option>
-                        </select>
-
-                        <select id='Turma_sub' style='display:none' required>
-                            <option>TII 1A</option>
-                            <option>TII 2A</option>
-                            <option>TII 3A</option>
+                        <select id='Turma' required>
+                            <option value="" selected disabled>Turma indefina</option>
                         </select>
 
                     </div>
