@@ -24,36 +24,6 @@ $(document).ready(function () {
 });
 
 
-// Lógica do formulário//
-
-// const cadastroAluno = document.querySelector('.cadastro-aluno');
-// const formCadastroAluno = document.querySelector('.form-cadastro-aluno');
-// const cadastroAlunoBackground = document.querySelector('.contain-cadastro');
-
-// const resetarFormulario = () => {
-//     formCadastroAluno.reset();
-//   }
-
-//  document.addEventListener('click', function(event){
-//      const incluirAluno = event.target.closest('.contain-adicionar-aluno');
-//      const evento = event.target.className
-
-//      if(incluirAluno !== null){
-//         cadastroAlunoBackground.style.display = 'block' 
-//      }
-
-//      if(evento === 'contain-cadastro'){
-//         cadastroAlunoBackground.style.display = 'none';
-//         resetarFormulario()
-//      }
-
-//  });
-
-
-
-
-
-
 const sescolaridade = document.querySelector('#Nivel_escolar')
 let turmaSelect = document.getElementById("Turma");
 let turmas = [["1º ano", "2º ano", "3º ano"],["1º período", "2º período", "3º período"]]

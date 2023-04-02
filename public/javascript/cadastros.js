@@ -5,24 +5,26 @@ const CadastroAluno = document.querySelector(".cadastro-aluno");
 const CadastroLivro = document.querySelector(".cadastrar-livro");
 const cadastroAlunoBackground = document.querySelector("#contain-cadastro");
 
+const sNome = document.querySelector('#m-nome')
+const semail = document.querySelector('#m-email')
+const stelefone = document.querySelector('#m-telefone')
+const sescolaridade = document.querySelector('#Nivel_escolar')
+let turmaSelect = document.getElementById("Turma");
+
 const inputFoto = document.querySelector('#foto');
 const previewFoto = document.querySelector('#foto-preview');
+
+let itens;
 
 const resetarFormulario = () => {
   CadastroAluno.style.display = 'none';
   CadastroLivro.style.display = 'none';
-  // Reseta o formulário;
   formCadastroLivro.reset();
   previewFoto.setAttribute('src', '#') // Reseta a foto selecionada
-
+  
 
   formCadastroAluno.reset();
   // Volta para o estado normal do select quando o formulario for submetido;
-  let selects = Array.from(document.getElementsByTagName('select'));
-  selects.forEach(function (el) {
-    if (el.id != 'Nivel_escolar')
-      el.style.display = 'none';
-  });
 }
 
 // Click dos cards
@@ -37,15 +39,18 @@ document.addEventListener('click', function (event) {
   if (cardCadastrarAluno !== null) {
     CadastroAluno.style.display = 'block';
     cadastroAlunoBackground.classList.add("contain-cadastro");
+    const sescolaridade = document.querySelector('#Nivel_escolar')
+    
   }
 
   if (cardCadastrarLivros !== null) {
     CadastroLivro.style.display = 'block';
     cadastroAlunoBackground.classList.add("contain-cadastro");
   }
-
+  
   if (evento === 'contain-cadastro') {
     cadastroAlunoBackground.classList.remove("contain-cadastro");
+    carregaTurmas()
     resetarFormulario();
   }
 
@@ -66,6 +71,9 @@ document.addEventListener('click', function (event) {
       event.preventDefault();
       alert("Preencha todos os campos!")
     } else {
+      itens = getItensBD()
+      itens.push({ 'nome': sNome.value, 'email': semail.value, 'telefone': stelefone.value, 'escolaridade': sescolaridade.value, 'turma': turmaSelect.value });
+      setItensBD()
       cadastroAlunoBackground.classList.remove("contain-cadastro");
       resetarFormulario();
     }
@@ -99,4 +107,8 @@ inputFoto.addEventListener('change', function () {
   }
 });
 
+//Adicionar ao banco os alunos
+
+const getItensBD = () => JSON.parse(localStorage.getItem('dbfunc')) ?? []
+const setItensBD = () => localStorage.setItem('dbfunc', JSON.stringify(itens))
 
