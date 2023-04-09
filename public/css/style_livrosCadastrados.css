@@ -1,10 +1,5 @@
 
 
-body {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-
 /*Tabela da página*/
 #titulo-pagina {
     justify-content: center;
@@ -137,6 +132,45 @@ button {
 
 
 /*Formulário de cadastro de alunos*/
+/*////////////////////////////////////////
+
+position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    background: white;
+    border-radius: 15px;
+    display: none;
+    border: solid rgb(112, 112, 112) 2px;
+}
+
+.cadastrar-livro h1 {
+  font-size: 30px;
+  text-align: center;
+  padding: 18px 0;
+  border-bottom: 0.2px solid silver;
+}
+
+.cadastrar-livro form {
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+
+.contain-cadastro {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: 1s;
+}
+
+
+
+
+////////////////////////////////////////*/
 .contain-cadastro {
   width: 101.17vw;
   height: 103.2vh;
@@ -153,38 +187,19 @@ button {
   display: block;
 }
 
-.cadastro-aluno {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 440px;
-    background: white;
+.cadastrar-livro{
+    background-color: white;
+    padding: 20px;
+    margin: 0 auto;
+    width: 30%;
+    height: auto;
+    margin-top: 10%;
     border-radius: 15px;
-    display: block;
-    border: solid rgb(112, 112, 112) 2px;
+
 }
 
-.cadastro-aluno h1 {
-    font-size: 30px;
+form h1{
     text-align: center;
-    padding: 18px 0;
-    border-bottom: 0.2px solid silver;
-}
-
-.cadastro-aluno form {
-    padding: 0px 20px;
-    box-sizing: border-box;
-}
-
-.select-dinamico {
-    display: flex;
-    justify-content: space-between;
-}
-
-#Nivel_escolar,
-#Turma {
-    margin-right: 50px;
 }
 
 form .txt_field {
@@ -193,8 +208,7 @@ form .txt_field {
     margin: 70px 0;
 }
 
-.txt_field input,
-#foto {
+.txt_field input{
     width: 390px;
     padding: 0 10px;
     height: 30px;
@@ -203,6 +217,27 @@ form .txt_field {
     background: none;
     outline: none;
 }
+
+.estoque-div{
+    margin: -10px 0px 30px 0px;
+    margin-left: 10px;
+}
+
+.estoque-div label{
+    color: #1f59b1;
+}
+
+#estoque{
+    font-size: 18px;
+    color: #1f59b1;
+    text-align: center;
+    border: none;
+    border-bottom: solid 1px ;
+    width: 50px;
+    padding: 3px;
+    margin-left: 5px;
+}
+
 
 
 button[type="submit"] {
@@ -223,16 +258,4 @@ button[type="submit"]:hover {
     color: rgb(14, 14, 17);
     border: #000000 solid 2px;
     transform: scale(1.05);
-}
-
-select {
-    font-size: 13px;
-    margin: 0px 0px 20px;
-    border: 1px solid #676767;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    outline: none;
-    color: #1c96dc;
-
 }

@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="public/images/logo(1).jpg" type="image/png">
+  <link rel="stylesheet" href="public/css/menu_vertical.css">
   <link rel="stylesheet" href="public/css/style_index.css" />
   <link rel="stylesheet" href="public/css/style_cadastros.css">
   <title>Biblioteca JFB</title>
@@ -23,11 +24,11 @@
       <div class="menu-vertical">
         <nav class="menu">
           <ul>
-            <li><a href="index.html" class="inicio"> <img src="public/images/pagina-inicial.png" class="img-menu"><br>
+            <li><a href="#" class="inicio"> <img src="public/images/pagina-inicial.png" class="img-menu"><br>
                 Início</a></li>
             <li><a href="alunosCadastrados.html" class="aluno-cadastrado"> <img src="public/images/aluno.png"
                   class="img-menu"><br> Alunos</a></li>
-            <li><a href="#" class="livro-cadastrado"><img src="public/images/livro-aberto.png" class="img-menu"
+            <li><a href="livrosCadastrados.html" class="livro-cadastrado"><img src="public/images/livro-aberto.png" class="img-menu"
                   alt=""><br> Acervo</a></li>
             <li><a href="#" class="emprestimo-efetuado"><img src="public/images/emprestimo.png" class="img-menu"
                   alt=""><br> Empréstimos</a></li>
@@ -97,15 +98,6 @@
 
             <script>
 
-              // const criarBottonDisabled = () => {
-              //   const bottonDisabled = document.createElement("option")
-              //   bottonDisabled.setAttribute("value", "disabled");
-              //   bottonDisabled.setAttribute("selected");
-              //   bottonDisabled.setAttribute("disabled")
-              //   bottonDisabled.textContent = "Turma Indefinida"
-              //   turmaSelect.appendChild(criarBottonDisabled);
-              // }
-
               const carregaTurmas = () => {
                 const sescolaridade = document.querySelector('#Nivel_escolar')
                 let turmaSelect = document.getElementById("Turma");
@@ -148,19 +140,16 @@
           </div>
 
           <div class="txt_field">
-            <input type="text" id="editora" name="editora" placeholder="editora" required>
+            <input type="text" id="editora" name="editora" placeholder="Editora" required>
           </div>
 
           <div class="txt_field">
-            <input type="text" id="isbn" name="isbn" placeholder="ISBN">
+            <input type="text" id="genero" name="genero" placeholder="Gênero" required>
           </div>
 
-          <div class="foto-livro">
-            <label for="foto">Foto: </label>
-            <input type="file" name="foto" id="foto">
-            <div>
-              <img id="foto-preview" src="#" alt="">
-            </div>
+          <div class="estoque-div">
+            <label for="estoque">Quantidade de exemplares: </label>
+            <input type="number" id="estoque" name="estoque" value="1" size="1" min="0">
           </div>
           <button type="submit" class="CadastrarLivro">Cadastrar</button>
         </form>

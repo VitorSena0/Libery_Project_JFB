@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <!--Biblioteca jquery-->
     <link rel="icon" href="public/images/logo(1).jpg" type="image/png">
-    <link rel="stylesheet" href="public/css/style_alunosCadastrados.css">
+    <link rel="stylesheet" href="public/css/style_livrosCadastrados.css">
     <link rel="stylesheet" href="public/css/menu_vertical.css">
 </head>
 
@@ -24,9 +24,9 @@
                     <ul>
                         <li><a href="index.html" class="inicio"> <img src="public/images/pagina-inicial.png"
                                     class="img-menu"><br> Início</a></li>
-                        <li><a href="#" class="aluno-cadastrado"> <img
+                        <li><a href="alunosCadastrados.html" class="aluno-cadastrado"> <img
                                     src="public/images/aluno.png" class="img-menu"><br> Alunos</a></li>
-                        <li><a href="livrosCadastrados.html" class="livro-cadastrado"><img src="public/images/livro-aberto.png"
+                        <li><a href="#" class="livro-cadastrado"><img src="public/images/livro-aberto.png"
                                     class="img-menu" alt=""><br> Acervo</a></li>
                         <li><a href="#" class="emprestimo-efetuado"><img src="public/images/emprestimo.png"
                                     class="img-menu" alt=""><br> Empréstimos</a></li>
@@ -35,13 +35,13 @@
             </div>
         </header>
 
-    <h1 id="titulo-pagina">Alunos cadastrados</h1>
+    <h1 id="titulo-pagina">Livros cadastrados</h1>
 
     <div class="container">
         <section>
             <div class="adicionar-aluno">
                 <div class="contain-adicionar-aluno">
-                    <button onclick="openModal()" id="novo-aluno">Incluir aluno</button>
+                    <button onclick="openModal()" id="novo-aluno">Adicionar Livro</button>
                 </div>
             </div>
         </section>
@@ -51,7 +51,7 @@
         <section>
             <div class="tabela-alunos">
                 <div class="contain-search">
-                    <input type="text" id="search" placeholder="Pesquisar aluno...">
+                    <input type="text" id="search" placeholder="Pesquisar Livros...">
                 </div>
                 <table id="myTable">
                     <thead>
@@ -75,48 +75,38 @@
 
         <div class="contain-cadastro">
 
-            <div class="cadastro-aluno">
-                <form class="form-cadastro-aluno" method="" action="">
+            <div class="cadastrar-livro">
+                <form class="form-cadastro-livro">
+                  <h1>Cadastrar livro</h1>
+                  <div class="txt_field">
+                    <input type="text" id="titulo" name="titulo" placeholder="Título do livro" required>
+                  </div>
+        
+                  <div class="txt_field">
+                    <input type="text" id="autor" name="autor" placeholder="Autor" required>
+                  </div>
+        
+                  <div class="txt_field">
+                    <input type="text" id="editora" name="editora" placeholder="Editora" required>
+                  </div>
 
-                    <h1>Cadastro Do Aluno</h1>
-                    <div class="txt_field">
-                        <input id="m-nome" type="text" name="nome" required placeholder="Nome do Aluno">
-                        <span></span>
-                    </div>
-
-                    <div class="txt_field">
-                        <input id="m-telefone" type="number" name="telefone" required placeholder="Telefone">
-                        <span></span>
-                    </div>
-
-                    <div class="txt_field">
-                        <input id="m-email" type="email" name="email" placeholder="E-mail">
-                        <span></span>
-                    </div>
-
-                    <div class="select-dinamico">
-
-                        <select id='Nivel_escolar' onchange="carregaTurmas()" required>
-                            <option value='' selected disabled>Selecione a escolaridade</option>
-                            <option>Médio</option>
-                            <option>Subsequente</option>
-                        </select>
-
-
-                        <select id='Turma' required>
-                            <option value="" selected disabled>Turma indefina</option>
-                        </select>
-
-                    </div>
-                    <button class="CadastrarAluno" type="submit">Cadastrar</button>
+                  <div class="txt_field">
+                    <input type="text" id="genero" name="genero" placeholder="Gênero" required>
+                  </div>
+        
+                  <div class="estoque-div">
+                    <label for="estoque">Quantidade de exemplares: </label>
+                    <input type="number" id="estoque" name="estoque" value="1" size="1" min="0">
+                  </div>
+                  <button type="submit" class="CadastrarLivro">Cadastrar</button>
                 </form>
-            </div>
+              </div>
         </div>
         <button class="atualizar-tabela">Atualizar tabela</button>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="public/javascript/alunosCadastrados.js"></script>
+    <script src="public/javascript/livrosCadastrados.js"></script>
 </body>
 
 </html>
