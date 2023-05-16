@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 const sescolaridade = document.querySelector('#Nivel_escolar')
 let turmaSelect = document.getElementById("Turma");
-let turmas = [["1º ano", "2º ano", "3º ano"],["1º período", "2º período", "3º período"]]
+let turmas = [["1º ano", "2º ano", "3º ano"],["1º período", "2º período", "3º período", "4º período"]]
 
 const carregaTurmas = () => {
 
@@ -155,8 +155,8 @@ function loadItens() {
 
 }
 
-const getItensBD = () => JSON.parse(localStorage.getItem('dbfunc')) ?? []
-const setItensBD = () => localStorage.setItem('dbfunc', JSON.stringify(itens))
+const getItensBD = () => JSON.parse(localStorage.getItem('dbAlunos')) ?? []
+const setItensBD = () => localStorage.setItem('dbAlunos', JSON.stringify(itens))
 
 loadItens()
 

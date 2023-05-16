@@ -22,19 +22,19 @@ button {
     padding: 1vw;
 }
 
-.adicionar-aluno{
+.adicionar-livro{
     min-height: 50px;
     display: flex;
     justify-content: flex-end;
     width: 100%;
 }
 
-.contain-adicionar-aluno{
+.contain-adicionar-livro{
   padding: 0;
   margin: 0;
 }
 
-#novo-aluno{
+#novo-livro{
     font-size: 16px;
     padding: 15px;
     border-radius: 13px;
@@ -45,7 +45,7 @@ button {
 }
 
 
-.tabela-alunos {
+.tabela-livros {
     padding: 0.7vw;
     width: auto; 
     height:inherit; 
