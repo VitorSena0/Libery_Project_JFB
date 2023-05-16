@@ -20,7 +20,6 @@ const resetarFormulario = () => {
   CadastroAluno.style.display = 'none';
   CadastroLivro.style.display = 'none';
   formCadastroLivro.reset();
-  previewFoto.setAttribute('src', '#') // Reseta a foto selecionada
   
 
   formCadastroAluno.reset();
@@ -96,19 +95,9 @@ document.addEventListener('click', function (event) {
   }
 
 })
-// Pega a foto selecionada e põe uma pequena demostração no forumulário
-inputFoto.addEventListener('change', function () {
-  const arquivo = this.files[0];
-  console.log(arquivo)
-  if (arquivo) {
-    const url = URL.createObjectURL(arquivo);
-    console.log(url)
-    previewFoto.setAttribute('src', url);
-  }
-});
 
 //Adicionar ao banco os alunos
 
-const getItensBD = () => JSON.parse(localStorage.getItem('dbfunc')) ?? []
-const setItensBD = () => localStorage.setItem('dbfunc', JSON.stringify(itens))
+const getItensBD = () => JSON.parse(localStorage.getItem('dbAlunos')) ?? []
+const setItensBD = () => localStorage.setItem('dbAlunos', JSON.stringify(itens))
 
