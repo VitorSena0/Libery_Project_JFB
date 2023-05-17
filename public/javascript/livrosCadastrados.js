@@ -83,10 +83,10 @@ function insertItem(item, index) {
     <td>${item.genero}</td>
     <td>${item.estoque}</td>
     <td class='acao'>
-        <button onclick="editItem(${index})"><img class= "imagem-acao-tabela" src="public/images/editar.png" title="Editar"></img></button>
+        <button onclick="editItem(${index})"><img class= "imagem-acao-tabela" src="images/editar.png" title="Editar"></img></button>
     </td>
     <td class="acao">
-      <button onclick="deleteItem(${index})"><img class="imagem-acao-tabela" src="public/images/excluir.png" title="Deletar"></img></button>
+      <button onclick="deleteItem(${index})"><img class="imagem-acao-tabela" src="images/excluir.png" title="Deletar"></img></button>
     </td>
     `
     tbody.appendChild(tr);
