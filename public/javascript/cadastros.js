@@ -5,16 +5,23 @@ const CadastroAluno = document.querySelector(".cadastro-aluno");
 const CadastroLivro = document.querySelector(".cadastrar-livro");
 const cadastroAlunoBackground = document.querySelector("#contain-cadastro");
 
+// Atributos do formulário de cadastro de aluno
 const sNome = document.querySelector('#m-nome')
 const semail = document.querySelector('#m-email')
 const stelefone = document.querySelector('#m-telefone')
 const sescolaridade = document.querySelector('#Nivel_escolar')
 let turmaSelect = document.getElementById("Turma");
 
-const inputFoto = document.querySelector('#foto');
-const previewFoto = document.querySelector('#foto-preview');
+// Atributos do formulário de cadastro de Livros
+const sTitulo = document.querySelector('#titulo');
+const sAutor = document.querySelector('#autor');
+const sEditora = document.querySelector('#editora');
+const sGenero = document.querySelector('#genero');
+const sEstoque = document.querySelector('#estoque');
+
 
 let itens;
+let itens2;
 
 const resetarFormulario = () => {
   CadastroAluno.style.display = 'none';
@@ -89,6 +96,9 @@ document.addEventListener('click', function (event) {
       event.preventDefault();
       alert("Preencha todos os campos!")
     } else {
+      itens2 = getItensBD2();
+      itens2.push({'titulo': sTitulo.value, 'autor': sAutor.value, 'editora': sEditora.value, 'genero': sGenero.value, 'estoque': sEstoque.value })
+      setItensBD2()
       cadastroAlunoBackground.classList.remove("contain-cadastro");
       resetarFormulario();
     }
@@ -97,7 +107,9 @@ document.addEventListener('click', function (event) {
 })
 
 //Adicionar ao banco os alunos
-
-const getItensBD = () => JSON.parse(localStorage.getItem('dbAlunos')) ?? []
+const getItensBD = () => JSON.parse(localStorage.getItem('dbAlunos')) ?? [] // Se for a primeira condição null ou undefined ele atribui para a segunda alternativa
 const setItensBD = () => localStorage.setItem('dbAlunos', JSON.stringify(itens))
+//Adicionar ao banco os livros
+const getItensBD2 = () => JSON.parse(localStorage.getItem('dbLivros')) ?? [] // item
+const setItensBD2 = () => JSON.parse(localStorage.setItem('dbLivros', JSON.stringify(itens2)))
 
