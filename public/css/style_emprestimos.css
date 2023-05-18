@@ -21,23 +21,40 @@ select{
 }
 .contain-form-emprestimo{
     position: absolute;
-    top: 50%;
-    left:50% ;
-    transform: translate(-50%,-50%);
-    width: 400px;
+    margin: 2% 35%;
+    width: 900px;
     background: white;
     border-radius: 10px;
-    display: none;
+    align-content: center;
 }
 
-.active{
-    
-}
+/* .active{
+
+} */
 
 .contain-form-emprestimo form{
     padding: 40px;
     box-sizing: border-box;
+    max-width: 1500px;
+    text-align: center;
 }
+
+.emprestimo-opcoes{
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-around;
+}
+
+.Emprestimo{
+    display: grid;
+
+}
+
+.contain-devolucao{
+    margin: auto 1;
+    color: #2691d9;
+}
+
 .Empresta{
     margin: 20px;
 }
