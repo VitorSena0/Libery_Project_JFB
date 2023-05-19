@@ -1,20 +1,23 @@
 const express = require("express")
 const app = express()
 const path = require('path')
+const Book = require('./routes/book')
 const Main = require("./routes/main")
-//const { Pool } = require('pg');
 const port = 3000;
 
-/*const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'biblioteca',
-  password: 'sua_senha_do_postgresql',
-  port: 5432,
-});*/
-
 app.use(express.json());
-app.use('/',Main.main)
+app.use('/public',express.static(path.join(__dirname, '../public')))
+app.set('view engine', 'ejs');
+
+app.use('/',Main.main);
+app.use(Main.AlunoMain);
+app.use(Main.BookMain);
+app.use(Main.Erro404);
+app.use(Book.ReadBook);
+app.get('*',(req,res) => {
+    res.redirect("/404");
+})
+
 
 app.listen(port, () => {
     console.log("app listen in http://localhost:3000")

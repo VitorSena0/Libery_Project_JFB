@@ -3,6 +3,7 @@
 // https://datatables.net/reference/option/
 // https://api.jquery.com/on/
 // https://datatables.net/reference/api/search()
+
 $(document).ready(function () {
   $('#myTable').DataTable({
     "pagingType": "full_numbers",
@@ -29,8 +30,6 @@ let turmaSelect = document.getElementById("Turma");
 let turmas = [["1º ano", "2º ano", "3º ano"],["1º período", "2º período", "3º período", "4º período"]]
 
 const carregaTurmas = () => {
-
-
   turmaSelect.innerHTML = "";
 
   if (sescolaridade.value === "Médio") {
@@ -58,110 +57,100 @@ const semail = document.querySelector('#m-email')
 const stelefone = document.querySelector('#m-telefone')
 const btnSalvar = document.querySelector('.CadastrarAluno')
 
-let itens
-let id
+let itens = {}
 
-function openModal(edit = false, index = 0) {
-  modal.classList.add('active')
-  modal.onclick = e => {
-    if (e.target.className.indexOf('contain-cadastro active') !== -1) {
-      modal.classList.remove('active')
-    }
+function editItem(pointer){
+  // Encontra o elemento na tabela com base no ponteiro
+ let element = document.querySelector(`input[value="${pointer}"]`);
+
+ // Verifica se o elemento existe
+ if (element) {
+   // Obtém os valores dos campos do elemento selecionado
+   let nome = element.parentNode.parentNode.querySelector('td:nth-child(1)').textContent;
+   let email = element.parentNode.parentNode.querySelector('td:nth-child(2)').textContent;
+   let telefone = element.parentNode.parentNode.querySelector('td:nth-child(3)').textContent;
+
+   // Preenche os campos do formulário de edição com os valores do item selecionado
+   sNome.value = nome;
+   semail.value = email;
+   stelefone.value = telefone;
+
+   // Exibe o modal de edição
+   modal.classList.add('active');
+ }
+}
+modal.onclick = e => {
+  // Esta condicional verificará quando houver um evento de click no formulário e se neste click a pessoa clicar em algum elemento que não contenha tal classe ele removerá o nome active;
+  if (e.target.className.indexOf('contain-cadastro active') !== -1) {
+    modal.classList.remove('active');
   }
+};
+function deleteItem(pointer) {
+  // Encontra o elemento na tabela com base no ponteiro
+  let element = document.querySelector(`input[value="${pointer}"]`);
 
-  if (edit) {
-    sNome.value = itens[index].nome
-    semail.value = itens[index].email
-    stelefone.value = itens[index].telefone
-    sescolaridade.value = itens[index].escolaridade
-    carregaTurmas() // Vai carregar os valores da turma select antes de setar o valor selecionado na tabela na variável
-    turmaSelect.value = itens[index].turma
-    id = index
-  } else {
-    sNome.value = ''
-    semail.value = ''
-    stelefone.value = ''
-    sescolaridade.value = ''
-    //turmaSelect.value = ''
+  // Verifica se o elemento existe
+  if (element) {
+    // Obtém a linha (tr) do elemento
+    let row = element.parentNode.parentNode;
+
+    // Remove a linha da tabela
+    row.parentNode.removeChild(row);
   }
-
 }
-
-function editItem(index) {
-
-  openModal(true, index)
-}
-
-function deleteItem(index) {
-  itens.splice(index, 1)
-  setItensBD()
-  loadItens()
-}
-
-function insertItem(item, index) {
+function insertItem(item,pointer) {
   let tr = document.createElement('tr')
-
   tr.innerHTML = `
     <td>${item.nome}</td>
     <td>${item.email}</td>
     <td>${item.telefone}</td>
     <td>${item.escolaridade}</td>
     <td>${item.turma}</td>
+    <input type='hidden' value='${pointer}'>
     <td class="acao">
-      <button onclick="editItem(${index})"><img class="imagem-acao-tabela" src="images/editar.png" title="Editar"></img></button>
+      <button onclick="editItem(${pointer})"><img class="imagem-acao-tabela" src="images/editar.png" title="Editar"></img></button>
     </td>
     <td class="acao">
-      <button onclick="deleteItem(${index})"><img class="imagem-acao-tabela" src="images/excluir.png" title="Deletar"></img></button>
+      <button onclick="deleteItem(${pointer})"><img class="imagem-acao-tabela" src="images/excluir.png" title="Deletar"></img></button>
     </td>
-  `
+    `
   tbody.appendChild(tr)
 }
 
 btnSalvar.onclick = e => {
-
   if (sNome.value == '' || semail.value == '' || stelefone.value == '' || sescolaridade.value == '' || turmaSelect.value == '') {
     return
   }
-
   e.preventDefault();
-
-  if (id !== undefined) {
-    itens[id].nome = sNome.value
-    itens[id].email = semail.value
-    itens[id].telefone = stelefone.value
-    itens[id].escolaridade = sescolaridade.value;
-    itens[id].turma = turmaSelect.value;
-  } else {
-    itens.push({ 'nome': sNome.value, 'email': semail.value, 'telefone': stelefone.value, 'escolaridade': sescolaridade.value, 'turma': turmaSelect.value });
+  var xhr = new XMLHttpRequest();
+  data = {
+    nome:sNome.value,
+    email:semail.value,
+    telefone:stelefone.value,
+    escolaridade:turmaSelect.value,
+    turma:turmaSelect.value
   }
-
-  setItensBD()
-
-  modal.classList.remove('active')
-  loadItens()
-  id = undefined
-}
-
-function loadItens() {
-  itens = getItensBD()
-  tbody.innerHTML = ''
-  itens.forEach((item, index) => {
-    insertItem(item, index)
-    //////// Anotação ////////
-    // O index vem da quantidade de itens que tem na tabela, ou seja, quando é chamada a função forEach(), dentro dela tem o intens.
-    //forEach() que pegará todos os elementos e indices(Posição do array em relação a tabela) salvos no banco de dados do browser.
-    // Por isso que a cada elemento o index do 'delet' e do 'edit' estão diferentes a medida que se vai adicionando elementos. 
-  })
+  xhr.open('POST', '/aluno/SignAluno', true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      console.log(response);
+    }
+  };
+  xhr.send(JSON.stringify(data));
+    itens.nome = sNome.value
+    itens.email = semail.value
+    itens.telefone = stelefone.value
+    itens.escolaridade = sescolaridade.value;
+    itens.turma = turmaSelect.value;
+    insertItem(itens,response.id)
+    modal.classList.remove('active')
 
 }
 
-const getItensBD = () => JSON.parse(localStorage.getItem('dbAlunos')) ?? []
-const setItensBD = () => localStorage.setItem('dbAlunos', JSON.stringify(itens))
 
-loadItens()
 
 const atualizarTabela = document.querySelector('.atualizar-tabela');
-
 atualizarTabela.onclick = function () {
   window.location.reload();
 }
