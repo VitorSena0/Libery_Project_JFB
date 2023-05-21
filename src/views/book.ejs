@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="/public/css/style_livrosCadastrados.css">
     <link rel="stylesheet" href="/public/css/menu_vertical.css">
 </head>
-
 <body>
     <header class="header">
         <div class="menu-vertical-navegacao">
@@ -34,19 +33,15 @@
                 </nav>
             </div>
         </header>
-
     <h1 id="titulo-pagina">Livros cadastrados</h1>
-
     <div class="container">
         <section>
             <div class="adicionar-livro">
                 <div class="contain-adicionar-livro">
-                    <button onclick="openModal()" id="novo-livro">Adicionar Livro</button>
+                    <button onclick=`${modal.classList.add('active')}` id="novo-livro">Adicionar Livro</button>
                 </div>
             </div>
         </section>
-
-
         <!--Tabela de cadastro dos alunos-->
         <section>
             <div class="tabela-livros">
