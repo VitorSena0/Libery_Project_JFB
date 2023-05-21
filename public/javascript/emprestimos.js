@@ -6,5 +6,5 @@ submit.onclick = e =>{
     console.log(nomeAluno.value) // Retornará vazio se não selecionar nada
     console.log(nomelivro.value) // Retornará vazio se não selecionar nada
 
-    e.preventDefault();
+   e.preventDefault();
 }
