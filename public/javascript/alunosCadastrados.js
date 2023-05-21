@@ -53,28 +53,47 @@ const carregaTurmas = () => {
 const modal = document.querySelector('.contain-cadastro')
 const tbody = document.querySelector('tbody')
 const sNome = document.querySelector('#m-nome')
+let id = null;
+let status = "add"
 const semail = document.querySelector('#m-email')
 const stelefone = document.querySelector('#m-telefone')
 const btnSalvar = document.querySelector('.CadastrarAluno')
-
+function openmodal(){
+  sNome.value = "";
+  semail.value = "";
+  stelefone.value = "";
+  modal.classList.add('active')
+}
 let itens = {}
-
+function modifyElement(pointer,data){
+  document.getElementById(pointer + "-nome").innerText = data.nome
+  document.getElementById(pointer + "-email").innerText = data.email;
+   document.getElementById(pointer + "-telefone").innerText = data.tel;
+    document.getElementById(pointer + "-escolaridade").innerText = data.escolaridade;
+    document.getElementById(pointer + "-turma").innerText = data.turma;
+    modal.classList.remove('active');
+}
 function editItem(pointer){
   // Encontra o elemento na tabela com base no ponteiro
- let element = document.querySelector(`input[value="${pointer}"]`);
-
+  let element = document.getElementById(pointer);
+  let form = document.querySelector(".form-cadastro-aluno")
+  id = pointer
+  status = "edit"
+  form.action = "/aluno/UpdateAluno"
  // Verifica se o elemento existe
  if (element) {
    // Obtém os valores dos campos do elemento selecionado
-   let nome = element.parentNode.parentNode.querySelector('td:nth-child(1)').textContent;
-   let email = element.parentNode.parentNode.querySelector('td:nth-child(2)').textContent;
-   let telefone = element.parentNode.parentNode.querySelector('td:nth-child(3)').textContent;
-
+   let nome = document.getElementById(pointer + "-nome").innerText
+   let email = document.getElementById(pointer + "-email").innerText;
+   let telefone = document.getElementById(pointer + "-telefone").innerText;
+   let esc = document.getElementById(pointer + "-escolaridade").innerText
+   let turma = document.getElementById(pointer + "-turma").innerText
    // Preenche os campos do formulário de edição com os valores do item selecionado
    sNome.value = nome;
    semail.value = email;
    stelefone.value = telefone;
-
+   turmaSelect.value = turma;
+   sescolaridade.value = esc;
    // Exibe o modal de edição
    modal.classList.add('active');
  }
@@ -86,65 +105,117 @@ modal.onclick = e => {
   }
 };
 function deleteItem(pointer) {
-  // Encontra o elemento na tabela com base no ponteiro
-  let element = document.querySelector(`input[value="${pointer}"]`);
-
-  // Verifica se o elemento existe
-  if (element) {
-    // Obtém a linha (tr) do elemento
-    let row = element.parentNode.parentNode;
-
-    // Remove a linha da tabela
-    row.parentNode.removeChild(row);
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', '/aluno/DeleteAluno', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  let data = {
+    id:pointer
+  };
+  var jsonData = JSON.stringify(data);
+  console.log("work it")
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText);
+      } else {
+        console.error('Erro na requisição:', xhr.status);
+      }
+    }
   }
+  xhr.send(jsonData);
+  let table = document.getElementById("data")
+  let element = document.getElementById(`${pointer}`);
+  table.removeChild(element);
 }
 function insertItem(item,pointer) {
+  let form = document.querySelector(".form-cadastro-aluno")
+  form.action = "/aluno/AddAluno"
   let tr = document.createElement('tr')
+  tr.id = pointer
   tr.innerHTML = `
-    <td>${item.nome}</td>
-    <td>${item.email}</td>
-    <td>${item.telefone}</td>
-    <td>${item.escolaridade}</td>
-    <td>${item.turma}</td>
-    <input type='hidden' value='${pointer}'>
-    <td class="acao">
-      <button onclick="editItem(${pointer})"><img class="imagem-acao-tabela" src="images/editar.png" title="Editar"></img></button>
-    </td>
-    <td class="acao">
-      <button onclick="deleteItem(${pointer})"><img class="imagem-acao-tabela" src="images/excluir.png" title="Deletar"></img></button>
-    </td>
-    `
+  <td id="${pointer}-nome">${item.nome}</td>
+  <td id="${pointer}-email">${item.email}</td>
+  <td id="${pointer}-telefone">${item.telefone}</td>
+  <td id="${pointer}-escolaridade">${item.escolaridade}</td>
+  <td id="${pointer}-turma">${item.turma}</td>
+  <input type="hidden" value="${pointer}">
+  <td class="acao">
+    <button onclick="editItem(${pointer})"><img class="imagem-acao-tabela" src="/public/images/editar.png" title="Editar"></img></button>
+  </td>
+  <td class="acao">
+    <button onclick="deleteItem(${pointer})"><img class="imagem-acao-tabela" src="/public/images/excluir.png" title="Deletar"></img></button>
+  </td>
+`;
   tbody.appendChild(tr)
 }
 
 btnSalvar.onclick = e => {
   if (sNome.value == '' || semail.value == '' || stelefone.value == '' || sescolaridade.value == '' || turmaSelect.value == '') {
-    return
+    return;
   }
+    let form = document.querySelector(".form-cadastro-aluno")
   e.preventDefault();
   var xhr = new XMLHttpRequest();
-  data = {
-    nome:sNome.value,
-    email:semail.value,
-    telefone:stelefone.value,
-    escolaridade:turmaSelect.value,
-    turma:turmaSelect.value
-  }
-  xhr.open('POST', '/aluno/SignAluno', true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
-      console.log(response);
-    }
+  var data = {
+    nome: sNome.value,
+    email: semail.value,
+    telefone: stelefone.value,
+    escolaridade: sescolaridade.value,
+    turma: turmaSelect.value,
+    id:id
   };
-  xhr.send(JSON.stringify(data));
-    itens.nome = sNome.value
-    itens.email = semail.value
-    itens.telefone = stelefone.value
-    itens.escolaridade = sescolaridade.value;
-    itens.turma = turmaSelect.value;
-    insertItem(itens,response.id)
+  var jsonData = JSON.stringify(data);
+  if(status == "edit"){
+    xhr.open('POST', '/aluno/UpdateAluno', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    modifyElement(id,{
+        nome:sNome.value,
+        tel:stelefone.value,
+        email:semail.value,
+        escolaridade:sescolaridade.value,
+        turma:turmaSelect.value
+    })
+    console.log("work it")
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          itens.nome = sNome.value;
+          itens.email = semail.value;
+          itens.telefone = stelefone.value;
+          itens.escolaridade = sescolaridade.value;
+          itens.turma = turmaSelect.value;
+          console.log(xhr.responseText);
+        } else {
+          console.error('Erro na requisição:', xhr.status);
+        }
+      }
+    }
+    xhr.send(jsonData);
     modal.classList.remove('active')
+  } else if (status = "add"){
+    xhr.open('POST', '/aluno/SignAluno', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          itens.nome = sNome.value;
+          itens.email = semail.value;
+          itens.telefone = stelefone.value;
+          itens.escolaridade = sescolaridade.value;
+          itens.turma = turmaSelect.value;
+          console.log(response);
+          insertItem(itens, response.id);
+        } else {
+          console.error('Erro na requisição:', xhr.status);
+        }
+      }
+    };
+
+        xhr.send(jsonData);
+        modal.classList.remove('active')
+    }
 
 }
 
