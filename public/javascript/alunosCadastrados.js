@@ -3,6 +3,7 @@
 // https://datatables.net/reference/option/
 // https://api.jquery.com/on/
 // https://datatables.net/reference/api/search()
+
 $(document).ready(function () {
   $('#myTable').DataTable({
     "pagingType": "full_numbers",
@@ -29,8 +30,6 @@ let turmaSelect = document.getElementById("Turma");
 let turmas = [["1º ano", "2º ano", "3º ano"],["1º período", "2º período", "3º período", "4º período"]]
 
 const carregaTurmas = () => {
-
-
   turmaSelect.innerHTML = "";
 
   if (sescolaridade.value === "Médio") {
@@ -54,114 +53,175 @@ const carregaTurmas = () => {
 const modal = document.querySelector('.contain-cadastro')
 const tbody = document.querySelector('tbody')
 const sNome = document.querySelector('#m-nome')
+let id = null;
+let status = "add"
 const semail = document.querySelector('#m-email')
 const stelefone = document.querySelector('#m-telefone')
 const btnSalvar = document.querySelector('.CadastrarAluno')
-
-let itens
-let id
-
-function openModal(edit = false, index = 0) {
+function openmodal(){
+  sNome.value = "";
+  semail.value = "";
+  stelefone.value = "";
   modal.classList.add('active')
-  modal.onclick = e => {
-    if (e.target.className.indexOf('contain-cadastro active') !== -1) {
-      modal.classList.remove('active')
+}
+let itens = {}
+function modifyElement(pointer,data){
+  document.getElementById(pointer + "-nome").innerText = data.nome
+  document.getElementById(pointer + "-email").innerText = data.email;
+   document.getElementById(pointer + "-telefone").innerText = data.tel;
+    document.getElementById(pointer + "-escolaridade").innerText = data.escolaridade;
+    document.getElementById(pointer + "-turma").innerText = data.turma;
+    modal.classList.remove('active');
+}
+function editItem(pointer){
+  // Encontra o elemento na tabela com base no ponteiro
+  let element = document.getElementById(pointer);
+  let form = document.querySelector(".form-cadastro-aluno")
+  id = pointer
+  status = "edit"
+  form.action = "/aluno/UpdateAluno"
+ // Verifica se o elemento existe
+ if (element) {
+   // Obtém os valores dos campos do elemento selecionado
+   let nome = document.getElementById(pointer + "-nome").innerText
+   let email = document.getElementById(pointer + "-email").innerText;
+   let telefone = document.getElementById(pointer + "-telefone").innerText;
+   let esc = document.getElementById(pointer + "-escolaridade").innerText
+   let turma = document.getElementById(pointer + "-turma").innerText
+   // Preenche os campos do formulário de edição com os valores do item selecionado
+   sNome.value = nome;
+   semail.value = email;
+   stelefone.value = telefone;
+   turmaSelect.value = turma;
+   sescolaridade.value = esc;
+   // Exibe o modal de edição
+   modal.classList.add('active');
+ }
+}
+modal.onclick = e => {
+  // Esta condicional verificará quando houver um evento de click no formulário e se neste click a pessoa clicar em algum elemento que não contenha tal classe ele removerá o nome active;
+  if (e.target.className.indexOf('contain-cadastro active') !== -1) {
+    modal.classList.remove('active');
+  }
+};
+function deleteItem(pointer) {
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', '/aluno/DeleteAluno', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  let data = {
+    id:pointer
+  };
+  var jsonData = JSON.stringify(data);
+  console.log("work it")
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText);
+      } else {
+        console.error('Erro na requisição:', xhr.status);
+      }
     }
   }
-
-  if (edit) {
-    sNome.value = itens[index].nome
-    semail.value = itens[index].email
-    stelefone.value = itens[index].telefone
-    sescolaridade.value = itens[index].escolaridade
-    carregaTurmas() // Vai carregar os valores da turma select antes de setar o valor selecionado na tabela na variável
-    turmaSelect.value = itens[index].turma
-    id = index
-  } else {
-    sNome.value = ''
-    semail.value = ''
-    stelefone.value = ''
-    sescolaridade.value = ''
-    //turmaSelect.value = ''
-  }
-
+  xhr.send(jsonData);
+  let table = document.getElementById("data")
+  let element = document.getElementById(`${pointer}`);
+  table.removeChild(element);
 }
-
-function editItem(index) {
-
-  openModal(true, index)
-}
-
-function deleteItem(index) {
-  itens.splice(index, 1)
-  setItensBD()
-  loadItens()
-}
-
-function insertItem(item, index) {
+function insertItem(item,pointer) {
+  let form = document.querySelector(".form-cadastro-aluno")
+  form.action = "/aluno/AddAluno"
   let tr = document.createElement('tr')
-
+  tr.id = pointer
   tr.innerHTML = `
-    <td>${item.nome}</td>
-    <td>${item.email}</td>
-    <td>${item.telefone}</td>
-    <td>${item.escolaridade}</td>
-    <td>${item.turma}</td>
-    <td class="acao">
-      <button onclick="editItem(${index})"><img class="imagem-acao-tabela" src="images/editar.png" title="Editar"></img></button>
-    </td>
-    <td class="acao">
-      <button onclick="deleteItem(${index})"><img class="imagem-acao-tabela" src="images/excluir.png" title="Deletar"></img></button>
-    </td>
-  `
+  <td id="${pointer}-nome">${item.nome}</td>
+  <td id="${pointer}-email">${item.email}</td>
+  <td id="${pointer}-telefone">${item.telefone}</td>
+  <td id="${pointer}-escolaridade">${item.escolaridade}</td>
+  <td id="${pointer}-turma">${item.turma}</td>
+  <input type="hidden" value="${pointer}">
+  <td class="acao">
+    <button onclick="editItem(${pointer})"><img class="imagem-acao-tabela" src="/public/images/editar.png" title="Editar"></img></button>
+  </td>
+  <td class="acao">
+    <button onclick="deleteItem(${pointer})"><img class="imagem-acao-tabela" src="/public/images/excluir.png" title="Deletar"></img></button>
+  </td>
+`;
   tbody.appendChild(tr)
 }
 
 btnSalvar.onclick = e => {
-
   if (sNome.value == '' || semail.value == '' || stelefone.value == '' || sescolaridade.value == '' || turmaSelect.value == '') {
-    return
+    return;
   }
-
+    let form = document.querySelector(".form-cadastro-aluno")
   e.preventDefault();
+  var xhr = new XMLHttpRequest();
+  var data = {
+    nome: sNome.value,
+    email: semail.value,
+    telefone: stelefone.value,
+    escolaridade: sescolaridade.value,
+    turma: turmaSelect.value,
+    id:id
+  };
+  var jsonData = JSON.stringify(data);
+  if(status == "edit"){
+    xhr.open('POST', '/aluno/UpdateAluno', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    modifyElement(id,{
+        nome:sNome.value,
+        tel:stelefone.value,
+        email:semail.value,
+        escolaridade:sescolaridade.value,
+        turma:turmaSelect.value
+    })
+    console.log("work it")
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          itens.nome = sNome.value;
+          itens.email = semail.value;
+          itens.telefone = stelefone.value;
+          itens.escolaridade = sescolaridade.value;
+          itens.turma = turmaSelect.value;
+          console.log(xhr.responseText);
+        } else {
+          console.error('Erro na requisição:', xhr.status);
+        }
+      }
+    }
+    xhr.send(jsonData);
+    modal.classList.remove('active')
+  } else if (status = "add"){
+    xhr.open('POST', '/aluno/SignAluno', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
 
-  if (id !== undefined) {
-    itens[id].nome = sNome.value
-    itens[id].email = semail.value
-    itens[id].telefone = stelefone.value
-    itens[id].escolaridade = sescolaridade.value;
-    itens[id].turma = turmaSelect.value;
-  } else {
-    itens.push({ 'nome': sNome.value, 'email': semail.value, 'telefone': stelefone.value, 'escolaridade': sescolaridade.value, 'turma': turmaSelect.value });
-  }
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          itens.nome = sNome.value;
+          itens.email = semail.value;
+          itens.telefone = stelefone.value;
+          itens.escolaridade = sescolaridade.value;
+          itens.turma = turmaSelect.value;
+          console.log(response);
+          insertItem(itens, response.id);
+        } else {
+          console.error('Erro na requisição:', xhr.status);
+        }
+      }
+    };
 
-  setItensBD()
+        xhr.send(jsonData);
+        modal.classList.remove('active')
+    }
 
-  modal.classList.remove('active')
-  loadItens()
-  id = undefined
 }
 
-function loadItens() {
-  itens = getItensBD()
-  tbody.innerHTML = ''
-  itens.forEach((item, index) => {
-    insertItem(item, index)
-    //////// Anotação ////////
-    // O index vem da quantidade de itens que tem na tabela, ou seja, quando é chamada a função forEach(), dentro dela tem o intens.
-    //forEach() que pegará todos os elementos e indices(Posição do array em relação a tabela) salvos no banco de dados do browser.
-    // Por isso que a cada elemento o index do 'delet' e do 'edit' estão diferentes a medida que se vai adicionando elementos. 
-  })
 
-}
-
-const getItensBD = () => JSON.parse(localStorage.getItem('dbAlunos')) ?? []
-const setItensBD = () => localStorage.setItem('dbAlunos', JSON.stringify(itens))
-
-loadItens()
 
 const atualizarTabela = document.querySelector('.atualizar-tabela');
-
 atualizarTabela.onclick = function () {
   window.location.reload();
 }
