@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+    
     <header class="header">
         <div class="menu-vertical-navegacao">
             <div class="logo">
@@ -37,63 +37,66 @@
                 </nav>
             </div>
     </header>
+    
     <div class="container">
-        <div id="titulo-pagina">
-            <div class="contain-form-emprestimo">
-                <!--Formulário de empréstimo-->
-                <form action="" class="Emprestimo" method="post">
-        
-                    <h1>Empréstimos</h1>
-        
-                    <div class="Escolher_opcoes">
-                        <div class="emprestimo-opcoes">
-        
-                            <div class="Empresta">
-        
-                                <select id="nomeAluno">
-        
-                                    <option value="" selected disabled>Escolha o Aluno</option>
-                                    <option>Marcos</option>
-                                </select>
-                            </div>
-        
-                            <div class="Empresta">
-        
-                                <select name="" id="nomeLivro" width="100%" height="100%">
-                                    <option value="" selected disabled>Escolha o Livro</option>
-                                    <option>Aurélio Marcos</option>
-                                </select>
-                            </div>
-                            <div class="contain-devolucao">
-                                <div class="devolucao">
-                                    <label for="data">Devolução</label><br>
-                                    <input id="data" type="date">
+        <section class="section1">
+            <div id="titulo-pagina">
+                <div class="contain-form-emprestimo">
+                    <!--Formulário de empréstimo-->
+                    <form action="" class="Emprestimo" method="post">
+            
+                        <h1>Empréstimos</h1>
+            
+                        <div class="Escolher_opcoes">
+                            <div class="emprestimo-opcoes">
+            
+                                <div class="Empresta">
+            
+                                    <select id="nomeAluno">
+            
+                                        <option value="" selected disabled>Escolha o Aluno</option>
+                                        <option>Marcos</option>
+                                    </select>
+                                </div>
+            
+                                <div class="Empresta">
+            
+                                    <select name="" id="nomeLivro" width="100%" height="100%">
+                                        <option value="" selected disabled>Escolha o Livro</option>
+                                        <option>Aurélio Marcos</option>
+                                    </select>
+                                </div>
+                                <div class="contain-devolucao">
+                                    <div class="devolucao">
+                                        <label for="data">Devolução</label><br>
+                                        <input id="data" type="date">
+                                    </div>
                                 </div>
                             </div>
+                                
+                                <input type="submit" value="Confirmar" id="submit">
                         </div>
-                            
-                            <input type="submit" value="Confirmar" id="submit">
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        
-            <script>
-                $(document).ready(function () {
-                    $('#nomeAluno').select2();
-                });
-        
-                $(document).ready(function () {
-                    $('#nomeLivro').select2();
-                });
-                /*A substituição jQuery para caixas de seleção
-                    Select2 oferece uma caixa de seleção personalizável com suporte para pesquisa, marcação, conjuntos de dados remotos, rolagem infinita e muitas outras opções altamente usadas.
-                    */
-            </script>
-        </div>
+            
+                <script>
+                    $(document).ready(function () {
+                        $('#nomeAluno').select2();
+                    });
+            
+                    $(document).ready(function () {
+                        $('#nomeLivro').select2();
+                    });
+                    /*A substituição jQuery para caixas de seleção
+                        Select2 oferece uma caixa de seleção personalizável com suporte para pesquisa, marcação, conjuntos de dados remotos, rolagem infinita e muitas outras opções altamente usadas.
+                        */
+                </script>
+        </section>
 
 
         <!--Tabela de cadastro dos Emprestimos-->
-        <section>
+        <section class="section2">
             <div class="tabela-empréstimo">
                 <div class="contain-search">
                     <input type="text" id="search" placeholder="Pesquisar empréstimo...">
@@ -115,6 +118,9 @@
         </section>
 
         <button class="atualizar-tabela">Atualizar tabela</button>
+
+
+        
 
 
     </div>
