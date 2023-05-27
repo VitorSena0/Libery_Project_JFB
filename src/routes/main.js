@@ -6,7 +6,7 @@ const AlunoRoutes = {
         res.render("index")
     }),
     Erro404:route.get("/404",(req,res) => {
-      res.send("Erro 404")
+      res.render("404")
     }),
     AlunoMain:route.get('/aluno', async (req,res) => {
       try {
@@ -29,5 +29,8 @@ const AlunoRoutes = {
         res.status(500).send('Erro na requisição');
       }
     }),
+    EmprestimoMain:route.get('/emprestimo', (req,res) => {
+        res.render("Emprestimos");
+    })
 }
 module.exports = AlunoRoutes;
