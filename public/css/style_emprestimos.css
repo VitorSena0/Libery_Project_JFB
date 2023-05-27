@@ -12,7 +12,7 @@ body{
     height: 100vh;
     overflow: hidden;
 }
-select{
+#nomeAluno, #nomeLivro{
     position: absolute;
     width: 20%;
     border-radius: 10px;
@@ -20,50 +20,59 @@ select{
     margin: 2%;
 }
 
+
 .contain-form-emprestimo{
-    max-width: 100%;
-    width: 100%;
-    position: flex;
-    background: white;
-    margin: 3% 18%;
-    border-radius: 10px;
-    align-content: center;
-    overflow: hidden;
-    
+  position: absolute;
+  margin: 2% 35%;
+  width: 900px;
+  background: white;
+  border-radius: 10px;
+  align-content: center;
 }
 
 /* .active{
-    
+
 } */
 
-
 .contain-form-emprestimo form{
-    width: 100%;
-    padding: 4%;
-    box-sizing: border-box;
-    text-align: center;
+  padding: 40px;
+  box-sizing: border-box;
+  max-width: 1500px;
+  text-align: center;
 }
 
 .emprestimo-opcoes{
-    display: flex;
-    margin-top: 30px;
-    justify-content: space-between;
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-around;
 }
 
 .Emprestimo{
-    display: grid;
+  display: grid;
 
 }
 
 .contain-devolucao{
-    margin-top: 1%;
-    margin: auto 1;
-    color: #2691d9;
+  margin: auto 1;
+  margin-top: 10px;
+  margin-left: 20px;
+  color: #2691d9;
 }
 
 .Empresta{
-    margin: 1%;
+  margin: 20px;
 }
+
+.container{
+  overflow: hidden;
+  width: 100%;
+}
+
+section{
+  display: block;
+  margin-bottom: 35%;
+}
+
 input[type="submit"]{
     width: 50%;
     height: 50px;
@@ -138,8 +147,10 @@ input[type="submit"]{
     display: none;
   }
 
+  
   .dataTables_length label select {
-    font-size: 12px
+    font-size: 12px;
+    margin: 0px 0px 20px;
   }
   
   .dataTables_wrapper {
