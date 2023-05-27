@@ -28,7 +28,7 @@ let date = new Date().toLocaleDateString();
 console.log(date)
 
 const form = document.querySelector('.Emprestimo')
-const submit = document.querySelector('#submit');
+const submit = document.querySelector('.submit');
 const nomelivro = document.querySelector('#nomeLivro');
 const nomeAluno = document.querySelector('#nomeAluno');
 const dataEmprestimo = document.querySelector('#data');
