@@ -19,8 +19,15 @@ const AlunoRoutes = {
         res.status(500).send('Erro na requisição');
       }
     }),
-    BookMain:route.get('/book', (req,res) => {
-        res.render("book")
+    BookMain:route.get('/book', async (req,res) => {
+      try {
+        const response = await axios.get('http://localhost:3000/book/ReadBook');
+        const books = response.data; // Supondo que a resposta contenha os dados dos alunos
+        res.render("book", { books });
+      } catch (error) {
+        console.error('Erro na requisição:', error);
+        res.status(500).send('Erro na requisição');
+      }
     }),
 }
 module.exports = AlunoRoutes;

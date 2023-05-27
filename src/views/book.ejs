@@ -38,7 +38,7 @@
         <section>
             <div class="adicionar-livro">
                 <div class="contain-adicionar-livro">
-                    <button onclick=`${modal.classList.add('active')}` id="novo-livro">Adicionar Livro</button>
+                    <button onclick='openmodal()' id="novo-livro">Adicionar Livro</button>
                 </div>
             </div>
         </section>
@@ -60,7 +60,23 @@
                             <th class="acao">Excluir</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="data">
+                      <% books.forEach((book, index) => { %>
+                         <tr id="(<%= book.titulo %>)">
+                           <td id="(<%= book.titulo %>)-titulo"><%= book.titulo %></td>
+                           <td id="(<%= book.titulo %>)-autor"><%= book.autor %></td>
+                           <td id="(<%= book.titulo %>)-editora"><%= book.editora %></td>
+                           <td id="(<%= book.titulo %>)-genero"><%= book.genero %></td>
+                           <td id="(<%= book.titulo %>)-estoque"><%= book.estoque %></td>
+                           <input type="hidden" value="<%= book.titulo %>">
+                           <td class="acao">
+                             <button onclick="editItem('(<%= book.titulo %>)')"><img class="imagem-acao-tabela" src="/public/images/editar.png" title="Editar"></img></button>
+                           </td>
+                           <td class="acao">
+                             <button onclick="deleteItem('<%= book.titulo %>')"><img class="imagem-acao-tabela" src="/public/images/excluir.png" title="Deletar"></img></button>
+                           </td>
+                         </tr>
+                      <% }); %>
                     </tbody>
                 </table>
             </div>
@@ -71,7 +87,7 @@
         <div class="contain-cadastro">
 
             <div class="cadastrar-livro">
-                <form class="form-cadastro-livro">
+                <form class="form-cadastro-livro" action="/book/SignBook" method="post">
                   <h1>Cadastrar livro</h1>
                   <div class="txt_field">
                     <input type="text" id="titulo" name="titulo" placeholder="Título do livro" required>
@@ -101,7 +117,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="/public/javascript/livrosCadastrados.js"></script>
+    <script src="/public/javascript/LivrosCadastrados.js"></script>
 </body>
 
 </html>
