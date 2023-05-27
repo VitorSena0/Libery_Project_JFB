@@ -170,6 +170,11 @@ btnSalvar.onclick = e => {
     }
     xhr.send(jsonData);
     modal.classList.remove('active')
+    sTitulo.value = ""
+    sAutor.value = ""
+    sEditora.value = ""
+    sGenero.value = ""
+    sEstoque.value = ""
   } else if (status = "add"){
     xhr.open('POST', '/book/SignBook', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -191,6 +196,11 @@ btnSalvar.onclick = e => {
     };
         xhr.send(jsonData);
         modal.classList.remove('active')
+        sTitulo.value = ""
+        sAutor.value = ""
+        sEditora.value = ""
+        sGenero.value = ""
+        sEstoque.value = ""
     }
 }
 const atualizarTabela = document.querySelector('.atualizar-tabela');

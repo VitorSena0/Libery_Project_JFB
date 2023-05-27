@@ -19,6 +19,8 @@ const sEditora = document.querySelector('#editora');
 const sGenero = document.querySelector('#genero');
 const sEstoque = document.querySelector('#estoque');
 
+const cards = document.querySelector('.home')
+
 
 let itens;
 let itens2;
@@ -26,9 +28,8 @@ let itens2;
 const resetarFormulario = () => {
   CadastroAluno.style.display = 'none';
   CadastroLivro.style.display = 'none';
+  cadastroAlunoBackground.style.display = 'none'
   formCadastroLivro.reset();
-  
-
   formCadastroAluno.reset();
   // Volta para o estado normal do select quando o formulario for submetido;
 }
@@ -39,21 +40,38 @@ document.addEventListener('click', function (event) {
   const cardCadastrarLivros = event.target.closest('.card2');
   const cardEmprestimo = event.target.closest('.card3');
   const Devolucoes = event.target.closest('.card4');
+  const Link1 = event.target.closest('.inicio');
+  const Link2 = event.target.closest('.aluno-cadastrado');
+  const Link3 = event.target.closest('.livro-cadastrado');
+  const Link4 = event.target.closest('.emprestimo-efetuado');
   const evento = event.target.className
-  //event.preventDefault();
+  event.preventDefault();
 
   if (cardCadastrarAluno !== null) {
     CadastroAluno.style.display = 'block';
+    cadastroAlunoBackground.style.display = 'block'
     cadastroAlunoBackground.classList.add("contain-cadastro");
     const sescolaridade = document.querySelector('#Nivel_escolar')
-    
   }
 
   if (cardCadastrarLivros !== null) {
     CadastroLivro.style.display = 'block';
+    cadastroAlunoBackground.style.display = 'block'
     cadastroAlunoBackground.classList.add("contain-cadastro");
   }
-  
+
+  if(Link1 !== null){
+    window.location.replace('/')
+  }
+  if(Link2 !== null){
+    window.location.replace('/aluno')
+  }
+  if(Link3 !== null){
+    window.location.replace('/book')
+  }
+  if(Link4 !== null){
+    window.location.replace('/emprestimo')
+  }
   if (evento === 'contain-cadastro') {
     cadastroAlunoBackground.classList.remove("contain-cadastro");
     carregaTurmas()
@@ -68,48 +86,75 @@ document.addEventListener('click', function (event) {
   let camposObrigatorios;
   let preenchidos = true;
   if (evento === "CadastrarAluno") {
-    camposObrigatorios = CadastroAluno.querySelectorAll('[required]');
-    camposObrigatorios.forEach(function (campo) {
-      if (!campo.value) preenchidos = false;
-    })
+    event.preventDefault();
+    var data = {
+      nome: sNome.value,
+      email: semail.value,
+      telefone: stelefone.value,
+      escolaridade: sescolaridade.value,
+      turma: turmaSelect.value,
+    };
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/aluno/SignAluno', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    var jsonData = JSON.stringify(data);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          console.log(response);
+        } else {
+          console.error('Erro na requisição:', xhr.status);
+        }
+      }
+    };
+    xhr.send(jsonData);
 
-    if (!preenchidos) {
-      event.preventDefault();
-      alert("Preencha todos os campos!")
-    } else {
-      itens = getItensBD()
-      itens.push({ 'nome': sNome.value, 'email': semail.value, 'telefone': stelefone.value, 'escolaridade': sescolaridade.value, 'turma': turmaSelect.value });
-      setItensBD()
-      cadastroAlunoBackground.classList.remove("contain-cadastro");
-      resetarFormulario();
-    }
+     sNome.value = ""
+     semail.value = ""
+     stelefone.value = ""
+     sescolaridade.value = ""
+     turmaSelect.value = ""
+     CadastroAluno.style.display = 'none';
+     cadastroAlunoBackground.style.display = 'none'
+     resetarFormulario();
   }
 
   // Evento do formulário do cadastro de livros
   if (evento === "CadastrarLivro") {
-    camposObrigatorios = CadastroLivro.querySelectorAll('[required]');
-    camposObrigatorios.forEach(function (campo) {
-      if (!campo.value) preenchidos = false;
-    });
-
-    if (!preenchidos) {
-      event.preventDefault();
-      alert("Preencha todos os campos!")
-    } else {
-      itens2 = getItensBD2();
-      itens2.push({'titulo': sTitulo.value, 'autor': sAutor.value, 'editora': sEditora.value, 'genero': sGenero.value, 'estoque': sEstoque.value })
-      setItensBD2()
-      cadastroAlunoBackground.classList.remove("contain-cadastro");
-      resetarFormulario();
+    event.preventDefault();
+    var xhr = new XMLHttpRequest();
+    let data = {
+      titulo:sTitulo.value,
+      autor: sAutor.value,
+      genero: sGenero.value,
+      editora: sEditora.value,
+      estoque: sEstoque.value
+    };
+    console.log(data)
+    var jsonData = JSON.stringify(data);
+    xhr.open('POST', '/book/SignBook', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    console.log("work it")
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText);
+        } else {
+          console.error('Erro na requisição:', xhr.status);
+        }
+      }
     }
+    xhr.send(jsonData);
+
+    sTitulo.value = ""
+    sAutor.value = ""
+    sEditora.value = ""
+    sGenero.value = ""
+    sEstoque.value = ""
+    CadastroLivro.style.display = 'none';
+    cadastroAlunoBackground.style.display = 'none'
+    resetarFormulario();
   }
 
 })
-
-//Adicionar ao banco os alunos
-const getItensBD = () => JSON.parse(localStorage.getItem('dbAlunos')) ?? [] // Se for a primeira condição null ou undefined ele atribui para a segunda alternativa
-const setItensBD = () => localStorage.setItem('dbAlunos', JSON.stringify(itens))
-//Adicionar ao banco os livros
-const getItensBD2 = () => JSON.parse(localStorage.getItem('dbLivros')) ?? [] // item
-const setItensBD2 = () => JSON.parse(localStorage.setItem('dbLivros', JSON.stringify(itens2)))
-
