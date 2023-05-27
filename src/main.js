@@ -18,6 +18,7 @@ app.use(Book.ReadBook);
 app.use(Aluno.AddAluno);
 app.use(Aluno.ReadAluno);
 app.use(Aluno.UpdateAluno);
+app.use(Main.EmprestimoMain);
 
 app.get('*',(req,res) => {
     res.redirect("/404");
