@@ -48,8 +48,17 @@ const AlunoRoutes = {
       }
       console.log(req.body)
       try {
+        let res1 = await client.query(`select nome from tb_alunos where id = ${reqBody.id}` )
+        let res2 = await client.query(`select aluno from tb_emp where aluno = '${res1.rows[0].nome}'`)
+
+        if(res2.rows[0]){
+          res.send("N")
+        } else{
+          console.log(res2.rows[0])
           await client.query(`DELETE FROM tb_alunos WHERE id = ${reqBody.id}`);
-          res.send("Dados Deletados com sucesso");
+          res.send("S");
+        }
+
       } catch (error) {
           console.error('Erro ao inserir dados', error);
           throw error;

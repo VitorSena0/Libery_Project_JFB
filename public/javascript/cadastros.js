@@ -102,9 +102,9 @@ document.addEventListener('click', function (event) {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           var response = JSON.parse(xhr.responseText);
-          console.log(response);
+          handleSubmit("Dados enviados com sucesso")
         } else {
-          console.error('Erro na requisição:', xhr.status);
+          handleSubmit('Erro no envio de dados');
         }
       }
     };
@@ -139,9 +139,9 @@ document.addEventListener('click', function (event) {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          console.log(xhr.responseText);
+            handleSubmit("Dados enviados com sucesso")
         } else {
-          console.error('Erro na requisição:', xhr.status);
+          handleSubmit('Erro no envio de dados');
         }
       }
     }

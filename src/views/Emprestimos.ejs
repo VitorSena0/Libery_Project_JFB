@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/menu_vertical.css">
     <link rel="stylesheet" href="/public/css/style_emprestimos.css">
+      <link rel="stylesheet" href="/public/css/alert.css">
     <title>Emprestimo Livro</title>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -43,51 +44,46 @@
             <div id="titulo-pagina">
                 <div class="contain-form-emprestimo">
                     <!--Formulário de empréstimo-->
-                    <form action="" class="Emprestimo" method="post">
+                    <form class="Emprestimo"  >
 
                         <h1>Empréstimos</h1>
-
+                        <div id="alert"></div>
                         <div class="Escolher_opcoes">
                             <div class="emprestimo-opcoes">
 
                                 <div class="Empresta">
 
                                     <select id="nomeAluno">
-
-                                        <option value="" selected disabled>Escolha o Aluno</option>
-                                        <option>Marcos</option>
+                                      <option value="" disabled>Escolha o Aluno</option>
+                                      <% for(i = 0;i < alunos.length ; i++){%>
+                                          <option value="<%= alunos[i].nome %>"><%= alunos[i].nome %><option>
+                                      <% } %>
                                     </select>
                                 </div>
 
                                 <div class="Empresta">
 
                                     <select name="" id="nomeLivro" width="100%" height="100%">
-                                        <option value="" selected disabled>Escolha o Livro</option>
-                                        <option>Aurélio Marcos</option>
+                                      <option value="" disabled>Escolha o Livro</option>
+                                        <% livros.forEach((book, index) => { %>
+                                          <option value="<%= book.titulo %>"><%= book.titulo %><option>
+                                        <% }); %>
+
+
                                     </select>
                                 </div>
                                 <div class="contain-devolucao">
-                                    <div class="devolucao">
-                                        <label for="data">Devolução</label><br>
-                                        <input id="data" type="date">
-                                    </div>
+
                                 </div>
                             </div>
-
-                                <input type="submit" value="Confirmar" id="submit">
+                            <input  id="submit" type="submit" value="Enviar">
                         </div>
                     </form>
                 </div>
             </div>
 
                 <script>
-                    $(document).ready(function () {
-                        $('#nomeAluno').select2();
-                    });
 
-                    $(document).ready(function () {
-                        $('#nomeLivro').select2();
-                    });
                     /*A substituição jQuery para caixas de seleção
                         Select2 oferece uma caixa de seleção personalizável com suporte para pesquisa, marcação, conjuntos de dados remotos, rolagem infinita e muitas outras opções altamente usadas.
                         */
@@ -111,7 +107,46 @@
                             <th class="acao">Excluir</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="data">
+
+                        <%
+
+                        function calcularDiferencaTempo(dataAtual, dataDesejada) {
+                          // Calcular a diferença em milissegundos entre as datas
+                          let diferenca = Math.abs(dataDesejada - dataAtual);
+
+                          // Calcular os valores de horas, dias e minutos
+                          let horas = Math.floor(diferenca / (1000 * 60 * 60));
+                          let dias = Math.floor(horas / 24);
+                          let minutos = Math.floor(diferenca / (1000 * 60));
+
+                          // Retornar o objeto com as informações de tempo
+                          return { horas, dias, minutos };
+                        }
+                        let dateNow = new Date()
+                        function formatarData(data) {
+                          const partes = data.split('-');
+                          const dia = partes[2];
+                          const mes = partes[1];
+                          const ano = partes[0];
+
+                          return `${dia}/${mes}/${ano}`;
+                        }
+                        %>
+                        <% emprestimos.forEach((emprestimo, index) => {
+                          let diff = calcularDiferencaTempo(dateNow,new Date(emprestimo.data));
+                          %>
+                           <tr id="<%= emprestimo.id %>">
+                             <td id="<%= emprestimo.id %>-aluno"><%= emprestimo.aluno %></td>
+                             <td id="<%= emprestimo.id %>-livro"><%= emprestimo.livro %></td>
+                             <td id="<%= emprestimo.id %>-data"><%= formatarData(emprestimo.data)  %></td>
+                             <td id="<%= emprestimo.id %>-TempoRestante"><%= diff.dias %> dias</td>
+                             <input type="hidden" value="<%= emprestimo.id %>">
+                             <td class="acao">
+                               <button onclick="deleteItem(<%= emprestimo.id %>)"><img class="imagem-acao-tabela" src="/public/images/excluir.png" title="Deletar"></img></button>
+                             </td>
+                           </tr>
+                      <% }); %>
                     </tbody>
                 </table>
             </div>
@@ -124,6 +159,7 @@
 
 
     </div>
+    <script src="/public/javascript/alert.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="/public/javascript/emprestimos.js"></script>

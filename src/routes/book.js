@@ -46,8 +46,14 @@ const BookRoutes = {
       }
       console.log(req.body)
       try {
-          await client.query(`DELETE FROM tb_books WHERE titulo = '${reqBody.titulo}'`);
-          res.send("Dados Deletados com sucesso");
+        let res1 = await client.query(`select livro from tb_emp where livro = '${reqBody.titulo}'` )
+        console.log(reqBody.titulo)
+        if(res1.rows[0]){
+          res.send('N');
+        } else{
+          await client.query(`DELETE FROM tb_books WHERE titulo = '${ reqBody.titulo}'`);
+          res.send('S');
+        }
       } catch (error) {
           console.error('Erro ao inserir dados', error);
           throw error;
@@ -72,7 +78,7 @@ const BookRoutes = {
                                   autor = '${req.body.autor}',
                                   editora = '${req.body.editora}',
                                   genero = '${req.body.genero}',
-                                  estoque = '${req.body.estoque}'
+                                  estoque = ${req.body.estoque}
                               WHERE titulo = '${req.body.oldTitle}'`);
           res.send("Dados alterados com sucesso");
       } catch (error) {
