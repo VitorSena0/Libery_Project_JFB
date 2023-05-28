@@ -95,20 +95,26 @@ function deleteItem(pointer) {
     titulo:pointer
   };
   var jsonData = JSON.stringify(data);
-  console.log("work it")
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         console.log(xhr.responseText);
+        if(xhr.responseText == 'N'){
+            handleSubmit("Erro: Esses dados não podem ser deletados")
+        } else {
+            handleSubmit('Dados deletados com sucesso')
+            let table = document.getElementById("data")
+            let element = document.getElementById(`(${pointer})`);
+            table.removeChild(element);
+        }
+
       } else {
-        console.error('Erro na requisição:', xhr.status);
+        handleSubmit('Erro na requisição:');
       }
     }
   }
   xhr.send(jsonData);
-  let table = document.getElementById("data")
-  let element = document.getElementById(`(${pointer})`);
-  table.removeChild(element);
+
 }
 function insertItem(item,pointer) {
   let form = document.querySelector(".form-cadastro-livro")
@@ -152,7 +158,6 @@ btnSalvar.onclick = e => {
     xhr.open('POST', '/book/UpdateBook', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     modifyElement(id,data)
-    console.log("work it")
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -162,9 +167,9 @@ btnSalvar.onclick = e => {
           itens.genero =  sGenero.value
           itens.editora =  sEditora.value
           itens.estoque =  sEstoque.value
-          console.log(xhr.responseText);
+          handleSubmit("Dados Alterados com sucesso")
         } else {
-          console.error('Erro na requisição:', xhr.status);
+          handleSubmit('Erro na alteração dos dados');
         }
       }
     }
@@ -188,9 +193,11 @@ btnSalvar.onclick = e => {
           itens.estoque =  sEstoque.value
           var response = JSON.parse(xhr.responseText);
           console.log(response);
+
           insertItem(itens, response.titulo);
+          handleSubmit("Dados Adicionados com sucesso")
         } else {
-          console.error('Erro na requisição:', xhr.status);
+          handleSubmit('Erro no  envio  dos dados');
         }
       }
     };

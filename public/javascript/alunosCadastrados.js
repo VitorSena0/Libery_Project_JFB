@@ -116,16 +116,23 @@ function deleteItem(pointer) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
-        console.log(xhr.responseText);
+          if(xhr.responseText == 'N'){
+              handleSubmit("Erro: Esse Dado não pode ser deletado ")
+          } else {
+            console.log(xhr.responseText)
+            let table = document.getElementById("data")
+            let element = document.getElementById(`${pointer}`);
+            table.removeChild(element);
+            handleSubmit("dado deletado com sucesso ")
+          }
+
       } else {
-        console.error('Erro na requisição:', xhr.status);
+          handleSubmit("Erro ao deletar os dados")
       }
     }
   }
   xhr.send(jsonData);
-  let table = document.getElementById("data")
-  let element = document.getElementById(`${pointer}`);
-  table.removeChild(element);
+
 }
 function insertItem(item,pointer) {
   let form = document.querySelector(".form-cadastro-aluno")
@@ -184,9 +191,9 @@ btnSalvar.onclick = e => {
           itens.telefone = stelefone.value;
           itens.escolaridade = sescolaridade.value;
           itens.turma = turmaSelect.value;
-          console.log(xhr.responseText);
+          handleSubmit("Dados alterados com sucesso")
         } else {
-          console.error('Erro na requisição:', xhr.status);
+            handleSubmit("Erro no envio dos dados")
         }
       }
     }
@@ -205,10 +212,10 @@ btnSalvar.onclick = e => {
           itens.telefone = stelefone.value;
           itens.escolaridade = sescolaridade.value;
           itens.turma = turmaSelect.value;
-          console.log(response);
           insertItem(itens, response.id);
+            handleSubmit("Dados enviados com sucesso")
         } else {
-          console.error('Erro na requisição:', xhr.status);
+            handleSubmit("Erro ao enviar os dados")
         }
       }
     };

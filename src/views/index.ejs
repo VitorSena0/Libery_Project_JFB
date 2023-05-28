@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/public/css/menu_vertical.css">
   <link rel="stylesheet" href="/public/css/style_index.css" />
   <link rel="stylesheet" href="/public/css/style_cadastros.css">
+  <link rel="stylesheet" href="/public/css/alert.css">
   <title>Biblioteca JFB</title>
 </head>
 
@@ -131,6 +132,7 @@
       <div class="cadastrar-livro">
         <form class="form-cadastro-livro" action="/book/SignBook">
           <h1>Cadastrar livro</h1>
+          <div id="alert"></div>
           <div class="txt_field">
             <input type="text" id="titulo" name="titulo" placeholder="Título do livro" required>
           </div>
@@ -162,6 +164,7 @@
     </div>
   </main>
   <footer></footer>
+  <script src="/public/javascript/alert.js"></script>
   <script src="/public/javascript/cadastros.js"></script>
 </body>
 

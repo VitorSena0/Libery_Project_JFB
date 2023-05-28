@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <!--Biblioteca jquery-->
     <link rel="icon" href="/public/images/logo(1).jpg" type="image/png">
+    <link rel="stylesheet" href="/public/css/alert.css">
     <link rel="stylesheet" href="/public/css/style_alunosCadastrados.css">
     <link rel="stylesheet" href="/public/css/menu_vertical.css">
 </head>
@@ -28,7 +29,7 @@
                                     src="/public/images/aluno.png" class="img-menu"><br> Alunos</a></li>
                         <li><a href="/book" class="livro-cadastrado"><img src="/public/images/livro-aberto.png"
                                     class="img-menu" alt=""><br> Acervo</a></li>
-                        <li><a href="#" class="emprestimo-efetuado"><img src="/public/images/emprestimo.png"
+                        <li><a href="/emprestimo" class="emprestimo-efetuado"><img src="/public/images/emprestimo.png"
                                     class="img-menu" alt=""><br> Empréstimos</a></li>
                     </ul>
                 </nav>
@@ -36,7 +37,7 @@
         </header>
 
     <h1 id="titulo-pagina">Alunos cadastrados</h1>
-
+    <div id="alert"></div>
     <div class="container">
         <section>
             <div class="adicionar-aluno">
@@ -129,7 +130,7 @@
             </div>
         </div>
         <button class="atualizar-tabela">Atualizar tabela</button>
-
+    <script src="/public/javascript/alert.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="/public/javascript/alunosCadastrados.js"></script>
