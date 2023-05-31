@@ -53,24 +53,22 @@
 
                                 <div class="Empresta">
 
-                                    <select id="nomeAluno">
-                                      <option value="" disabled>Escolha o Aluno</option>
-                                      <% for(i = 0;i < alunos.length ; i++){%>
-                                          <option value="<%= alunos[i].nome %>"><%= alunos[i].nome %><option>
-                                      <% } %>
-                                    </select>
+                                    <input type="text" id="nomeAluno" list="alunos" placeholder="Digite O nome">
+                                    <datalist id="alunos">
+                                    <% for(i = 0; i < alunos.length;i++){ %>
+                                      <option value="<%= alunos[i].nome %>">
+                                    <% } %>
+                                    </datalist>
                                 </div>
 
                                 <div class="Empresta">
 
-                                    <select name="" id="nomeLivro" width="100%" height="100%">
-                                      <option value="" disabled>Escolha o Livro</option>
-                                        <% livros.forEach((book, index) => { %>
-                                          <option value="<%= book.titulo %>"><%= book.titulo %><option>
-                                        <% }); %>
-
-
-                                    </select>
+                                  <input type="text" id="nomeLivro" list="livros" placeholder="Digite o titulo">
+                                  <datalist id="livros">
+                                  <% for(i = 0; i < livros.length;i++){ %>
+                                    <option value="<%= livros[i].titulo %>">
+                                  <% } %>
+                                  </datalist>
                                 </div>
                                 <div class="contain-devolucao">
 
@@ -149,10 +147,11 @@
                       <% }); %>
                     </tbody>
                 </table>
+                <button class="atualizar-tabela">Atualizar tabela</button>
             </div>
         </section>
 
-        <button class="atualizar-tabela">Atualizar tabela</button>
+
 
 
 

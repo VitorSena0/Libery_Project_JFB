@@ -99,13 +99,14 @@ input[type="submit"]{
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.466);
     transform: translate(16.5%, 2%);
+    overflow-y: scroll;
     padding: 1vw;
 }
 
 .tabela-livros {
     padding: 0.7vw;
-    width: auto; 
-    height:inherit; 
+    width: auto;
+    height:inherit;
     overflow:auto;
     font-size: 12px;
   }
@@ -115,13 +116,13 @@ input[type="submit"]{
     width: 100%;
     margin-top: 20px;
   }
-  
+
   #myTable th, #myTable td {
     padding: 12px;
     text-align: left;
     border: 1px solid #ddd;
   }
-  
+
   #myTable th {
     background-color: #eee;
   }
@@ -132,7 +133,7 @@ input[type="submit"]{
     border: none;
     border: #000000 solid 0.5px;
   }
-  
+
   #search:focus {
     padding: 8px;
     border-radius: 4px;
@@ -141,22 +142,22 @@ input[type="submit"]{
     transform: scale(1.1);
     transition: 0.5s ease-in-out;
   }
-  
+
 
   #myTable_filter{
     display: none;
   }
 
-  
+
   .dataTables_length label select {
     font-size: 12px;
     margin: 0px 0px 20px;
   }
-  
+
   .dataTables_wrapper {
     margin-top: 20px;
   }
-  
+
   .dataTables_paginate {
     margin-top: 20px;
   }

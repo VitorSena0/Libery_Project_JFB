@@ -192,9 +192,7 @@ btnSalvar.onclick = e => {
           itens.editora =  sEditora.value
           itens.estoque =  sEstoque.value
           var response = JSON.parse(xhr.responseText);
-          console.log(response);
-
-          insertItem(itens, response.titulo);
+          insertItem(data, response.titulo);
           handleSubmit("Dados Adicionados com sucesso")
         } else {
           handleSubmit('Erro no  envio  dos dados');
