@@ -29,7 +29,7 @@ const AlunoRoutes = {
       console.log(reqBody)
       console.log(req.body)
       try {
-          await client.query(`INSERT INTO tb_alunos (nome,tel,email,escolaridade,turma) Values ('${reqBody.nome}','${reqBody.tel}','${reqBody.email}','${reqBody.esc}','${reqBody.turma}')` );
+          await client.query(`INSERT INTO tb_alunos (nome,tel,email,escolaridade,turma,emprestimos) Values ('${reqBody.nome}','${reqBody.tel}','${reqBody.email}','${reqBody.esc}','${reqBody.turma}',0)` );
           const result = await client2.query(`SELECT id FROM tb_alunos `);
           res.send(result.rows[result.rows.length - 1]);
 
@@ -78,6 +78,13 @@ const AlunoRoutes = {
       }
       console.log(req.body)
       try {
+        let res1 = await client.query(`select nome from tb_alunos where id = ${reqBody.id}` )
+        let res2 = await client.query(`select aluno from tb_emp where aluno = '${res1.rows[0].nome}'`)
+
+        if(res2.rows[0]){
+          res.send("N")
+        } else{
+          console.log(res2.rows[0])
           await client.query(`UPDATE tb_alunos
                               SET nome = '${reqBody.nome}',
                                   tel = '${reqBody.tel}',
@@ -85,7 +92,9 @@ const AlunoRoutes = {
                                   escolaridade = '${reqBody.esc}',
                                   turma = '${reqBody.turma}'
                               WHERE id = ${reqBody.id}`);
-          res.send("Dados alterados com sucesso");
+          res.send("S");
+        }
+
       } catch (error) {
           console.error('Erro ao inserir dados', error);
           throw error;

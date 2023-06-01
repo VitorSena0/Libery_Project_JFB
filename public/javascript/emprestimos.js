@@ -77,6 +77,9 @@ function deleteItem(pointer) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log(xhr.responseText);
+                let table = document.getElementById("data");
+                let element = document.getElementById(`${pointer}`);
+                table.removeChild(element);
                 handleSubmit("Dados deletados com sucesso")
             } else {
                 handleSubmit('Erro na requisição');
@@ -84,9 +87,7 @@ function deleteItem(pointer) {
         }
     }
     xhr.send(jsonData);
-    let table = document.getElementById("data");
-    let element = document.getElementById(`${pointer}`);
-    table.removeChild(element);
+
 }
 
 function insertItem(item, pointer) {
@@ -110,7 +111,6 @@ function insertItem(item, pointer) {
 
 submit.onclick = e => {
   e.preventDefault();
-  handleSubmit("teste")
   console.log(nomeAluno.value)
   let aluno = nomeAluno.value
   let livro = nomeLivro.value
@@ -128,8 +128,8 @@ submit.onclick = e => {
       if (xhr.readyState === 4) {
           if (xhr.status === 200) {
               var response = JSON.parse(xhr.responseText);
-              if(response.err){
-                  handleSubmit("err")
+              if(response.err && !response.id){
+                  handleSubmit(response.err)
               } else {
                 itens.aluno = aluno
                 itens.livro = livro
@@ -147,46 +147,6 @@ submit.onclick = e => {
   }
 
   xhr.send(jsonData);
-  /*let xhr = new XMLHttpRequest();
-  var data = {
-      aluno: nomeAluno.value,
-      livro: nomelivro.value,
-      data:adiantarData() ,
-      // tempoRestante: null
-  }
-  console.log(jsonData)
-  e.preventDefault();
-
-    if (nomeAluno.value === '' || nomeAluno.value === '' || dataEmprestimo.value === '') {
-        handleSubmit("Antes de confirmar, preencha todos os dados!")
-        e.preventDefault();
-        return;
-    }
-
-
-
-        let jsonData = JSON.stringify(data);
-        let novaData = adiantarData();
-        xhr.open('POST', '/emprestimo/SignEmprestimo', true);
-        xhr.setRequestHeader('Content-type', 'application/json');
-        e.preventDefault();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    itens.aluno = nomeAluno.value;
-                    itens.livro = nomelivro.value;
-                    itens.data = novaData;
-                    console.log(response);
-                    insertItem(itens, response.id);
-                    handleSubmit('Dados enviados com sucesso');
-                } else {
-                    handleSubmit('Erro na requisição');
-                }
-            }
-        }
-
-        xhr.send(jsonData);*/
 
 
 }
