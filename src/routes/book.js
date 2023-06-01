@@ -18,6 +18,7 @@ const BookRoutes = {
     AddBook:route.post("/book/SignBook",async (req,res) => {
       const client = await con.connect();
       const client2 = await con.connect();
+      let status = true
       const reqBody = {
         titulo:req.body.titulo,
         autor:req.body.autor,
@@ -27,10 +28,20 @@ const BookRoutes = {
       }
       console.log(reqBody)
       try {
-          await client.query(`INSERT INTO tb_books (titulo,autor,editora,genero,estoque) Values ('${reqBody.titulo}','${reqBody.autor}','${reqBody.editora}','${reqBody.genero}','${reqBody.estoque}')` );
-          const result = await client2.query(`SELECT titulo FROM tb_books `);
-          res.send(result.rows[result.rows.length - 1]);
-
+          const result = await client.query(`SELECT titulo from tb_books`)
+          for(i = 0;i < result.rows.length;i++){
+              if(reqBody.titulo === result.rows[i].titulo){
+                  status = false;
+                  break;
+              }
+          }
+          if(status){
+            await client.query(`INSERT INTO tb_books (titulo,autor,editora,genero,estoque) Values ('${reqBody.titulo}','${reqBody.autor}','${reqBody.editora}','${reqBody.genero}','${reqBody.estoque}')` );
+            const result = await client2.query(`SELECT titulo FROM tb_books `);
+            res.send(result.rows[result.rows.length - 1]);
+          } else {
+              res.send({err:"Erro , O livro inserido já está registrado"})
+          }
       } catch (error) {
           console.error('Erro ao inserir dados', error);
           throw error;
@@ -63,6 +74,7 @@ const BookRoutes = {
     }),
     UpdateBook:route.post("/book/UpdateBook",async (req,res) => {
       const client = await con.connect();
+      let status = true
       const reqBody = {
         oldTitle:req.body.oldTitle,
         titulo:req.body.titulo,
@@ -71,8 +83,19 @@ const BookRoutes = {
         genero:req.body.genero,
         estoque:req.body.estoque
       }
-      console.log(req.body)
       try {
+        const result = await client.query(`select titulo from tb_books`)
+        console.log(result.rows)
+        for(i = 0;i < result.rows.length;i++){
+            if(reqBody.titulo === result.rows[i].titulo){
+                status = false;
+                break;
+            }
+        }
+        let res1 = await client.query(`select livro from tb_emp where livro = '${reqBody.oldTitle}'` )
+        if(res1.rows[0] || !status){
+          res.send('N');
+        } else{
           await client.query(`UPDATE tb_books
                               SET titulo = '${req.body.titulo}',
                                   autor = '${req.body.autor}',
@@ -80,7 +103,9 @@ const BookRoutes = {
                                   genero = '${req.body.genero}',
                                   estoque = ${req.body.estoque}
                               WHERE titulo = '${req.body.oldTitle}'`);
-          res.send("Dados alterados com sucesso");
+          res.send('S');
+        }
+
       } catch (error) {
           console.error('Erro ao inserir dados', error);
           throw error;

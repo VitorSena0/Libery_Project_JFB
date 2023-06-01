@@ -157,17 +157,22 @@ btnSalvar.onclick = e => {
   if(status == "edit"){
     xhr.open('POST', '/book/UpdateBook', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    modifyElement(id,data)
+
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          itens.oldTitle = sTitulo.value
-          itens.titulo = sTitulo.value
-          itens.autor =  sAutor.value
-          itens.genero =  sGenero.value
-          itens.editora =  sEditora.value
-          itens.estoque =  sEstoque.value
-          handleSubmit("Dados Alterados com sucesso")
+          if(xhr.responseText == 'N'){
+            handleSubmit('Os dados selecionados não podem ser alterados');
+          } else {
+            itens.oldTitle = sTitulo.value
+            itens.titulo = sTitulo.value
+            itens.autor =  sAutor.value
+            itens.genero =  sGenero.value
+            itens.editora =  sEditora.value
+            itens.estoque =  sEstoque.value
+            modifyElement(id,data)
+            handleSubmit("Dados Alterados com sucesso")
+          }
         } else {
           handleSubmit('Erro na alteração dos dados');
         }
@@ -186,14 +191,18 @@ btnSalvar.onclick = e => {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          itens.titulo = sTitulo.value
-          itens.autor =  sAutor.value
-          itens.genero =  sGenero.value
-          itens.editora =  sEditora.value
-          itens.estoque =  sEstoque.value
           var response = JSON.parse(xhr.responseText);
-          insertItem(data, response.titulo);
-          handleSubmit("Dados Adicionados com sucesso")
+          if(response.err){
+              handleSubmit(response.err)
+          } else {
+              itens.titulo = sTitulo.value
+              itens.autor =  sAutor.value
+              itens.genero =  sGenero.value
+              itens.editora =  sEditora.value
+              itens.estoque =  sEstoque.value
+              insertItem(data, response.titulo);
+              handleSubmit("Dados Adicionados com sucesso")
+          }
         } else {
           handleSubmit('Erro no  envio  dos dados');
         }

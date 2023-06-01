@@ -62,6 +62,7 @@
                             <th>Email</th>
                             <th>Escolaridade</th>
                             <th>Turma</th>
+                            <th>Empréstimos</th>
                             <th class="acao">Editar</th>
                             <th class="acao">Excluir</th>
                         </tr>
@@ -74,6 +75,7 @@
                            <td id="<%= aluno.id %>-email"><%= aluno.email %></td>
                            <td id="<%= aluno.id %>-escolaridade"><%= aluno.escolaridade %></td>
                            <td id="<%= aluno.id %>-turma"><%= aluno.turma %></td>
+                           <td id="<%= aluno.id %>-emprestimos"><%= aluno.emprestimos %></td>
                            <input type="hidden" value="<%= aluno.id %>">
                            <td class="acao">
                              <button onclick="editItem(<%= aluno.id %>)"><img class="imagem-acao-tabela" src="/public/images/editar.png" title="Editar"></img></button>

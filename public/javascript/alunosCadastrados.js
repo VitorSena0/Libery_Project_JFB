@@ -145,6 +145,7 @@ function insertItem(item,pointer) {
   <td id="${pointer}-telefone">${item.telefone}</td>
   <td id="${pointer}-escolaridade">${item.escolaridade}</td>
   <td id="${pointer}-turma">${item.turma}</td>
+  <td id="${pointer}-emprestimos">0</td>
   <input type="hidden" value="${pointer}">
   <td class="acao">
     <button onclick="editItem(${pointer})"><img class="imagem-acao-tabela" src="/public/images/editar.png" title="Editar"></img></button>
@@ -186,12 +187,16 @@ btnSalvar.onclick = e => {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          itens.nome = sNome.value;
-          itens.email = semail.value;
-          itens.telefone = stelefone.value;
-          itens.escolaridade = sescolaridade.value;
-          itens.turma = turmaSelect.value;
-          handleSubmit("Dados alterados com sucesso")
+          if(xhr.responseText == 'N'){
+            handleSubmit("Erro: Esse dado não pode ser alterado")
+          } else {
+            itens.nome = sNome.value;
+            itens.email = semail.value;
+            itens.telefone = stelefone.value;
+            itens.escolaridade = sescolaridade.value;
+            itens.turma = turmaSelect.value;
+            handleSubmit("Dados alterados com sucesso")
+          }
         } else {
             handleSubmit("Erro no envio dos dados")
         }
