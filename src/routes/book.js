@@ -1,7 +1,21 @@
 const express = require("express")
 const con = require("../dbconnection")
 const route = express()
+const fs = require('fs')
+function writeToLog(message,name,type) {
+  const logPath = '../logs/'+name;
+  const formattedMessage = `[${new Date().toLocaleString()}] ${type} - ${message}\n`;
 
+  // Escrever no arquivo de log
+  fs.appendFile(logPath, formattedMessage, (err) => {
+    if (err) {
+      console.error('Erro ao escrever no arquivo de log:', err);
+    }
+  });
+
+  // Exibir no console
+  console.log(`[${new Date().toLocaleString()}] ${type} - ${message}`);
+}
 const BookRoutes = {
     ReadBook:route.get('/book/ReadBook', async (req,res) => {
       const client = await con.connect();
@@ -10,7 +24,6 @@ const BookRoutes = {
           res.send(result.rows);
       } catch (error) {
           console.error('Erro ao obter alunos', error);
-          throw error;
       } finally {
           client.release();
       }
@@ -26,7 +39,6 @@ const BookRoutes = {
         genero:req.body.genero,
         estoque:req.body.estoque
       }
-      console.log(reqBody)
       try {
           const result = await client.query(`SELECT titulo from tb_books`)
           for(i = 0;i < result.rows.length;i++){
@@ -38,13 +50,15 @@ const BookRoutes = {
           if(status){
             await client.query(`INSERT INTO tb_books (titulo,autor,editora,genero,estoque) Values ('${reqBody.titulo}','${reqBody.autor}','${reqBody.editora}','${reqBody.genero}','${reqBody.estoque}')` );
             const result = await client2.query(`SELECT titulo FROM tb_books `);
+            writeToLog(`Livro '${reqBody.titulo}' Adicionado com sucesso`, 'Book.log', 'INFO');
             res.send(result.rows[result.rows.length - 1]);
           } else {
+            writeToLog(`Livro '${reqBody.titulo}' Já inserido no sistema`, 'Book.log', 'WARNING');
               res.send({err:"Erro , O livro inserido já está registrado"})
           }
       } catch (error) {
+          writeToLog(`Erro Ao inserir livro '${reqBody.titulo}' Já inserido no sistema`, 'Book.log', 'ERROR');
           console.error('Erro ao inserir dados', error);
-          throw error;
       } finally {
           client.release();
           client2.release();
@@ -55,19 +69,20 @@ const BookRoutes = {
       const reqBody = {
         titulo:req.body.titulo
       }
-      console.log(req.body)
+
       try {
         let res1 = await client.query(`select livro from tb_emp where livro = '${reqBody.titulo}'` )
-        console.log(reqBody.titulo)
         if(res1.rows[0]){
           res.send('N');
+          writeToLog(`ERRO AO REMOVERO O LIVRO '${reqBody.titulo}' `, 'Book.log', 'ERROR');
         } else{
+
           await client.query(`DELETE FROM tb_books WHERE titulo = '${ reqBody.titulo}'`);
+          writeToLog(`Livro '${reqBody.titulo}' REMOVIDO com sucesso`, 'Book.log', 'INFO');
           res.send('S');
         }
       } catch (error) {
-          console.error('Erro ao inserir dados', error);
-          throw error;
+          writeToLog(`ERRO AO REMOVERO O LIVRO '${reqBody.titulo}':${error} `, 'Book.log', 'ERROR');
       } finally {
           client.release();
       }
@@ -85,7 +100,7 @@ const BookRoutes = {
       }
       try {
         const result = await client.query(`select titulo from tb_books`)
-        console.log(result.rows)
+
         for(i = 0;i < result.rows.length;i++){
             if(reqBody.titulo === result.rows[i].titulo){
                 status = false;
@@ -94,6 +109,7 @@ const BookRoutes = {
         }
         let res1 = await client.query(`select livro from tb_emp where livro = '${reqBody.oldTitle}'` )
         if(res1.rows[0] || !status){
+          writeToLog(`Erro ao Atualizar dados`, 'Book.log', 'ERROR');
           res.send('N');
         } else{
           await client.query(`UPDATE tb_books
@@ -103,12 +119,13 @@ const BookRoutes = {
                                   genero = '${req.body.genero}',
                                   estoque = ${req.body.estoque}
                               WHERE titulo = '${req.body.oldTitle}'`);
+          writeToLog('Livro atualizado com sucesso', 'Book.log', 'INFO');
           res.send('S');
+
         }
 
       } catch (error) {
-          console.error('Erro ao inserir dados', error);
-          throw error;
+          writeToLog(`Erro ao Atualizar dados:${error}`, 'UpdateBook', 'ERROR');
       } finally {
           client.release();
       }

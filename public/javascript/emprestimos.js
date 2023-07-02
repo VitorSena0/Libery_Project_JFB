@@ -127,6 +127,7 @@ submit.onclick = e => {
   xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
           if (xhr.status === 200) {
+              console.log(xhr.responseText)
               var response = JSON.parse(xhr.responseText);
               if(response.err && !response.id){
                   handleSubmit(response.err)
