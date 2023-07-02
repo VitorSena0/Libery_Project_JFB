@@ -1,26 +1,27 @@
 Create Table tb_books (
-	titulo varchar(255) not null primary key,
-	autor varchar(255) not null,
-	editora varchar(255) not null,
-	genero varchar(255) not null,
+	id SERIAL PRIMARY KEY,
+	titulo varchar(100) not null,
+	autor varchar(50) not null,
+	editora varchar(100) not null,
+	genero varchar(15) not null,
 	estoque int not null
 );
 
 CREATE TABLE tb_alunos (
 	id SERIAL PRIMARY KEY,
-	nome varchar(255) not null,
-	tel varchar(255) not null,
-	email varchar(255) ,
-	escolaridade varchar(255) not null,
-	turma varchar(255) not null,
-  emprestimos int
+	nome varchar(50) not null,
+	tel varchar(11) not null,
+	email varchar(100) ,
+	escolaridade varchar(11) not null,
+	turma varchar(10) not null,
+  	emprestimos int
 );
 
 create table tb_emp (
 	id serial primary key,
-	aluno varchar(255) not null,
-	livro varchar(255) not null primary key,
-	data char(10) not null
+	aluno varchar(50) not null,
+	livro varchar(100) not null,
+	data date not null
 );
 -- Valores de  Teste
 INSERT INTO tb_alunos (nome, tel, email, escolaridade, turma, emprestimos)
@@ -31,7 +32,6 @@ VALUES
   ('Ana', '444555666', 'ana@example.com', 'Médio', '2º ano', 0),
   ('Carlos', '777888999', 'carlos@example.com', 'Subsequente', '3º período', 0),
   ('Laura', '555444333', 'laura@example.com', 'Médio', '3º ano', 0),
-  -- Adicione mais valores aqui conforme necessário
   ('José', '123123123', 'jose@example.com', 'Subsequente', '1º período', 0),
   ('Fernanda', '456456456', 'fernanda@example.com', 'Médio', '1º ano', 0),
   ('Ricardo', '789789789', 'ricardo@example.com', 'Subsequente', '2º período', 0),

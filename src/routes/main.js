@@ -1,6 +1,20 @@
 const express = require("express")
 const axios = require('axios')
 const route = express()
+function writeToLog(message,name,type) {
+  const logPath = '../logs/'+name;
+  const formattedMessage = `[${new Date().toLocaleString()}] ${type} - ${message}\n`;
+
+  // Escrever no arquivo de log
+  fs.appendFile(logPath, formattedMessage, (err) => {
+    if (err) {
+      console.error('Erro ao escrever no arquivo de log:', err);
+    }
+  });
+
+  // Exibir no console
+  console.log(`[${new Date().toLocaleString()}] ${type} - ${message}`);
+}
 const AlunoRoutes = {
     main:route.get('/', (req,res) => {
         res.render("index")
@@ -37,7 +51,6 @@ const AlunoRoutes = {
         const emprestimos = response3.data;
         const alunos = response1.data;
         const livros = response2.data;
-        console.log(alunos);
         res.render("emprestimos", { emprestimos,alunos,livros });
       } catch (error) {
         console.error('Erro na requisição:', error);

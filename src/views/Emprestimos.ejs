@@ -101,7 +101,6 @@
                             <th>Aluno</th>
                             <th>Livro</th>
                             <th>Data para devolução</th>
-                            <th>Tempo restante</th>
                             <th class="acao">Excluir</th>
                         </tr>
                     </thead>
@@ -138,7 +137,6 @@
                              <td id="<%= emprestimo.id %>-aluno"><%= emprestimo.aluno %></td>
                              <td id="<%= emprestimo.id %>-livro"><%= emprestimo.livro %></td>
                              <td id="<%= emprestimo.id %>-data"><%= formatarData(emprestimo.data)  %></td>
-                             <td id="<%= emprestimo.id %>-TempoRestante"><%= diff.dias %> dias</td>
                              <input type="hidden" value="<%= emprestimo.id %>">
                              <td class="acao">
                                <button onclick="deleteItem(<%= emprestimo.id %>)"><img class="imagem-acao-tabela" src="/public/images/excluir.png" title="Deletar"></img></button>
