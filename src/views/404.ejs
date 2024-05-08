@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Page</title>
+  <link rel="stylesheet" href="/public/css/menu_vertical.css">
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .error-container {
+      translate: 20%;
+      text-align: center;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .error-code {
+      font-size: 60px;
+      color: #e74c3c;
+      margin: 0;
+    }
+
+    .error-message {
+      font-size: 24px;
+      color: #333;
+      margin: 20px 0;
+    }
+
+    .error-description {
+      font-size: 16px;
+      color: #666;
+      margin: 0;
+    }
+
+    .error-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #3498db;
+      font-weight: bold;
+      border: solid 2px;
+      border-radius: 15px;
+      padding: 4px;
+    }
+
+    .error-link a {
+      text-decoration: none;
+    }
+
+    .error-link:hover{
+      transition: ease-in 0.6s;
+      border: rgba(84, 133, 249, 0.993) solid 4px;
+      box-shadow: inset 300px 0 0 0 rgba(84, 133, 249, 0.993);
+      scale: 1.1;
+    }
+
+    .error-link a:hover{
+      transition: ease-in 0.9s;
+      color: #fff;
+    }
+  </style>
+
+</head>
+
+<header class="header">
+  <div class="menu-vertical-navegacao">
+    <div class="logo">
+      <img src="/public/images/logo.jpg" alt="Logo" class="logoJFB" />
+    </div>
+    <div class="menu-vertical">
+      <nav class="menu">
+        <ul>
+          <li><a href="/" class="inicio"> <img src="/public/images/pagina-inicial.png" class="img-menu"><br> Início</a>
+          </li>
+          <li><a href="/aluno" class="aluno-cadastrado"> <img src="/public/images/aluno.png"
+                class="img-menu"><br> Alunos</a></li>
+          <li><a href="/book" class="livro-cadastrado"><img src="/public/images/livro-aberto.png"
+                class="img-menu" alt=""><br> Acervo</a></li>
+          <li><a href="/emprestimo" class="emprestimo-efetuado"><img src="/public/images/emprestimo.png"
+                class="img-menu" alt=""><br>
+              Empréstimos</a></li>
+        </ul>
+      </nav>
+    </div>
+</header>
+
+<body>
+  <div class="error-container">
+    <h1 class="error-code"><span>error 404</span></h1>
+    <h2 class="error-message">Oops! Página não encontrada.</h2>
+    <p class="error-description">Desculpe, a página que você está procurando não foi encontrada.</p>
+    <button class="error-link"><a href="/">Voltar para a página inicial</a></button>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos cadastrados</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <!--Biblioteca jquery-->
+    <link rel="icon" href="images/logo(1).jpg" type="image/png">
+    <link rel="stylesheet" href="css/style_alunosCadastrados.css">
+    <link rel="stylesheet" href="css/menu_vertical.css">
+</head>
+
+<body>
+    <div class="alert"></div>
+    <header class="header">
+        <div class="menu-vertical-navegacao">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="Logo" class="logoJFB" />
+            </div>
+            <div class="menu-vertical">
+                <nav class="menu">
+                    <ul>
+                        <li><a href="index.html" class="inicio"> <img src="images/pagina-inicial.png"
+                                    class="img-menu"><br> Início</a></li>
+                        <li><a href="#" class="aluno-cadastrado"> <img
+                                    src="images/aluno.png" class="img-menu"><br> Alunos</a></li>
+                        <li><a href="livrosCadastrados.html" class="livro-cadastrado"><img src="images/livro-aberto.png"
+                                    class="img-menu" alt=""><br> Acervo</a></li>
+                        <li><a href="EfetuaEmprestimo.html" class="emprestimo-efetuado"><img src="images/emprestimo.png"
+                                    class="img-menu" alt=""><br> Empréstimos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+    <h1 id="titulo-pagina">Alunos cadastrados</h1>
+
+    <div class="container">
+        <section>
+            <div class="adicionar-aluno">
+                <div class="contain-adicionar-aluno">
+                    <button onclick=`${modal.classList.add('active')}` id="novo-aluno">Incluir aluno</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!--Tabela de cadastro dos alunos-->
+        <section>
+            <div class="tabela-alunos">
+                <div class="contain-search">
+                    <input type="text" id="search" placeholder="Pesquisar aluno...">
+                </div>
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Escolaridade</th>
+                            <th>Turma</th>
+                            <th class="acao">Editar</th>
+                            <th class="acao">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!--------Formulário do cadastro de aluno-------->
+
+        <div class="contain-cadastro">
+
+            <div class="cadastro-aluno">
+                <form class="form-cadastro-aluno" method="" action="">
+
+                    <h1>Cadastro Do Aluno</h1>
+                    <div class="txt_field">
+                        <input id="m-nome" type="text" name="nome" required placeholder="Nome do Aluno">
+                        <span></span>
+                    </div>
+
+                    <div class="txt_field">
+                        <input id="m-telefone" type="number" name="telefone" required placeholder="Telefone">
+                        <span></span>
+                    </div>
+
+                    <div class="txt_field">
+                        <input id="m-email" type="email" name="email" placeholder="E-mail">
+                        <span></span>
+                    </div>
+
+                    <div class="select-dinamico">
+
+                        <select id='Nivel_escolar' onchange="carregaTurmas()" required>
+                            <option value='' selected disabled>Selecione a escolaridade</option>
+                            <option>Médio</option>
+                            <option>Subsequente</option>
+                        </select>
+
+
+                        <select id='Turma' required>
+                            <option value="" selected disabled>Turma indefina</option>
+                        </select>
+
+                    </div>
+                    <button class="CadastrarAluno" id="btn-submit" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+        <button class="atualizar-tabela">Atualizar tabela</button>
+
+    <script src="javascript/notificationAlert.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="javascript/alunosCadastrados.js"></script>
+</body>
+
+</html>

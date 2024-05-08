@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos cadastrados</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <!--Biblioteca jquery-->
+    <link rel="icon" href="/public/images/logo(1).jpg" type="image/png">
+    <link rel="stylesheet" href="/public/css/style_alunosCadastrados.css">
+    <link rel="stylesheet" href="/public/css/menu_vertical.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="menu-vertical-navegacao">
+            <div class="logo">
+                <img src="/public/images/logo.jpg" alt="Logo" class="logoJFB" />
+            </div>
+            <div class="menu-vertical">
+                <nav class="menu">
+                    <ul>
+                        <li><a href="/" class="inicio"> <img src="/public/images/pagina-inicial.png"
+                                    class="img-menu"><br> Início</a></li>
+                        <li><a href="/aluno" class="aluno-cadastrado"> <img
+                                    src="/public/images/aluno.png" class="img-menu"><br> Alunos</a></li>
+                        <li><a href="/book" class="livro-cadastrado"><img src="/public/images/livro-aberto.png"
+                                    class="img-menu" alt=""><br> Acervo</a></li>
+                        <li><a href="#" class="emprestimo-efetuado"><img src="/public/images/emprestimo.png"
+                                    class="img-menu" alt=""><br> Empréstimos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+    <h1 id="titulo-pagina">Alunos cadastrados</h1>
+
+    <div class="container">
+        <section>
+            <div class="adicionar-aluno">
+                <div class="contain-adicionar-aluno">
+                    <button onclick='openmodal()' id="novo-aluno">Incluir aluno</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!--Tabela de cadastro dos alunos-->
+        <section>
+            <div class="tabela-alunos">
+                <div class="contain-search">
+                    <input type="text" id="search" placeholder="Pesquisar aluno...">
+                </div>
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Escolaridade</th>
+                            <th>Turma</th>
+                            <th class="acao">Editar</th>
+                            <th class="acao">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data">
+                      <% alunos.forEach((aluno, index) => { %>
+                         <tr id="<%= aluno.id %>">
+                           <td id="<%= aluno.id %>-nome"><%= aluno.nome %></td>
+                           <td id="<%= aluno.id %>-telefone"><%= aluno.tel %></td>
+                           <td id="<%= aluno.id %>-email"><%= aluno.email %></td>
+                           <td id="<%= aluno.id %>-escolaridade"><%= aluno.escolaridade %></td>
+                           <td id="<%= aluno.id %>-turma"><%= aluno.turma %></td>
+                           <input type="hidden" value="<%= aluno.id %>">
+                           <td class="acao">
+                             <button onclick="editItem(<%= aluno.id %>)"><img class="imagem-acao-tabela" src="/public/images/editar.png" title="Editar"></img></button>
+                           </td>
+                           <td class="acao">
+                             <button onclick="deleteItem(<%= aluno.id %>)"><img class="imagem-acao-tabela" src="/public/images/excluir.png" title="Deletar"></img></button>
+                           </td>
+                         </tr>
+                      <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!--------Formulário do cadastro de aluno-------->
+
+        <div class="contain-cadastro">
+
+            <div class="cadastro-aluno">
+                <form class="form-cadastro-aluno" method="post" action="/aluno/SignAluno">
+
+                    <h1>Cadastro Do Aluno</h1>
+                    <div class="txt_field">
+                        <input id="m-nome" type="text" name="nome" required placeholder="Nome do Aluno">
+                        <span></span>
+                    </div>
+
+                    <div class="txt_field">
+                        <input id="m-telefone" type="number" name="telefone" required placeholder="Telefone">
+                        <span></span>
+                    </div>
+
+                    <div class="txt_field">
+                        <input id="m-email" type="email" name="email" placeholder="E-mail">
+                        <span></span>
+                    </div>
+
+                    <div class="select-dinamico">
+
+                        <select id='Nivel_escolar' onchange="carregaTurmas()" required>
+                            <option value='' selected disabled>Selecione a escolaridade</option>
+                            <option>Médio</option>
+                            <option>Subsequente</option>
+                        </select>
+
+
+                        <select id='Turma' required>
+                            <option value="" selected disabled>Turma indefina</option>
+                        </select>
+
+                    </div>
+                    <button class="CadastrarAluno" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+        <button class="atualizar-tabela">Atualizar tabela</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="/public/javascript/alunosCadastrados.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos cadastrados</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <!--Biblioteca jquery-->
+    <link rel="icon" href="public/images/logo(1).jpg" type="image/png">
+    <link rel="stylesheet" href="public/css/style_livrosCadastrados.css">
+    <link rel="stylesheet" href="public/css/menu_vertical.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="menu-vertical-navegacao">
+            <div class="logo">
+                <img src="public/images/logo.jpg" alt="Logo" class="logoJFB" />
+            </div>
+            <div class="menu-vertical">
+                <nav class="menu">
+                    <ul>
+                        <li><a href="index.html" class="inicio"> <img src="public/images/pagina-inicial.png"
+                                    class="img-menu"><br> Início</a></li>
+                        <li><a href="alunosCadastrados.html" class="aluno-cadastrado"> <img
+                                    src="public/images/aluno.png" class="img-menu"><br> Alunos</a></li>
+                        <li><a href="#" class="livro-cadastrado"><img src="public/images/livro-aberto.png"
+                                    class="img-menu" alt=""><br> Acervo</a></li>
+                        <li><a href="#" class="emprestimo-efetuado"><img src="public/images/emprestimo.png"
+                                    class="img-menu" alt=""><br> Empréstimos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+    <h1 id="titulo-pagina">Livros cadastrados</h1>
+
+    <div class="container">
+        <section>
+            <div class="adicionar-aluno">
+                <div class="contain-adicionar-aluno">
+                    <button onclick="openModal()" id="novo-aluno">Adicionar Livro</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!--Tabela de cadastro dos alunos-->
+        <section>
+            <div class="tabela-alunos">
+                <div class="contain-search">
+                    <input type="text" id="search" placeholder="Pesquisar Livros...">
+                </div>
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Escolaridade</th>
+                            <th>Turma</th>
+                            <th class="acao">Editar</th>
+                            <th class="acao">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!--------Formulário do cadastro de aluno-------->
+
+        <div class="contain-cadastro">
+
+            <div class="cadastrar-livro">
+                <form class="form-cadastro-livro">
+                  <h1>Cadastrar livro</h1>
+                  <div class="txt_field">
+                    <input type="text" id="titulo" name="titulo" placeholder="Título do livro" required>
+                  </div>
+        
+                  <div class="txt_field">
+                    <input type="text" id="autor" name="autor" placeholder="Autor" required>
+                  </div>
+        
+                  <div class="txt_field">
+                    <input type="text" id="editora" name="editora" placeholder="Editora" required>
+                  </div>
+
+                  <div class="txt_field">
+                    <input type="text" id="genero" name="genero" placeholder="Gênero" required>
+                  </div>
+        
+                  <div class="estoque-div">
+                    <label for="estoque">Quantidade de exemplares: </label>
+                    <input type="number" id="estoque" name="estoque" value="1" size="1" min="0">
+                  </div>
+                  <button type="submit" class="CadastrarLivro">Cadastrar</button>
+                </form>
+              </div>
+        </div>
+        <button class="atualizar-tabela">Atualizar tabela</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="public/javascript/livrosCadastrados.js"></script>
+</body>
+
+</html>

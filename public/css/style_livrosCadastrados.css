@@ -1,0 +1,261 @@
+
+
+/*Tabela da página*/
+#titulo-pagina {
+    justify-content: center;
+    display: flex;
+    margin: 4vh;
+    margin-left: 18vw;
+    font-size: 2vw;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: 85%;
+    height: 100%;
+    border-radius: 15px;
+    background: white;
+    transform: translate(16.5%, 2%);
+    padding: 1vw;
+}
+
+.adicionar-aluno{
+    min-height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.contain-adicionar-aluno{
+  padding: 0;
+  margin: 0;
+}
+
+#novo-aluno{
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 13px;
+    border: none;
+    color: white;
+    background-color: rgb(57, 57, 226);
+    margin: 10px;
+}
+
+
+.tabela-alunos {
+    padding: 0.7vw;
+    width: auto; 
+    height:inherit; 
+    overflow:auto;
+    font-size: 12px;
+  }
+  
+  
+  #myTable {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  #myTable th, #myTable td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  #myTable th {
+    background-color: #eee;
+  }
+
+  #search{
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    border: #000000 solid 0.5px;
+  }
+  
+  #search:focus {
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-shadow: 4px 3px rgba(0, 0, 0, 0.701);
+    transform: scale(1.1);
+    transition: 0.5s ease-in-out;
+  }
+  
+
+  #myTable_filter{
+    display: none;
+  }
+
+  .dataTables_length label select {
+    font-size: 12px
+  }
+  
+  .dataTables_wrapper {
+    margin-top: 20px;
+  }
+  
+  .dataTables_paginate {
+    margin-top: 20px;
+  }
+
+  .imagem-acao-tabela{
+    width: 30px;
+  }
+
+  .atualizar-tabela {
+  border-radius: 10px;
+    border: solid 2px rgb(22, 53, 230);
+    background-color: #efefef;
+    color: rgb(0, 0, 0);
+    padding: 6px;
+}
+
+.atualizar-tabela:hover {
+  transition: ease-in 1s;
+  box-shadow: inset 300px 0 0 0 rgb(22, 53, 230);
+  color: rgb(255, 255, 255);
+}
+
+.acao button{
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+
+
+
+
+/*Formulário de cadastro de alunos*/
+/*////////////////////////////////////////
+
+position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    background: white;
+    border-radius: 15px;
+    display: none;
+    border: solid rgb(112, 112, 112) 2px;
+}
+
+.cadastrar-livro h1 {
+  font-size: 30px;
+  text-align: center;
+  padding: 18px 0;
+  border-bottom: 0.2px solid silver;
+}
+
+.cadastrar-livro form {
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+
+.contain-cadastro {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: 1s;
+}
+
+
+
+
+////////////////////////////////////////*/
+.contain-cadastro {
+  width: 101.17vw;
+  height: 103.2vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: 1s;
+  display: none;
+  translate: -15% -17%;
+}
+
+.active{
+  display: block;
+}
+
+.cadastrar-livro{
+    background-color: white;
+    padding: 20px;
+    margin: 0 auto;
+    width: 30%;
+    height: auto;
+    margin-top: 10%;
+    border-radius: 15px;
+
+}
+
+form h1{
+    text-align: center;
+}
+
+form .txt_field {
+    position: relative;
+    border-bottom: 1px solid #adadad;
+    margin: 70px 0;
+}
+
+.txt_field input{
+    width: 390px;
+    padding: 0 10px;
+    height: 30px;
+    font-size: 15px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.estoque-div{
+    margin: -10px 0px 30px 0px;
+    margin-left: 10px;
+}
+
+.estoque-div label{
+    color: #1f59b1;
+}
+
+#estoque{
+    font-size: 18px;
+    color: #1f59b1;
+    text-align: center;
+    border: none;
+    border-bottom: solid 1px ;
+    width: 50px;
+    padding: 3px;
+    margin-left: 5px;
+}
+
+
+
+button[type="submit"] {
+    width: 100%;
+    height: 40px;
+    border: solid 2px rgb(50, 102, 205);
+    border-radius: 15px;
+    font-size: 15px;
+    color: #000000;
+    cursor: pointer;
+    outline: none;
+    margin: 25px 0;
+}
+
+button[type="submit"]:hover {
+    transition: 0.4s ease-in-out;
+    background: rgb(50, 102, 205);
+    color: rgb(14, 14, 17);
+    border: #000000 solid 2px;
+    transform: scale(1.05);
+}
