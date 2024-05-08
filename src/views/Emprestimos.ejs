@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/menu_vertical.css">
     <link rel="stylesheet" href="/public/css/style_emprestimos.css">
+<<<<<<< HEAD
+=======
+      <link rel="stylesheet" href="/public/css/alert.css">
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
     <title>Emprestimo Livro</title>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -43,24 +47,41 @@
             <div id="titulo-pagina">
                 <div class="contain-form-emprestimo">
                     <!--Formulário de empréstimo-->
+<<<<<<< HEAD
                     <form action="" class="Emprestimo" method="post">
 
                         <h1>Empréstimos</h1>
 
+=======
+                    <form class="Emprestimo"  >
+
+                        <h1>Empréstimos</h1>
+                        <div id="alert"></div>
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
                         <div class="Escolher_opcoes">
                             <div class="emprestimo-opcoes">
 
                                 <div class="Empresta">
 
+<<<<<<< HEAD
                                     <select id="nomeAluno">
 
                                         <option value="" selected disabled>Escolha o Aluno</option>
                                         <option>Marcos</option>
                                     </select>
+=======
+                                    <input type="text" id="nomeAluno" list="alunos" placeholder="Digite O nome">
+                                    <datalist id="alunos">
+                                    <% for(i = 0; i < alunos.length;i++){ %>
+                                      <option value="<%= alunos[i].nome %>">
+                                    <% } %>
+                                    </datalist>
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
                                 </div>
 
                                 <div class="Empresta">
 
+<<<<<<< HEAD
                                     <select name="" id="nomeLivro" width="100%" height="100%">
                                         <option value="" selected disabled>Escolha o Livro</option>
                                         <option>Aurélio Marcos</option>
@@ -75,12 +96,27 @@
                             </div>
 
                                 <input type="submit" value="Confirmar" id="submit">
+=======
+                                  <input type="text" id="nomeLivro" list="livros" placeholder="Digite o titulo">
+                                  <datalist id="livros">
+                                  <% for(i = 0; i < livros.length;i++){ %>
+                                    <option value="<%= livros[i].titulo %>">
+                                  <% } %>
+                                  </datalist>
+                                </div>
+                                <div class="contain-devolucao">
+
+                                </div>
+                            </div>
+                            <input  id="submit" type="submit" value="Enviar">
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
                         </div>
                     </form>
                 </div>
             </div>
 
                 <script>
+<<<<<<< HEAD
                     $(document).ready(function () {
                         $('#nomeAluno').select2();
                     });
@@ -88,6 +124,9 @@
                     $(document).ready(function () {
                         $('#nomeLivro').select2();
                     });
+=======
+
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
                     /*A substituição jQuery para caixas de seleção
                         Select2 oferece uma caixa de seleção personalizável com suporte para pesquisa, marcação, conjuntos de dados remotos, rolagem infinita e muitas outras opções altamente usadas.
                         */
@@ -107,6 +146,7 @@
                             <th>Aluno</th>
                             <th>Livro</th>
                             <th>Data para devolução</th>
+<<<<<<< HEAD
                             <th>Tempo restante</th>
                             <th class="acao">Excluir</th>
                         </tr>
@@ -118,12 +158,67 @@
         </section>
 
         <button class="atualizar-tabela">Atualizar tabela</button>
+=======
+                            <th class="acao">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data">
+
+                        <%
+
+                        function calcularDiferencaTempo(dataAtual, dataDesejada) {
+                          // Calcular a diferença em milissegundos entre as datas
+                          let diferenca = Math.abs(dataDesejada - dataAtual);
+
+                          // Calcular os valores de horas, dias e minutos
+                          let horas = Math.floor(diferenca / (1000 * 60 * 60));
+                          let dias = Math.floor(horas / 24);
+                          let minutos = Math.floor(diferenca / (1000 * 60));
+
+                          // Retornar o objeto com as informações de tempo
+                          return { horas, dias, minutos };
+                        }
+                        let dateNow = new Date()
+                        function formatarData(data) {
+                          const partes = data.split('-');
+                          const dia = partes[2];
+                          const mes = partes[1];
+                          const ano = partes[0];
+
+                          return `${dia}/${mes}/${ano}`;
+                        }
+                        %>
+                        <% emprestimos.forEach((emprestimo, index) => {
+                          let diff = calcularDiferencaTempo(dateNow,new Date(emprestimo.data));
+                          %>
+                           <tr id="<%= emprestimo.id %>">
+                             <td id="<%= emprestimo.id %>-aluno"><%= emprestimo.aluno %></td>
+                             <td id="<%= emprestimo.id %>-livro"><%= emprestimo.livro %></td>
+                             <td id="<%= emprestimo.id %>-data"><%= formatarData(emprestimo.data)  %></td>
+                             <input type="hidden" value="<%= emprestimo.id %>">
+                             <td class="acao">
+                               <button onclick="deleteItem(<%= emprestimo.id %>)"><img class="imagem-acao-tabela" src="/public/images/excluir.png" title="Deletar"></img></button>
+                             </td>
+                           </tr>
+                      <% }); %>
+                    </tbody>
+                </table>
+                <button class="atualizar-tabela">Atualizar tabela</button>
+            </div>
+        </section>
+
+
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
 
 
 
 
 
     </div>
+<<<<<<< HEAD
+=======
+    <script src="/public/javascript/alert.js"></script>
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="/public/javascript/emprestimos.js"></script>

@@ -1,5 +1,11 @@
 
+<<<<<<< HEAD
 
+=======
+body {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
 /*Tabela da página*/
 #titulo-pagina {
     justify-content: center;
@@ -22,19 +28,31 @@ button {
     padding: 1vw;
 }
 
+<<<<<<< HEAD
 .adicionar-aluno{
+=======
+.adicionar-livro{
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
     min-height: 50px;
     display: flex;
     justify-content: flex-end;
     width: 100%;
 }
 
+<<<<<<< HEAD
 .contain-adicionar-aluno{
+=======
+.contain-adicionar-livro{
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
   padding: 0;
   margin: 0;
 }
 
+<<<<<<< HEAD
 #novo-aluno{
+=======
+#novo-livro{
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
     font-size: 16px;
     padding: 15px;
     border-radius: 13px;
@@ -45,7 +63,11 @@ button {
 }
 
 
+<<<<<<< HEAD
 .tabela-alunos {
+=======
+.tabela-livros {
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
     padding: 0.7vw;
     width: auto; 
     height:inherit; 

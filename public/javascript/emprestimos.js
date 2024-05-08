@@ -3,7 +3,41 @@
 // https://datatables.net/reference/option/
 // https://api.jquery.com/on/
 // https://datatables.net/reference/api/search()
+<<<<<<< HEAD
 
+=======
+function adiantarData() {
+  // Criar uma nova instância de Date com a data atual
+  let date = new Date();
+
+  // Adicionar sete dias à data
+  date.setDate(date.getDate() + 7);
+
+  // Retornar a nova data adiantada em sete dias
+  return date.toISOString().slice(0, 10);
+}
+function calcularDiferencaTempo(dataAtual, dataDesejada) {
+  // Calcular a diferença em milissegundos entre as datas
+  let diferenca = Math.abs(dataDesejada - dataAtual);
+
+  // Calcular os valores de horas, dias e minutos
+  let horas = Math.floor(diferenca / (1000 * 60 * 60));
+  let dias = Math.floor(horas / 24);
+  let minutos = Math.floor(diferenca / (1000 * 60));
+
+  // Retornar o objeto com as informações de tempo
+  return { horas, dias, minutos };
+}
+function formatarData(data) {
+  const partes = data.split('-');
+  const dia = partes[2];
+  const mes = partes[1];
+  const ano = partes[0];
+
+  return `${dia}/${mes}/${ano}`;
+}
+// Função que será chamada ao enviar o formulário
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
 $(document).ready(function () {
     $('#myTable').DataTable({
         "pagingType": "full_numbers",
@@ -24,6 +58,7 @@ $(document).ready(function () {
     });
 });
 
+<<<<<<< HEAD
 let date = new Date().toLocaleDateString();
 console.log(date)
 
@@ -32,6 +67,14 @@ const submit = document.querySelector('.submit');
 const nomelivro = document.querySelector('#nomeLivro');
 const nomeAluno = document.querySelector('#nomeAluno');
 const dataEmprestimo = document.querySelector('#data');
+=======
+let dateNow = new Date();
+
+const form = document.querySelector('.Emprestimo')
+const submit = document.getElementById('submit');
+const nomelivro = document.getElementById('nomeLivro');
+const nomeAluno = document.getElementById('nomeAluno');
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
 let id = null;
 let status = "add";
 let itens = {};
@@ -49,12 +92,22 @@ function deleteItem(pointer) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log(xhr.responseText);
+<<<<<<< HEAD
             } else {
                 console.error('Erro na requisição:', xhr.status);
+=======
+                let table = document.getElementById("data");
+                let element = document.getElementById(`${pointer}`);
+                table.removeChild(element);
+                handleSubmit("Dados deletados com sucesso")
+            } else {
+                handleSubmit('Erro na requisição');
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
             }
         }
     }
     xhr.send(jsonData);
+<<<<<<< HEAD
     let table = document.getElementById("data");
     let element = document.getElementById(`${pointer}`);
     table.removeChilde(element);
@@ -69,6 +122,22 @@ function insertItem(item, pointer) {
         <td id="${pointer}-livro">${item.livro}</td>
         <td id="${pointer}-data">${item.data}</td>
         <td id="${pointer}-TempoRestante">${item.tempoRestante}</td>
+=======
+
+}
+
+function insertItem(item, pointer) {
+    form.action = "/emprestimo/SignEmprestimo"
+    let tbody = document.getElementById("data")
+    let tr = document.createElement('tr');
+    tr.id = pointer
+    //
+    tr.innerHTML = `
+        <td id="${pointer}-aluno">${item.aluno}</td>
+        <td id="${pointer}-livro">${item.livro}</td>
+        <td id="${pointer}-data">${formatarData(item.data)}</td>
+        <td id="${pointer}-TempoRestante">${item.TempoRestante.dias} dias</td>
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
         <input type="hidden" value="${pointer}">
         <td class="acao">
         <button onclick="deleteItem(${pointer})"><img class="imagem-acao-tabela" src="/public/images/excluir.png" title="Deletar"></img></button>
@@ -78,6 +147,7 @@ function insertItem(item, pointer) {
 }
 
 submit.onclick = e => {
+<<<<<<< HEAD
     if (nomeAluno.value === '' || nomeAluno.value === '' || dataEmprestimo.value === '') {
         alert("Antes de confirmar, preencha todos os dados!")
         e.preventDefault();
@@ -119,3 +189,46 @@ submit.onclick = e => {
 
 
 
+=======
+  e.preventDefault();
+  console.log(nomeAluno.value)
+  let aluno = nomeAluno.value
+  let livro = nomeLivro.value
+  var data = {
+      aluno: aluno,
+      livro: livro,
+      data:adiantarData(),
+  }
+  let jsonData = JSON.stringify(data);
+  console.log(jsonData)
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST','/emprestimo/SignEmprestimo',true)
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+              console.log(xhr.responseText)
+              var response = JSON.parse(xhr.responseText);
+              if(response.err && !response.id){
+                  handleSubmit(response.err)
+              } else {
+                itens.aluno = aluno
+                itens.livro = livro
+                itens.data = data.data
+                itens.TempoRestante = calcularDiferencaTempo(dateNow,new Date(data.data))
+                insertItem(itens,response.id)
+                handleSubmit('Dados enviados com sucesso');
+              }
+
+              console.log(response)
+          } else {
+              handleSubmit('Erro na requisição');
+          }
+      }
+  }
+
+  xhr.send(jsonData);
+
+
+}
+>>>>>>> bf7733a416bbbbf921411be1d218bde765732c00

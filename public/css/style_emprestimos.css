@@ -8,35 +8,73 @@ body{
     margin: 0;
     padding: 0;
     font-family: montserrat;
-    background: linear-gradient(120deg, #9b2020, #eae131);
+    background-color: #e5e5e5;
     height: 100vh;
     overflow: hidden;
 }
-select{
+#nomeAluno, #nomeLivro{
     position: absolute;
-    width: 200px;
+    width: 20%;
     border-radius: 10px;
-    margin-top: 10px;
-    margin: 20px;
+    margin-top: 2%;
+    margin: 2%;
 }
-.center{
-    position: absolute;
-    top: 50%;
-    left:50% ;
-    transform: translate(-50%,-50%);
-    width: 400px;
-    background: white;
-    border-radius: 10px;
+
+
+.contain-form-emprestimo{
+  position: absolute;
+  margin: 2% 35%;
+  width: 900px;
+  background: white;
+  border-radius: 10px;
+  align-content: center;
 }
-.center form{
-    padding: 40px;
-    box-sizing: border-box;
+
+/* .active{
+
+} */
+
+.contain-form-emprestimo form{
+  padding: 40px;
+  box-sizing: border-box;
+  max-width: 1500px;
+  text-align: center;
 }
+
+.emprestimo-opcoes{
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-around;
+}
+
+.Emprestimo{
+  display: grid;
+
+}
+
+.contain-devolucao{
+  margin: auto 1;
+  margin-top: 10px;
+  margin-left: 20px;
+  color: #2691d9;
+}
+
 .Empresta{
-    margin: 20px;
+  margin: 20px;
 }
+
+.container{
+  overflow: hidden;
+  width: 100%;
+}
+
+section{
+  display: block;
+  margin-bottom: 35%;
+}
+
 input[type="submit"]{
-    width: 100%;
+    width: 50%;
     height: 50px;
     border: 1px solid;
     background: #2691d9;
@@ -48,8 +86,102 @@ input[type="submit"]{
     outline: none;
     margin: 30px 0 ;
 }
-.center h1{
-    text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid silver;
+
+
+#titulo-pagina {
+    justify-content: center;
+    display: flex;
+}
+
+.container {
+    width: 85%;
+    height: 100%;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.466);
+    transform: translate(16.5%, 2%);
+    overflow-y: scroll;
+    padding: 1vw;
+}
+
+.tabela-livros {
+    padding: 0.7vw;
+    width: auto;
+    height:inherit;
+    overflow:auto;
+    font-size: 12px;
+  }
+
+  #myTable {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  #myTable th, #myTable td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  #myTable th {
+    background-color: #eee;
+  }
+
+  #search{
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    border: #000000 solid 0.5px;
+  }
+
+  #search:focus {
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-shadow: 4px 3px rgba(0, 0, 0, 0.701);
+    transform: scale(1.1);
+    transition: 0.5s ease-in-out;
+  }
+
+
+  #myTable_filter{
+    display: none;
+  }
+
+
+  .dataTables_length label select {
+    font-size: 12px;
+    margin: 0px 0px 20px;
+  }
+
+  .dataTables_wrapper {
+    margin-top: 20px;
+  }
+
+  .dataTables_paginate {
+    margin-top: 20px;
+  }
+
+  .imagem-acao-tabela{
+    width: 30px;
+  }
+
+  .atualizar-tabela {
+  border-radius: 10px;
+    border: solid 2px rgb(22, 53, 230);
+    background-color: #efefef;
+    color: rgb(0, 0, 0);
+    padding: 6px;
+}
+
+.atualizar-tabela:hover {
+  transition: ease-in 1s;
+  box-shadow: inset 300px 0 0 0 rgb(22, 53, 230);
+  color: rgb(255, 255, 255);
+}
+
+.acao button{
+  border: none;
+  background-color: transparent;
+  padding: 0;
 }
