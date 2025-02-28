@@ -11,7 +11,7 @@ Este é um projeto de uma biblioteca virtual desenvolvido utilizando Node.js, Ex
 
 ## Configuração do Banco de Dados
 1. Certifique-se de ter uma instância do PostgreSQL em execução.
-2. Crie um arquivo chamado `.env` no diretório `src/` do projeto.
+2. Crie um arquivo chamado `.env` no diretório raiz do projeto.
 3. No arquivo `.env`, defina as seguintes variáveis de ambiente, preenchendo com as informações de conexão do seu banco de dados:
    ```
    DB_USER=<usuário>
