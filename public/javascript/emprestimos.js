@@ -3,9 +3,6 @@
 // https://datatables.net/reference/option/
 // https://api.jquery.com/on/
 // https://datatables.net/reference/api/search()
-<<<<<<< HEAD
-
-=======
 function adiantarData() {
   // Criar uma nova instância de Date com a data atual
   let date = new Date();
@@ -37,7 +34,6 @@ function formatarData(data) {
   return `${dia}/${mes}/${ano}`;
 }
 // Função que será chamada ao enviar o formulário
->>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
 $(document).ready(function () {
     $('#myTable').DataTable({
         "pagingType": "full_numbers",
@@ -58,23 +54,12 @@ $(document).ready(function () {
     });
 });
 
-<<<<<<< HEAD
-let date = new Date().toLocaleDateString();
-console.log(date)
-
-const form = document.querySelector('.Emprestimo')
-const submit = document.querySelector('.submit');
-const nomelivro = document.querySelector('#nomeLivro');
-const nomeAluno = document.querySelector('#nomeAluno');
-const dataEmprestimo = document.querySelector('#data');
-=======
 let dateNow = new Date();
 
 const form = document.querySelector('.Emprestimo')
 const submit = document.getElementById('submit');
 const nomelivro = document.getElementById('nomeLivro');
 const nomeAluno = document.getElementById('nomeAluno');
->>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
 let id = null;
 let status = "add";
 let itens = {};
@@ -92,37 +77,16 @@ function deleteItem(pointer) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log(xhr.responseText);
-<<<<<<< HEAD
-            } else {
-                console.error('Erro na requisição:', xhr.status);
-=======
                 let table = document.getElementById("data");
                 let element = document.getElementById(`${pointer}`);
                 table.removeChild(element);
                 handleSubmit("Dados deletados com sucesso")
             } else {
                 handleSubmit('Erro na requisição');
->>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
             }
         }
     }
     xhr.send(jsonData);
-<<<<<<< HEAD
-    let table = document.getElementById("data");
-    let element = document.getElementById(`${pointer}`);
-    table.removeChilde(element);
-}
-
-function insertItem(item, pointer) {
-    form.action = "/emprestimo/addEmprestimo"
-    let tr = document.createElement('tr');
-    tr.id = pointer
-    tr.innerHTML = `
-        <td id="${pointer}-aluno">${item.aluno}</td>
-        <td id="${pointer}-livro">${item.livro}</td>
-        <td id="${pointer}-data">${item.data}</td>
-        <td id="${pointer}-TempoRestante">${item.tempoRestante}</td>
-=======
 
 }
 
@@ -137,7 +101,6 @@ function insertItem(item, pointer) {
         <td id="${pointer}-livro">${item.livro}</td>
         <td id="${pointer}-data">${formatarData(item.data)}</td>
         <td id="${pointer}-TempoRestante">${item.TempoRestante.dias} dias</td>
->>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
         <input type="hidden" value="${pointer}">
         <td class="acao">
         <button onclick="deleteItem(${pointer})"><img class="imagem-acao-tabela" src="/public/images/excluir.png" title="Deletar"></img></button>
@@ -147,49 +110,6 @@ function insertItem(item, pointer) {
 }
 
 submit.onclick = e => {
-<<<<<<< HEAD
-    if (nomeAluno.value === '' || nomeAluno.value === '' || dataEmprestimo.value === '') {
-        alert("Antes de confirmar, preencha todos os dados!")
-        e.preventDefault();
-        return;
-    }
-    form.reset();
-    e.preventDefault();
-    var xhr = new XMLHttpRequest();
-    var data = {
-        aluno: nomeAluno.value,
-        livro: nomelivro.value,
-        data: dataEmprestimo.value,
-        // tempoRestante: null
-    }
-    var jsonData = JSON.stringify(data);
-
-    if (status = 'add') {
-        xhr.open('POST', '/emprestimo/SignEmprestimo', true);
-        xhr.setRequestHeader('Content-type', 'application/json');
-
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4) {
-                if (xhr.readyState === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    itens.aluno = nomeAluno.value;
-                    itens.livro = nomelivro.value;
-                    itens.data = dataEmprestimo.value;
-                    console.log(response);
-                    insertItem(itens, response.id);
-                } else {
-                    console.error('Erro na requisição:', xhr.status);
-                }
-            }
-        }
-        xhr.send(jsonData);
-
-    }
-}
-
-
-
-=======
   e.preventDefault();
   console.log(nomeAluno.value)
   let aluno = nomeAluno.value
@@ -231,4 +151,3 @@ submit.onclick = e => {
 
 
 }
->>>>>>> bf7733a416bbbbf921411be1d218bde765732c00

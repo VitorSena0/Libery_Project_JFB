@@ -4,9 +4,6 @@ const path = require('path')
 const Book = require('./routes/book')
 const Main = require("./routes/main")
 const Aluno = require("./routes/aluno")
-<<<<<<< HEAD
-const port = 3000;
-=======
 const con = require("./dbconnection")
 const port = 3000;
 const fs = require('fs');
@@ -25,10 +22,10 @@ function writeToLog(message,name,type) {
   // Exibir no console
   console.log(`[${new Date().toLocaleString()}] ${type} - ${message}`);
 }
->>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
 
 app.use(express.json());
 app.use('/public',express.static(path.join(__dirname, '../public')))
+app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
 app.use('/',Main.main);
@@ -39,9 +36,6 @@ app.use(Book.ReadBook);
 app.use(Aluno.AddAluno);
 app.use(Aluno.ReadAluno);
 app.use(Aluno.UpdateAluno);
-<<<<<<< HEAD
-app.use(Main.EmprestimoMain);
-=======
 //app.use(Main.EmprestimoMain);
 app.get('/emprestimo/ReadEmprestimo',async (req,res) => {
   const client = await con.connect();
@@ -123,16 +117,11 @@ app.post("/emprestimo/DeleteEmprestimo",async (req,res) => {
       client.release();
   }
 }),
->>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
 
 app.get('*',(req,res) => {
     res.redirect("/404");
 })
 
-<<<<<<< HEAD
-
-=======
->>>>>>> bf7733a416bbbbf921411be1d218bde765732c00
 app.listen(port, () => {
     console.log("app listen in http://localhost:3000")
 })
