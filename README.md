@@ -3,7 +3,7 @@
 ## Descrição
 Este é um projeto de uma biblioteca virtual desenvolvido utilizando Node.js, Express e PostgreSQL. Ele fornece uma API para gerenciar alunos e livros da biblioteca, permitindo a leitura, adição, remoção e atualização de registros.
 
-![image](https://github.com/user-attachments/assets/bc16e107-88c2-4aef-962a-918b92456792)
+![image](https://github.com/user-attachments/assets/5e34e9cb-93a1-46e8-b4bb-fafebf651adb)
 ![image](https://github.com/user-attachments/assets/44144b4f-5c7c-4411-af12-c951acc0d933)
 ![image](https://github.com/user-attachments/assets/b6a4ecb6-8247-4382-9533-e84edaf318b8)
 ![image](https://github.com/user-attachments/assets/0e7b7422-a0db-45e2-89f2-ed6a26b912e4)
